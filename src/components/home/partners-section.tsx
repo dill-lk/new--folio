@@ -43,24 +43,24 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer className="mt-8">
         <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
-          As a self-taught developer, I've embraced the challenge of mastering both Software Engineering and DevOps 
-          practices. While most of my peers are just discovering programming, I'm building production-grade tools like 
-          <span className="font-semibold text-sky-600 dark:text-sky-400"> YakaJS</span>—a next-generation JavaScript 
-          library that rivals jQuery in power while maintaining elegant simplicity. Beyond JavaScript, I've developed 
-          strong expertise in <span className="font-semibold">Java</span>, working with object-oriented design patterns, 
-          enterprise applications, and robust backend systems. My work focuses on solving real problems: simplifying state 
-          management, enabling voice-controlled web applications, building scalable Java services, and creating developer 
-          tools that others can rely on.
+          As a self-taught developer, I've embraced the challenge of mastering <span className="font-semibold">Frontend Development</span> and 
+          <span className="font-semibold"> Cybersecurity</span>. While most of my peers are just discovering programming, I'm building 
+          production-grade tools like <span className="font-semibold text-sky-600 dark:text-sky-400"> YakaJS</span>—a next-generation 
+          JavaScript library that rivals jQuery in power while maintaining elegant simplicity. My passion lies in creating beautiful, 
+          secure user interfaces and ensuring every application I build is protected from vulnerabilities. My work focuses on solving real 
+          problems: crafting intuitive frontend experiences, implementing security best practices, and creating developer tools that others can rely on.
         </p>
       </GridContainer>
 
       <GridContainer className="mt-8">
         <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
-          But coding is just the beginning. I believe that truly great developers don't just write code—they secure it, 
-          optimize it, and make it maintainable. That's why I've invested time mastering <span className="font-semibold">GPG 
-          Cryptography</span> for commit verification, implementing robust <span className="font-semibold">CI/CD pipelines</span> 
-          with GitHub Actions, and understanding the intricacies of modern DevOps practices. Every commit I make is signed, 
-          every deployment is automated, and every line of code is written with security in mind.
+          But coding beautiful interfaces is just the beginning. I believe that truly great developers don't just write code—they 
+          <span className="font-semibold"> secure it</span>, optimize it, and make it maintainable. That's why I've invested significant 
+          time mastering <span className="font-semibold">cybersecurity practices</span>, <span className="font-semibold">GPG Cryptography</span> 
+          for commit verification, implementing robust <span className="font-semibold">CI/CD pipelines</span> with GitHub Actions, and 
+          understanding vulnerabilities in modern web applications. Every commit I make is signed, every deployment is automated, and 
+          every line of frontend code is written with security-first thinking. I see cybersecurity not as an add-on, but as a fundamental 
+          part of excellent frontend development.
         </p>
       </GridContainer>
 

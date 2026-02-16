@@ -75,8 +75,9 @@ export default function WhyTailwindCssSection() {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
-          My technical expertise spans across frontend development, backend engineering, DevOps, and cybersecurity. 
-          I build secure, scalable solutions using cutting-edge tools and best practices.
+          My passion lies in <span className="font-semibold">frontend development</span> and <span className="font-semibold">cybersecurity</span>. 
+          I love crafting beautiful, intuitive user experiences while ensuring every application is secure from the ground up. 
+          I build modern, responsive interfaces with cutting-edge tools and implement robust security practices that protect users and data.
         </p>
       </GridContainer>
 
@@ -84,34 +85,36 @@ export default function WhyTailwindCssSection() {
         <div className="px-2 max-sm:px-4">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <div>
-              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Frontend Development</h3>
+              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Frontend Development ⭐</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 <li>• JavaScript (ES6+) & TypeScript</li>
                 <li>• React & Next.js</li>
                 <li>• HTML5, CSS3, Tailwind CSS</li>
                 <li>• Responsive UI/UX Design</li>
                 <li>• YakaJS (Author)</li>
+                <li>• Modern Web APIs</li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Backend & Tools</h3>
+              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Cybersecurity ⭐</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
-                <li>• Java & Spring Framework</li>
-                <li>• Node.js & API Design</li>
-                <li>• RESTful Services & GraphQL</li>
-                <li>• Database Architecture (SQL/NoSQL)</li>
-                <li>• CLI Tool Development</li>
-                <li>• Performance Optimization</li>
+                <li>• Web Security & Vulnerabilities</li>
+                <li>• GPG Cryptography</li>
+                <li>• Secure Coding Practices</li>
+                <li>• Authentication & Authorization</li>
+                <li>• Security Testing</li>
+                <li>• Ethical Hacking Concepts</li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">DevOps & Security</h3>
+              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Tools & DevOps</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 <li>• Git & GitHub Actions</li>
                 <li>• CI/CD Pipelines</li>
-                <li>• GPG Cryptography</li>
-                <li>• Linux CLI Mastery</li>
-                <li>• Secure Coding Practices</li>
+                <li>• Linux CLI</li>
+                <li>• Node.js & APIs</li>
+                <li>• Database Basics</li>
+                <li>• Performance Optimization</li>
               </ul>
             </div>
           </div>

@@ -101,8 +101,9 @@ export default function TailwindUiSection() {
               💡 Interested in collaboration?
             </p>
             <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
-              I'm particularly interested in projects involving JavaScript libraries, developer tools, 
-              secure systems architecture, or anything that pushes the boundaries of web technology.
+              I'm particularly interested in projects involving <span className="font-semibold">frontend development</span>, 
+              <span className="font-semibold"> web security</span>, JavaScript libraries, secure UI/UX implementations, 
+              or anything that combines beautiful design with robust security practices.
             </p>
           </div>
         </div>
