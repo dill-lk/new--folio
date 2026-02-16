@@ -87,7 +87,7 @@ export default function TailwindUiSection() {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
           I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. 
           Feel free to reach out through any of the following channels.
         </p>
@@ -96,19 +96,19 @@ export default function TailwindUiSection() {
       <GridContainer className="mt-10">
         <div className="px-2 max-sm:px-4">
           <div className="space-y-4">
-            <p className="text-base text-gray-700 dark:text-gray-300">
+            <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">Email:</span>{" "}
               <a href="mailto:your@email.com" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
                 your@email.com
               </a>
             </p>
-            <p className="text-base text-gray-700 dark:text-gray-300">
+            <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">GitHub:</span>{" "}
               <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
                 github.com/yourusername
               </a>
             </p>
-            <p className="text-base text-gray-700 dark:text-gray-300">
+            <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">LinkedIn:</span>{" "}
               <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
                 linkedin.com/in/yourusername

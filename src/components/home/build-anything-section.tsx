@@ -46,7 +46,7 @@ export default function BuildAnythingSection() {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
           It should be understood, optimized, and mastered. I believe in dissecting technology, rebuilding it, 
           and pushing its limits to create smarter, more powerful systems. Every line of code should serve a purpose, 
           and every system should be built with intention and precision.

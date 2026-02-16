@@ -33,7 +33,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
           Hi, I'm Jinuk Chanthusa, a 14-year-old Full-Stack Developer and Open Source Contributor from Sri Lanka. 
           My journey into the world of technology began not with formal education, but with an insatiable curiosity 
           and a relentless drive to understand how things work beneath the surface. I don't just build applications—I 
@@ -42,7 +42,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </GridContainer>
 
       <GridContainer className="mt-8">
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
           As a self-taught developer, I've embraced the challenge of mastering both Software Engineering and DevOps 
           practices. While most of my peers are just discovering programming, I'm building production-grade tools like 
           <span className="font-semibold text-sky-600 dark:text-sky-400"> YakaJS</span>—a next-generation JavaScript 
@@ -53,7 +53,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </GridContainer>
 
       <GridContainer className="mt-8">
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
           But coding is just the beginning. I believe that truly great developers don't just write code—they secure it, 
           optimize it, and make it maintainable. That's why I've invested time mastering <span className="font-semibold">GPG 
           Cryptography</span> for commit verification, implementing robust <span className="font-semibold">CI/CD pipelines</span> 
@@ -63,7 +63,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </GridContainer>
 
       <GridContainer className="mt-8">
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
           My ultimate goal extends beyond building great software. I dream of pursuing a PhD in Computer Science in South Korea, 
           where I can contribute to cutting-edge research and world-class technological innovations. I want to be at the forefront 
           of discovery, pushing the boundaries of what technology can achieve. Every project I work on, every concept I master, 
@@ -72,7 +72,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </GridContainer>
 
       <GridContainer className="mt-8">
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
           When I'm not coding, I'm learning. Whether it's exploring system architecture, diving deep into performance optimization, 
           debugging complex systems, or staying current with the latest in cybersecurity, I approach every challenge as an opportunity 
           to grow. Technology isn't just my profession—it's my passion, my puzzle, and my path to making a meaningful impact on the world.

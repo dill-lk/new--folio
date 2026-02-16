@@ -126,7 +126,7 @@ export default function ExplainerSection() {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
           YakaJS is my flagship open-source project. It is a lightweight, zero-dependency JavaScript library featuring 
           voice commands, reactive state management, 100% GPG-verified development cycle, and optimized performance 
           for modern web standards with zero plugins required.
@@ -134,12 +134,12 @@ export default function ExplainerSection() {
       </GridContainer>
 
       <GridContainer className="mt-16">
-        <div className="w-full bg-gray-950/5 p-2 dark:bg-white/10">
+        <div className="w-full bg-oatmeal-card p-2 dark:bg-oatmeal-olive">
           <div className="not-prose">
-            <div className="@container rounded-xl bg-gray-950 in-[figure]:-mx-1 in-[figure]:-mb-1">
+            <div className="@container rounded-xl bg-oatmeal-black in-[figure]:-mx-1 in-[figure]:-mb-1">
               <div
                 className={clsx(
-                  "rounded-xl p-1 text-sm scheme-dark dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",
+                  "rounded-xl p-1 text-sm scheme-dark dark:bg-oatmeal-card dark:inset-ring dark:inset-ring-oatmeal-stone/10",
                 )}
               >
                 <EditorAnimation timeline={timeline}>

@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
         <span className="hidden dark:inline">text-white</span> font-medium
       </div>
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-lg/7 font-medium text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-md) px-2 text-lg/7 font-medium text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
           Full-Stack Developer • Cybersecurity Specialist • Systems Architect
           <br /><br />
           Building the future one line of code at a time. I design, develop, and secure digital systems from the ground up—transforming 
@@ -115,13 +115,13 @@ const Hero: React.FC = () => {
       </GridContainer>
       <GridContainer className="mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-3">
-          <div className="bg-gray-950/5 p-2 lg:col-span-2 lg:-mx-px dark:bg-white/10">
+          <div className="bg-oatmeal-card p-2 lg:col-span-2 lg:-mx-px dark:bg-oatmeal-olive">
             <Editor>
               <div
                 className={clsx(
-                  "*:flex *:*:max-w-none *:*:shrink-0 *:*:grow *:overflow-auto *:rounded-lg *:bg-white/10! *:p-5 dark:*:bg-white/5!",
+                  "*:flex *:*:max-w-none *:*:shrink-0 *:*:grow *:overflow-auto *:rounded-lg *:bg-oatmeal-olive/50! *:p-5 dark:*:bg-oatmeal-black!",
                   "**:[.line]:isolate **:[.line]:block **:[.line]:not-last:min-h-[1lh]",
-                  "*:inset-ring *:inset-ring-white/10 dark:*:inset-ring-white/5",
+                  "*:inset-ring *:inset-ring-oatmeal-stone/20 dark:*:inset-ring-oatmeal-stone/10",
                 )}
               >
                 <pre tabIndex={0}>

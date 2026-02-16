@@ -74,7 +74,7 @@ export default function WhyTailwindCssSection() {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
           My technical expertise spans across frontend development, backend engineering, DevOps, and cybersecurity. 
           I build secure, scalable solutions using cutting-edge tools and best practices.
         </p>
