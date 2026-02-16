@@ -143,6 +143,76 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
         </div>
       </GridContainer>
 
+      <GridContainer className="mt-16">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+            Development Journey
+          </h3>
+          <div className="space-y-6">
+            
+            <div className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
+                <div className="w-0.5 h-full bg-sky-500/30"></div>
+              </div>
+              <div className="pb-8">
+                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2026 - Present</p>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Advanced Development & Research</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                  Working on cutting-edge projects, contributing to open source, and preparing for PhD application. 
+                  Focus on advanced frontend techniques and cybersecurity research.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
+                <div className="w-0.5 h-full bg-sky-500/30"></div>
+              </div>
+              <div className="pb-8">
+                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2025</p>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">YakaJS Development & Security Mastery</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                  Created YakaJS library from scratch. Mastered GPG cryptography and implemented 100% verified development workflow. 
+                  Built multiple production-ready applications with security-first approach.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
+                <div className="w-0.5 h-full bg-sky-500/30"></div>
+              </div>
+              <div className="pb-8">
+                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2024</p>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Full-Stack Mastery & CI/CD</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                  Deep dive into React, Next.js, and modern JavaScript frameworks. Automated development workflows with GitHub Actions. 
+                  Started exploring cybersecurity and ethical hacking concepts.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="flex flex-col items-center">
+                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2023</p>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Self-Taught Journey Begins</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                  Started programming journey with HTML, CSS, and JavaScript. Built first projects and fell in love with web development. 
+                  Realized the power of technology to solve real-world problems.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </GridContainer>
+
       <section style={{ display: 'none' }}>
         <div className="relative isolate mt-16">
           <div className="pointer-events-none absolute inset-0 z-10 grid grid-cols-2 gap-10 max-md:gap-5 lg:grid-cols-3 xl:grid-cols-4">

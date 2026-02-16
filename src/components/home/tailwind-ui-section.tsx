@@ -116,22 +116,61 @@ export default function TailwindUiSection() {
           <div className="space-y-4">
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">Email:</span>{" "}
-              <a href="mailto:your@email.com" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
-                your@email.com
+              <a href="mailto:jinuk@example.com" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                jinuk@example.com
               </a>
             </p>
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">GitHub:</span>{" "}
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
-                github.com/yourusername
+              <a href="https://github.com/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                github.com/jinukchanthusa
               </a>
             </p>
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">LinkedIn:</span>{" "}
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
-                linkedin.com/in/yourusername
+              <a href="https://linkedin.com/in/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                linkedin.com/in/jinukchanthusa
               </a>
             </p>
+            <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
+              <span className="font-semibold">Twitter/X:</span>{" "}
+              <a href="https://twitter.com/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                @jinukchanthusa
+              </a>
+            </p>
+            <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
+              <span className="font-semibold">Discord:</span>{" "}
+              <span className="text-oatmeal-stone dark:text-oatmeal-white">
+                jinuk#0001
+              </span>
+            </p>
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-10">
+        <div className="px-2 max-sm:px-4">
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="mailto:jinuk@example.com"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-sky-500 text-white font-medium hover:bg-sky-600 transition-colors"
+            >
+              Send Message
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-oatmeal-card text-oatmeal-white font-medium hover:bg-oatmeal-olive transition-colors dark:bg-oatmeal-olive dark:hover:bg-oatmeal-card"
+            >
+              Download Resume
+            </a>
+            <a
+              href="https://github.com/jinukchanthusa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-sky-500 text-sky-600 dark:text-sky-400 font-medium hover:bg-sky-500/10 transition-colors"
+            >
+              View GitHub
+            </a>
           </div>
         </div>
       </GridContainer>

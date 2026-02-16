@@ -122,6 +122,75 @@ export default function WhyTailwindCssSection() {
       </GridContainer>
 
       <GridContainer className="mt-16">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">Skill Proficiency</h3>
+          <div className="space-y-4">
+            
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">JavaScript/TypeScript</span>
+                <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
+              </div>
+              <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
+                <div className="bg-sky-500 h-2 rounded-full" style={{width: '95%'}}></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">React & Next.js</span>
+                <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Advanced</span>
+              </div>
+              <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
+                <div className="bg-sky-500 h-2 rounded-full" style={{width: '90%'}}></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">Web Security & Ethical Hacking</span>
+                <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Advanced</span>
+              </div>
+              <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
+                <div className="bg-sky-500 h-2 rounded-full" style={{width: '85%'}}></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">Git & CI/CD</span>
+                <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
+              </div>
+              <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
+                <div className="bg-sky-500 h-2 rounded-full" style={{width: '92%'}}></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">HTML5 & CSS3</span>
+                <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
+              </div>
+              <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
+                <div className="bg-sky-500 h-2 rounded-full" style={{width: '93%'}}></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between mb-2">
+                <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">Node.js & APIs</span>
+                <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Intermediate</span>
+              </div>
+              <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
+                <div className="bg-sky-500 h-2 rounded-full" style={{width: '75%'}}></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-16">
         <div className="grid w-full grid-flow-dense grid-cols-30 gap-2 bg-gray-950/5 p-2 dark:bg-white/10">
           <BentoItem className="col-span-full">
             <BentoHeader>

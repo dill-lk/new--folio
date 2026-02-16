@@ -185,6 +185,75 @@ export default function ExplainerSection() {
       </GridContainer>
 
       <GridContainer className="mt-16">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">Other Notable Projects</h3>
+          <div className="grid gap-6 md:grid-cols-2">
+            
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border border-oatmeal-stone/20">
+              <h4 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">SecureAuth System</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white mb-3">
+                A robust authentication system with GPG-encrypted sessions, 2FA support, and JWT tokens. Built with security-first principles.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">JavaScript</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Node.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Cryptography</span>
+              </div>
+              <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
+                <span className="font-semibold">Status:</span> Active Development
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border border-oatmeal-stone/20">
+              <h4 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">DevTools CLI Suite</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white mb-3">
+                Collection of command-line tools for developers including code analyzers, automated testing utilities, and deployment helpers.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Node.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">CLI</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Automation</span>
+              </div>
+              <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
+                <span className="font-semibold">Status:</span> Open Source
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border border-oatmeal-stone/20">
+              <h4 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">WebSec Scanner</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white mb-3">
+                Automated web vulnerability scanner that detects XSS, SQL injection, CSRF, and other common security issues in web applications.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Python</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Security</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Pentesting</span>
+              </div>
+              <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
+                <span className="font-semibold">Status:</span> Beta Testing
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border border-oatmeal-stone/20">
+              <h4 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Portfolio Builder</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white mb-3">
+                A customizable portfolio template system with dark mode, responsive design, and easy content management for developers.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">React</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Next.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Tailwind</span>
+              </div>
+              <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
+                <span className="font-semibold">Status:</span> Completed
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-16">
         <div className="w-full bg-oatmeal-card p-2 dark:bg-oatmeal-olive">
           <div className="not-prose">
             <div className="@container rounded-xl bg-oatmeal-black in-[figure]:-mx-1 in-[figure]:-mb-1">
