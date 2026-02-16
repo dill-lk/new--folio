@@ -46,7 +46,7 @@ import { SharedTooltip, TooltipTrigger } from "../tooltip";
 
 export default function WhyTailwindCssSection() {
   return (
-    <div className="relative max-w-full">
+    <div className="relative max-w-full" id="skills">
       <div
         aria-hidden="true"
         className="hidden h-4 items-end px-2 font-mono text-xs/6 whitespace-pre text-black/20 max-sm:px-4 2xl:visible 2xl:flex dark:text-white/25"

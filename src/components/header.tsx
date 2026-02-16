@@ -144,56 +144,23 @@ export function Header(props: React.PropsWithChildren) {
               Ctrl&nbsp;K
             </kbd>
           </SearchButton>
-          <Link href="/docs" className="text-sm/6 text-gray-950 dark:text-white">
-            Docs
+          <Link href="/" className="text-sm/6 text-gray-950 dark:text-white">
+            Home
           </Link>
-          <Link href="/blog" className="text-sm/6 text-gray-950 dark:text-white">
-            Blog
+          <Link href="#about" className="text-sm/6 text-gray-950 dark:text-white">
+            About
           </Link>
-          <Link href="/showcase" className="text-sm/6 text-gray-950 dark:text-white">
-            Showcase
+          <Link href="#skills" className="text-sm/6 text-gray-950 dark:text-white">
+            Skills
           </Link>
-          <Link href="/sponsor" className="text-sm/6 text-gray-950 dark:text-white">
-            Sponsor
+          <Link href="#projects" className="text-sm/6 text-gray-950 dark:text-white">
+            Projects
           </Link>
-          <a href="/plus?ref=top" className="group relative px-1.5 text-sm/6 text-sky-800 dark:text-sky-300">
-            <span className="absolute inset-0 border border-dashed border-sky-300/60 bg-sky-400/10 group-hover:bg-sky-400/15 dark:border-sky-300/30" />
-            Plus
-            <svg
-              width="5"
-              height="5"
-              viewBox="0 0 5 5"
-              className="absolute top-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50"
-            >
-              <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z" />
-            </svg>
-            <svg
-              width="5"
-              height="5"
-              viewBox="0 0 5 5"
-              className="absolute top-[-2px] right-[-2px] fill-sky-300 dark:fill-sky-300/50"
-            >
-              <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z" />
-            </svg>
-            <svg
-              width="5"
-              height="5"
-              viewBox="0 0 5 5"
-              className="absolute bottom-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50"
-            >
-              <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z" />
-            </svg>
-            <svg
-              width="5"
-              height="5"
-              viewBox="0 0 5 5"
-              className="absolute right-[-2px] bottom-[-2px] fill-sky-300 dark:fill-sky-300/50"
-            >
-              <path d="M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z" />
-            </svg>
-          </a>
+          <Link href="#contact" className="text-sm/6 text-gray-950 dark:text-white">
+            Contact
+          </Link>
 
-          <Link href="https://github.com/tailwindlabs/tailwindcss" aria-label="GitHub repository">
+          <Link href="https://github.com/yourusername" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer">
             <GitHubLogo className="size-5 fill-black/40 dark:fill-gray-400" />
           </Link>
         </div>

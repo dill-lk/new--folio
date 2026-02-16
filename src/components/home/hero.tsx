@@ -75,9 +75,10 @@ const Hero: React.FC = () => {
       </div>
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-lg/7 font-medium text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Full-Stack Developer • Cybersecurity Specialist • Systems Builder
+          Full-Stack Developer • Cybersecurity Specialist • Systems Architect
           <br /><br />
-          I design, build, and secure digital systems from the ground up — not just apps, but the logic behind them.
+          Building the future one line of code at a time. I design, develop, and secure digital systems from the ground up—transforming 
+          complex ideas into elegant, scalable solutions. Not just creating apps, but architecting the logic and infrastructure that powers them.
         </p>
       </GridContainer>
       <GridContainer className="mt-10 px-4 sm:hidden">

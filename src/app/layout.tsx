@@ -127,13 +127,13 @@ let darkModeScript = js`
 `;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tailwindcss.com"),
+  metadataBase: new URL("https://jinukchanthusa.dev"),
   title: {
-    default: "Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.",
-    template: "%s - Tailwind CSS",
+    default: "Jinuk Chanthusa - Full-Stack Developer & Cybersecurity Specialist",
+    template: "%s - Jinuk Chanthusa Portfolio",
   },
   description:
-    "Tailwind CSS is a utility-first CSS framework for rapidly building modern websites without ever leaving your HTML.",
+    "Portfolio of Jinuk Chanthusa, a 14-year-old full-stack developer and open source contributor from Sri Lanka. Specializing in JavaScript libraries, secure development workflows, and system architecture.",
 };
 
 export default async function RootLayout({
@@ -157,8 +157,8 @@ export default async function RootLayout({
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feeds/feed.xml" />
         <link rel="alternate" type="application/atom+xml" title="Atom 1.0" href="/feeds/atom.xml" />
         <link rel="alternate" type="application/json" title="JSON Feed" href="/feeds/feed.json" />
-        <meta name="apple-mobile-web-app-title" content="Tailwind CSS" />
-        <meta name="application-name" content="Tailwind CSS" />
+        <meta name="apple-mobile-web-app-title" content="Jinuk Chanthusa" />
+        <meta name="application-name" content="Jinuk Chanthusa Portfolio" />
         <meta name="msapplication-TileColor" content="#38bdf8" />
         <meta name="msapplication-config" content={v("/favicons/browserconfig.xml")} />
         <script type="text/javascript" dangerouslySetInnerHTML={{ __html: darkModeScript }}></script>

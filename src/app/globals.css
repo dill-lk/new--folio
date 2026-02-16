@@ -9,6 +9,13 @@
   --font-mono: var(--font-plex-mono), monospace;
   --font-mono--font-feature-settings: "ss02", "zero";
   --font-ubuntu-mono: var(--font-ubuntu-mono);
+  
+  /* Custom Oatmeal Color Palette */
+  --color-oatmeal-black: #0B0A08;
+  --color-oatmeal-card: #141311;
+  --color-oatmeal-white: #E7E5E4;
+  --color-oatmeal-stone: #A8A29E;
+  --color-oatmeal-olive: #2B2922;
 }
 
 @theme {

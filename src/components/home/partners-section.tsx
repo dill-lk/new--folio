@@ -5,7 +5,7 @@ import type { Sponsor } from "@/lib/sponsors";
 
 export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
   return (
-    <div className="relative max-w-full">
+    <div className="relative max-w-full" id="about">
       <div
         aria-hidden="true"
         className="hidden h-4 items-end px-2 font-mono text-xs/6 whitespace-pre text-black/20 max-sm:px-4 2xl:visible 2xl:flex dark:text-white/25"
@@ -20,7 +20,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer>
         <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0">
-          Building the Future of Web with Code & Security
+          A Journey from Curiosity to Innovation
         </h2>
       </GridContainer>
 
@@ -34,25 +34,48 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Hi, I'm Jinuk Chanthusa. A 14-year-old Full-Stack Developer and Open Source Contributor from Sri Lanka. 
-          I specialize in building high-performance JavaScript libraries and secure development workflows. 
-          My goal? To reach the pinnacle of research in Computer Science and beyond.
+          Hi, I'm Jinuk Chanthusa, a 14-year-old Full-Stack Developer and Open Source Contributor from Sri Lanka. 
+          My journey into the world of technology began not with formal education, but with an insatiable curiosity 
+          and a relentless drive to understand how things work beneath the surface. I don't just build applications—I 
+          architect systems, analyze patterns, and push the boundaries of what's possible with code.
         </p>
       </GridContainer>
 
       <GridContainer className="mt-8">
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          I am a self-taught developer with a deep passion for Software Engineering and DevOps. While most people my age 
-          are just starting with code, I am building complex tools like YakaJS—a next-gen JavaScript library designed to 
-          simplify state management and UI interactions.
+          As a self-taught developer, I've embraced the challenge of mastering both Software Engineering and DevOps 
+          practices. While most of my peers are just discovering programming, I'm building production-grade tools like 
+          <span className="font-semibold text-sky-600 dark:text-sky-400"> YakaJS</span>—a next-generation JavaScript 
+          library that rivals jQuery in power while maintaining elegant simplicity. My work focuses on solving real 
+          problems: simplifying state management, enabling voice-controlled web applications, and creating developer 
+          tools that others can rely on.
         </p>
       </GridContainer>
 
       <GridContainer className="mt-8">
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          I don't just write code; I secure it. I have mastered GPG Cryptography for commit verification and GitHub Actions 
-          for CI/CD automation. My journey is fueled by a dream to pursue a PhD in South Korea and contribute to world-class 
-          technological innovations.
+          But coding is just the beginning. I believe that truly great developers don't just write code—they secure it, 
+          optimize it, and make it maintainable. That's why I've invested time mastering <span className="font-semibold">GPG 
+          Cryptography</span> for commit verification, implementing robust <span className="font-semibold">CI/CD pipelines</span> 
+          with GitHub Actions, and understanding the intricacies of modern DevOps practices. Every commit I make is signed, 
+          every deployment is automated, and every line of code is written with security in mind.
+        </p>
+      </GridContainer>
+
+      <GridContainer className="mt-8">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+          My ultimate goal extends beyond building great software. I dream of pursuing a PhD in Computer Science in South Korea, 
+          where I can contribute to cutting-edge research and world-class technological innovations. I want to be at the forefront 
+          of discovery, pushing the boundaries of what technology can achieve. Every project I work on, every concept I master, 
+          and every challenge I overcome brings me one step closer to that vision.
+        </p>
+      </GridContainer>
+
+      <GridContainer className="mt-8">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+          When I'm not coding, I'm learning. Whether it's exploring system architecture, diving deep into performance optimization, 
+          debugging complex systems, or staying current with the latest in cybersecurity, I approach every challenge as an opportunity 
+          to grow. Technology isn't just my profession—it's my passion, my puzzle, and my path to making a meaningful impact on the world.
         </p>
       </GridContainer>
 
