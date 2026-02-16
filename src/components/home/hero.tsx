@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
         <span className="max-sm:hidden">text-balance</span>
       </div>
       <GridContainer>
-        <h1 className="px-2 text-4xl tracking-tighter text-balance max-lg:font-medium max-sm:px-4 sm:text-5xl lg:text-6xl xl:text-8xl">
+        <h1 className="px-2 text-4xl tracking-tighter text-balance max-lg:font-medium max-sm:px-4 sm:text-5xl lg:text-6xl xl:text-8xl animate-fade-in">
           Jinuk Chanthusa
         </h1>
       </GridContainer>
@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
         <span className="hidden dark:inline">text-white</span> font-medium
       </div>
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-lg/7 font-medium text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
+        <p className="max-w-(--breakpoint-md) px-2 text-lg/7 font-medium text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white animate-slide-up [animation-delay:200ms]">
           Full-Stack Developer • Cybersecurity Specialist • Systems Architect
           <br /><br />
           Building the future one line of code at a time. I design, develop, and secure digital systems from the ground up—transforming 
@@ -82,13 +82,13 @@ const Hero: React.FC = () => {
         </p>
       </GridContainer>
       <GridContainer className="mt-10 px-4 sm:hidden">
-        <LinkButton href="#contact" className="z-1 w-full text-center">
+        <LinkButton href="#contact" className="z-1 w-full text-center animate-scale-up [animation-delay:400ms] hover:scale-105 transition-transform duration-200">
           Get in touch
         </LinkButton>
       </GridContainer>
       <GridContainer className="mt-4 sm:mt-10 sm:px-2">
-        <div className="flex gap-4 max-sm:px-4">
-          <LinkButton href="#contact" className="z-1 max-sm:hidden">
+        <div className="flex gap-4 max-sm:px-4 animate-scale-up [animation-delay:400ms]">
+          <LinkButton href="#contact" className="z-1 max-sm:hidden hover:scale-105 transition-transform duration-200">
             Get in touch
           </LinkButton>
           <SearchButton className="grid w-full grid-cols-[auto_1fr_auto] items-center gap-1 rounded-full px-4 py-2 text-left text-sm/6 text-gray-950/50 inset-ring inset-ring-gray-950/8 sm:w-80 dark:bg-white/5 dark:text-white/50 dark:inset-ring-white/15">
