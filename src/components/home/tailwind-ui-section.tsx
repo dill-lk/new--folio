@@ -97,9 +97,9 @@ export default function TailwindUiSection() {
 
       <GridContainer className="mt-8">
         <div className="px-2 max-sm:px-4">
-          <div className="rounded-lg bg-sky-500/10 dark:bg-sky-400/10 p-6 border border-sky-500/20 dark:border-sky-400/20">
+          <div className="rounded-lg bg-oatmeal-olive/20 dark:bg-oatmeal-olive/20 p-6 border border-oatmeal-stone/20 dark:border-oatmeal-stone/20">
             <p className="text-oatmeal-black dark:text-oatmeal-white font-medium mb-2 flex items-center gap-2">
-              <LightBulbIcon className="w-5 h-5 text-sky-500 dark:text-sky-400" />
+              <LightBulbIcon className="w-5 h-5 text-oatmeal-stone dark:text-oatmeal-stone" />
               Interested in collaboration?
             </p>
             <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
@@ -116,25 +116,25 @@ export default function TailwindUiSection() {
           <div className="space-y-4">
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">Email:</span>{" "}
-              <a href="mailto:jinuk@example.com" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+              <a href="mailto:jinuk@example.com" className="text-oatmeal-stone hover:text-oatmeal-white dark:text-oatmeal-stone dark:hover:text-oatmeal-white">
                 jinuk@example.com
               </a>
             </p>
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">GitHub:</span>{" "}
-              <a href="https://github.com/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+              <a href="https://github.com/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-oatmeal-stone hover:text-oatmeal-white dark:text-oatmeal-stone dark:hover:text-oatmeal-white">
                 github.com/jinukchanthusa
               </a>
             </p>
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">LinkedIn:</span>{" "}
-              <a href="https://linkedin.com/in/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+              <a href="https://linkedin.com/in/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-oatmeal-stone hover:text-oatmeal-white dark:text-oatmeal-stone dark:hover:text-oatmeal-white">
                 linkedin.com/in/jinukchanthusa
               </a>
             </p>
             <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
               <span className="font-semibold">Twitter/X:</span>{" "}
-              <a href="https://twitter.com/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+              <a href="https://twitter.com/jinukchanthusa" target="_blank" rel="noopener noreferrer" className="text-oatmeal-stone hover:text-oatmeal-white dark:text-oatmeal-stone dark:hover:text-oatmeal-white">
                 @jinukchanthusa
               </a>
             </p>
@@ -153,7 +153,7 @@ export default function TailwindUiSection() {
           <div className="flex flex-wrap gap-4">
             <a
               href="mailto:jinuk@example.com"
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-sky-500 text-white font-medium hover:bg-sky-600 transition-colors"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-oatmeal-card text-oatmeal-white font-medium hover:bg-oatmeal-olive transition-colors"
             >
               Send Message
             </a>
@@ -167,7 +167,7 @@ export default function TailwindUiSection() {
               href="https://github.com/jinukchanthusa"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-sky-500 text-sky-600 dark:text-sky-400 font-medium hover:bg-sky-500/10 transition-colors"
+              className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-oatmeal-stone text-oatmeal-stone dark:text-oatmeal-white font-medium hover:bg-oatmeal-olive/20 transition-colors"
             >
               View GitHub
             </a>
@@ -350,7 +350,7 @@ export default function TailwindUiSection() {
                   </p>
                 </div>
               </TabButton>
-              <TabButton className="data-selected:bg-sky-500/5 data-selected:text-sky-600 dark:data-selected:text-sky-500">
+              <TabButton className="data-selected:bg-oatmeal-olive/20 data-selected:text-oatmeal-white dark:data-selected:text-oatmeal-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="120" height="74" fill="none" viewBox="0 0 120 72">
                   <path
                     className="fill-white dark:fill-gray-950"

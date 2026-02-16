@@ -24,7 +24,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-sky-500 dark:text-sky-400">About Me</CategoryHeader>
+        <CategoryHeader className="text-oatmeal-stone dark:text-oatmeal-stone">About Me</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
@@ -54,7 +54,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
         <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
           As a self-taught developer, I've embraced the challenge of mastering <span className="font-semibold">Frontend Development</span> and 
           <span className="font-semibold"> Cybersecurity</span>. While most of my peers are just discovering programming, I'm building 
-          production-grade tools like <span className="font-semibold text-sky-600 dark:text-sky-400"> YakaJS</span>—a next-generation 
+          production-grade tools like <span className="font-semibold text-oatmeal-stone dark:text-oatmeal-white"> YakaJS</span>—a next-generation 
           JavaScript library that rivals jQuery in power while maintaining elegant simplicity. My passion lies in creating beautiful, 
           secure user interfaces and ensuring every application I build is protected from vulnerabilities. My work focuses on solving real 
           problems: crafting intuitive frontend experiences, implementing security best practices, and creating developer tools that others can rely on.
@@ -93,47 +93,47 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       <GridContainer className="mt-12">
         <div className="px-2 max-sm:px-4">
           <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 flex items-center gap-2">
-            <TrophyIcon className="w-7 h-7 text-sky-500 dark:text-sky-400" />
+            <TrophyIcon className="w-7 h-7 text-oatmeal-stone dark:text-oatmeal-stone" />
             Key Achievements
           </h3>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
-              <AcademicCapIcon className="w-10 h-10 mb-2 text-sky-500 dark:text-sky-400" />
+              <AcademicCapIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Self-Taught Excellence</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Mastered full-stack development, DevOps, and cybersecurity practices independently at age 14
               </p>
             </div>
             <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
-              <CodeBracketIcon className="w-10 h-10 mb-2 text-sky-500 dark:text-sky-400" />
+              <CodeBracketIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">YakaJS Creation</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Built production-grade JavaScript library with advanced features rivaling established frameworks
               </p>
             </div>
             <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
-              <ShieldCheckIcon className="w-10 h-10 mb-2 text-sky-500 dark:text-sky-400" />
+              <ShieldCheckIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Security Expert</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Implemented GPG cryptography and automated CI/CD with 100% verified secure development workflow
               </p>
             </div>
             <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
-              <GlobeAltIcon className="w-10 h-10 mb-2 text-sky-500 dark:text-sky-400" />
+              <GlobeAltIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Open Source Contributor</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Active contributor to open-source community, sharing tools and knowledge with developers worldwide
               </p>
             </div>
             <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
-              <BeakerIcon className="w-10 h-10 mb-2 text-sky-500 dark:text-sky-400" />
+              <BeakerIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Research Aspirations</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Working toward PhD in Computer Science to contribute to cutting-edge technological innovations
               </p>
             </div>
             <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
-              <MapPinIcon className="w-10 h-10 mb-2 text-sky-500 dark:text-sky-400" />
+              <MapPinIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Sri Lankan Pride</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Representing Sri Lanka in the global tech community, proving age is no barrier to excellence
@@ -152,11 +152,11 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
             
             <div className="flex gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
-                <div className="w-0.5 h-full bg-sky-500/30"></div>
+                <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
+                <div className="w-0.5 h-full bg-oatmeal-stone/30"></div>
               </div>
               <div className="pb-8">
-                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2026 - Present</p>
+                <p className="text-sm font-semibold text-oatmeal-stone dark:text-oatmeal-white mb-1">2026 - Present</p>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Advanced Development & Research</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                   Working on cutting-edge projects, contributing to open source, and preparing for PhD application. 
@@ -167,11 +167,11 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
             <div className="flex gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
-                <div className="w-0.5 h-full bg-sky-500/30"></div>
+                <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
+                <div className="w-0.5 h-full bg-oatmeal-stone/30"></div>
               </div>
               <div className="pb-8">
-                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2025</p>
+                <p className="text-sm font-semibold text-oatmeal-stone dark:text-oatmeal-white mb-1">2025</p>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">YakaJS Development & Security Mastery</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                   Created YakaJS library from scratch. Mastered GPG cryptography and implemented 100% verified development workflow. 
@@ -182,11 +182,11 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
             <div className="flex gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
-                <div className="w-0.5 h-full bg-sky-500/30"></div>
+                <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
+                <div className="w-0.5 h-full bg-oatmeal-stone/30"></div>
               </div>
               <div className="pb-8">
-                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2024</p>
+                <p className="text-sm font-semibold text-oatmeal-stone dark:text-oatmeal-white mb-1">2024</p>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Full-Stack Mastery & CI/CD</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                   Deep dive into React, Next.js, and modern JavaScript frameworks. Automated development workflows with GitHub Actions. 
@@ -197,10 +197,10 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
             <div className="flex gap-4">
               <div className="flex flex-col items-center">
-                <div className="w-3 h-3 rounded-full bg-sky-500"></div>
+                <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
               </div>
               <div>
-                <p className="text-sm font-semibold text-sky-600 dark:text-sky-400 mb-1">2023</p>
+                <p className="text-sm font-semibold text-oatmeal-stone dark:text-oatmeal-white mb-1">2023</p>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Self-Taught Journey Begins</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                   Started programming journey with HTML, CSS, and JavaScript. Built first projects and fell in love with web development. 
@@ -209,6 +209,75 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
               </div>
             </div>
 
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-16">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+            Stats & Metrics
+          </h3>
+          <div className="grid gap-4 md:grid-cols-4">
+            
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+              <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">5+</div>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Projects Completed</p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+              <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">1000+</div>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">GitHub Contributions</p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+              <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">3+</div>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Years Experience</p>
+            </div>
+
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+              <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">100%</div>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">GPG Verified</p>
+            </div>
+
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-16">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+            Availability Status
+          </h3>
+          <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border-2 border-oatmeal-stone/30">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-4 h-4 rounded-full bg-oatmeal-stone animate-pulse"></div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white text-lg">Currently Available for Work</h4>
+            </div>
+            <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white mb-3">
+              I'm actively seeking opportunities in:
+            </p>
+            <ul className="text-sm text-oatmeal-stone dark:text-oatmeal-white space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-oatmeal-stone flex-shrink-0"></span>
+                <span>Frontend Development Projects (React, Next.js, TypeScript)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-oatmeal-stone flex-shrink-0"></span>
+                <span>Web Security Consulting & Penetration Testing</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-oatmeal-stone flex-shrink-0"></span>
+                <span>Open Source Contributions & Library Development</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-oatmeal-stone flex-shrink-0"></span>
+                <span>Remote Work & Freelance Opportunities</span>
+              </li>
+            </ul>
+            <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white mt-4">
+              Response time: Usually within 24 hours
+            </p>
           </div>
         </div>
       </GridContainer>

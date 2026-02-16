@@ -139,19 +139,19 @@ export function Header(props: React.PropsWithChildren) {
               Ctrl&nbsp;K
             </kbd>
           </SearchButton>
-          <Link href="/" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+          <Link href="/" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-oatmeal-white dark:hover:text-oatmeal-white transition-colors">
             Home
           </Link>
-          <Link href="#about" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+          <Link href="#about" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-oatmeal-white dark:hover:text-oatmeal-white transition-colors">
             About
           </Link>
-          <Link href="#skills" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+          <Link href="#skills" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-oatmeal-white dark:hover:text-oatmeal-white transition-colors">
             Skills
           </Link>
-          <Link href="#projects" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+          <Link href="#projects" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-oatmeal-white dark:hover:text-oatmeal-white transition-colors">
             Projects
           </Link>
-          <Link href="#contact" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
+          <Link href="#contact" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-oatmeal-white dark:hover:text-oatmeal-white transition-colors">
             Contact
           </Link>
 

@@ -64,7 +64,7 @@ export default function BuildAnythingSection() {
           <div className="space-y-4">
             <div>
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2 flex items-center gap-2">
-                <MagnifyingGlassIcon className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+                <MagnifyingGlassIcon className="w-5 h-5 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
                 Deep Understanding Over Surface Knowledge
               </h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
@@ -74,7 +74,7 @@ export default function BuildAnythingSection() {
             </div>
             <div>
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2 flex items-center gap-2">
-                <ShieldCheckIcon className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+                <ShieldCheckIcon className="w-5 h-5 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
                 Security as a Foundation, Not an Afterthought
               </h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
@@ -84,7 +84,7 @@ export default function BuildAnythingSection() {
             </div>
             <div>
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2 flex items-center gap-2">
-                <ArrowPathIcon className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+                <ArrowPathIcon className="w-5 h-5 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
                 Continuous Improvement Through Iteration
               </h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">

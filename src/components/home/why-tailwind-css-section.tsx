@@ -132,7 +132,7 @@ export default function WhyTailwindCssSection() {
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-sky-500 h-2 rounded-full" style={{width: '95%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '95%'}}></div>
               </div>
             </div>
 
@@ -142,7 +142,7 @@ export default function WhyTailwindCssSection() {
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Advanced</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-sky-500 h-2 rounded-full" style={{width: '90%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '90%'}}></div>
               </div>
             </div>
 
@@ -152,7 +152,7 @@ export default function WhyTailwindCssSection() {
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Advanced</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-sky-500 h-2 rounded-full" style={{width: '85%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '85%'}}></div>
               </div>
             </div>
 
@@ -162,7 +162,7 @@ export default function WhyTailwindCssSection() {
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-sky-500 h-2 rounded-full" style={{width: '92%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '92%'}}></div>
               </div>
             </div>
 
@@ -172,7 +172,7 @@ export default function WhyTailwindCssSection() {
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-sky-500 h-2 rounded-full" style={{width: '93%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '93%'}}></div>
               </div>
             </div>
 
@@ -182,8 +182,41 @@ export default function WhyTailwindCssSection() {
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Intermediate</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-sky-500 h-2 rounded-full" style={{width: '75%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '75%'}}></div>
               </div>
+            </div>
+
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-16">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">Learning & Resources</h3>
+          <div className="space-y-4">
+            
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Self-Taught Education</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Learned programming through online courses, documentation, and hands-on projects. 
+                Primary resources include MDN Web Docs, freeCodeCamp, and official framework documentation.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Security Training</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Completed various cybersecurity courses covering ethical hacking, penetration testing, 
+                and secure coding practices. Active participant in security communities and CTF challenges.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Continuous Learning</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Regularly update skills through technical books, conference talks, and community engagement. 
+                Stay current with latest web technologies and security vulnerabilities through daily reading and experimentation.
+              </p>
             </div>
 
           </div>
@@ -864,7 +897,7 @@ export default function WhyTailwindCssSection() {
                       <span className="text-base/7 font-medium text-gray-950 dark:text-white">
                         Render time performance
                       </span>
-                      <div className="h-2.5 w-full rounded-full bg-linear-to-r from-emerald-500 to-sky-400 ring-1 ring-gray-950/10 ring-inset dark:from-emerald-400 dark:ring-white/10"></div>
+                      <div className="h-2.5 w-full rounded-full bg-linear-to-r from-oatmeal-stone to-oatmeal-olive ring-1 ring-oatmeal-stone/20 ring-inset dark:from-oatmeal-stone dark:ring-white/10"></div>
                     </div>
                     <span className="text-3xl/12 font-semibold text-gray-950 dark:text-white">6.4x</span>
                   </div>

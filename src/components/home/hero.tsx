@@ -12,7 +12,7 @@ import LinkButton from "./link-button";
 const SYMBOL = { color: "var(--color-slate-400)" };
 const ELEMENT = { color: "var(--color-pink-400)" };
 const KEYWORD = { color: "var(--color-slate-300)" };
-const STRING = { color: "var(--color-sky-300)" };
+const STRING = { color: "var(--color-oatmeal-stone)" };
 
 const Hero: React.FC = () => {
   let [step, setStep] = useState(0);
@@ -265,7 +265,7 @@ const Hero: React.FC = () => {
                         <span style={ELEMENT}>span</span>
                         <TypeWord
                           isTyping={isTyping}
-                          word={` class="font-medium text-sky-500"`}
+                          word={` class="font-medium text-oatmeal-stone"`}
                           step={3}
                           currentStep={step}
                           onNextStep={nextStep}
@@ -444,7 +444,7 @@ function Example({ step }: { step: number }) {
             layout="position"
             className={clsx(
               "text-gray-950 transition-colors duration-350 dark:text-white",
-              step > 3 ? "font-medium text-sky-500!" : null,
+              step > 3 ? "font-medium text-oatmeal-stone!" : null,
             )}
           >
             The Anti-Patterns
@@ -494,7 +494,7 @@ function TypeWord({
 
   let cursor =
     (step === currentStep && isTyping) || (step + 1 === currentStep && !isTyping) ? (
-      <span className="after:animate-typing after:absolute after:mt-1.5 after:inline-block after:h-[1.2em] after:w-px after:border-r-2 after:border-sky-400 after:bg-transparent after:content-['']" />
+      <span className="after:animate-typing after:absolute after:mt-1.5 after:inline-block after:h-[1.2em] after:w-px after:border-r-2 after:border-oatmeal-stone after:bg-transparent after:content-['']" />
     ) : null;
 
   if (!isTyping && currentStep === step) return cursor;

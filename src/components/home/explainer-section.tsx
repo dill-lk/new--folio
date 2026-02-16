@@ -37,7 +37,7 @@ export default function ExplainerSection() {
         <span key="2"></span>,
         <React.Fragment key="3">
           <span>Done in </span>
-          <span className="text-sky-300">12ms</span>
+          <span className="text-oatmeal-stone">12ms</span>
         </React.Fragment>,
       ],
     },
@@ -46,7 +46,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="4">
           <span>Done in </span>
-          <span className="text-sky-300">668µs</span>
+          <span className="text-oatmeal-stone">668µs</span>
         </React.Fragment>,
       ],
     },
@@ -55,7 +55,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="5">
           <span>Done in </span>
-          <span className="text-sky-300">425µs</span>
+          <span className="text-oatmeal-stone">425µs</span>
         </React.Fragment>,
       ],
     },
@@ -64,7 +64,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="6">
           <span>Done in </span>
-          <span className="text-sky-300">451µs</span>
+          <span className="text-oatmeal-stone">451µs</span>
         </React.Fragment>,
       ],
     },
@@ -73,7 +73,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="7">
           <span>Done in </span>
-          <span className="text-sky-300">940µs</span>
+          <span className="text-oatmeal-stone">940µs</span>
         </React.Fragment>,
       ],
     },
@@ -82,7 +82,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="7">
           <span>Done in </span>
-          <span className="text-sky-300">2ms</span>
+          <span className="text-oatmeal-stone">2ms</span>
         </React.Fragment>,
       ],
     },
@@ -91,7 +91,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="8">
           <span>Done in </span>
-          <span className="text-sky-300">1ms</span>
+          <span className="text-oatmeal-stone">1ms</span>
         </React.Fragment>,
       ],
     },
@@ -100,7 +100,7 @@ export default function ExplainerSection() {
       terminal: [
         <React.Fragment key="9">
           <span>Done in </span>
-          <span className="text-sky-300">993µs</span>
+          <span className="text-oatmeal-stone">993µs</span>
         </React.Fragment>,
       ],
     },
@@ -117,7 +117,7 @@ export default function ExplainerSection() {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-sky-500 dark:text-sky-400">Featured Project</CategoryHeader>
+        <CategoryHeader className="text-oatmeal-stone dark:text-oatmeal-stone">Featured Project</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
@@ -143,28 +143,28 @@ export default function ExplainerSection() {
           <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-4">Key Features:</h3>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex gap-3">
-              <MicrophoneIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+              <MicrophoneIcon className="w-6 h-6 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Voice Commands</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Native integration for voice-controlled web applications</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <BoltIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+              <BoltIcon className="w-6 h-6 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Reactive State</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Built-in reactive state management with zero boilerplate</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <LockClosedIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+              <LockClosedIcon className="w-6 h-6 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">100% Secure</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Every commit GPG-verified for complete code integrity</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <RocketLaunchIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+              <RocketLaunchIcon className="w-6 h-6 text-oatmeal-stone dark:text-oatmeal-stone flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Performance Optimized</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Modern web standards with zero plugin dependencies</p>
@@ -195,9 +195,9 @@ export default function ExplainerSection() {
                 A robust authentication system with GPG-encrypted sessions, 2FA support, and JWT tokens. Built with security-first principles.
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">JavaScript</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Node.js</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Cryptography</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">JavaScript</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Node.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Cryptography</span>
               </div>
               <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
                 <span className="font-semibold">Status:</span> Active Development
@@ -210,9 +210,9 @@ export default function ExplainerSection() {
                 Collection of command-line tools for developers including code analyzers, automated testing utilities, and deployment helpers.
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Node.js</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">CLI</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Automation</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Node.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">CLI</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Automation</span>
               </div>
               <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
                 <span className="font-semibold">Status:</span> Open Source
@@ -225,9 +225,9 @@ export default function ExplainerSection() {
                 Automated web vulnerability scanner that detects XSS, SQL injection, CSRF, and other common security issues in web applications.
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Python</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Security</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Pentesting</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Python</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Security</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Pentesting</span>
               </div>
               <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
                 <span className="font-semibold">Status:</span> Beta Testing
@@ -240,9 +240,9 @@ export default function ExplainerSection() {
                 A customizable portfolio template system with dark mode, responsive design, and easy content management for developers.
               </p>
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">React</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Next.js</span>
-                <span className="text-xs px-2 py-1 rounded bg-sky-500/20 text-sky-600 dark:text-sky-400">Tailwind</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">React</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Next.js</span>
+                <span className="text-xs px-2 py-1 rounded bg-oatmeal-olive/50 text-oatmeal-white dark:text-oatmeal-white">Tailwind</span>
               </div>
               <p className="text-xs text-oatmeal-stone dark:text-oatmeal-white">
                 <span className="font-semibold">Status:</span> Completed
@@ -347,7 +347,7 @@ function HtmlFile({ className }: { className?: string }) {
               <span {...props}>
                 {'"'}
                 <TypingAnimation />
-                <span className="transition-opacity duration-300 group-data-finished:opacity-0 after:absolute after:mt-1.5 after:inline-block after:h-[1.2em] after:w-px after:border-r-2 after:border-sky-400 after:bg-transparent after:content-['']"></span>
+                <span className="transition-opacity duration-300 group-data-finished:opacity-0 after:absolute after:mt-1.5 after:inline-block after:h-[1.2em] after:w-px after:border-r-2 after:border-oatmeal-stone after:bg-transparent after:content-['']"></span>
                 {'"'}
               </span>
             );
