@@ -96,9 +96,10 @@ export default function WhyTailwindCssSection() {
             <div>
               <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Backend & Tools</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                <li>• Java & Spring Framework</li>
                 <li>• Node.js & API Design</li>
-                <li>• RESTful Services</li>
-                <li>• Database Architecture</li>
+                <li>• RESTful Services & GraphQL</li>
+                <li>• Database Architecture (SQL/NoSQL)</li>
                 <li>• CLI Tool Development</li>
                 <li>• Performance Optimization</li>
               </ul>

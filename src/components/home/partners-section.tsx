@@ -46,8 +46,10 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
           As a self-taught developer, I've embraced the challenge of mastering both Software Engineering and DevOps 
           practices. While most of my peers are just discovering programming, I'm building production-grade tools like 
           <span className="font-semibold text-sky-600 dark:text-sky-400"> YakaJS</span>—a next-generation JavaScript 
-          library that rivals jQuery in power while maintaining elegant simplicity. My work focuses on solving real 
-          problems: simplifying state management, enabling voice-controlled web applications, and creating developer 
+          library that rivals jQuery in power while maintaining elegant simplicity. Beyond JavaScript, I've developed 
+          strong expertise in <span className="font-semibold">Java</span>, working with object-oriented design patterns, 
+          enterprise applications, and robust backend systems. My work focuses on solving real problems: simplifying state 
+          management, enabling voice-controlled web applications, building scalable Java services, and creating developer 
           tools that others can rely on.
         </p>
       </GridContainer>
