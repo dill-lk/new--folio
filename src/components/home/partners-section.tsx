@@ -24,11 +24,11 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-oatmeal-stone dark:text-oatmeal-stone">About Me</CategoryHeader>
+        <CategoryHeader className="text-oatmeal-stone dark:text-oatmeal-stone animate-fade-in">About Me</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
-        <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0">
+        <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0 animate-slide-up [animation-delay:100ms]">
           A Journey from Curiosity to Innovation
         </h2>
       </GridContainer>
@@ -42,7 +42,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl animate-slide-up [animation-delay:200ms]">
           Hi, I'm Jinuk Chanthusa, a 14-year-old Full-Stack Developer and Open Source Contributor from Sri Lanka. 
           My journey into the world of technology began not with formal education, but with an insatiable curiosity 
           and a relentless drive to understand how things work beneath the surface. I don't just build applications—I 
@@ -51,7 +51,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </GridContainer>
 
       <GridContainer className="mt-8">
-        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl">
+        <p className="max-w-(--breakpoint-lg) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white lg:max-w-5xl animate-slide-up [animation-delay:300ms]">
           As a self-taught developer, I've embraced the challenge of mastering <span className="font-semibold">Frontend Development</span> and 
           <span className="font-semibold"> Cybersecurity</span>. While most of my peers are just discovering programming, I'm building 
           production-grade tools like <span className="font-semibold text-oatmeal-stone dark:text-oatmeal-white"> YakaJS</span>—a next-generation 
@@ -92,47 +92,47 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer className="mt-12">
         <div className="px-2 max-sm:px-4">
-          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 flex items-center gap-2">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 flex items-center gap-2 animate-fade-in">
             <TrophyIcon className="w-7 h-7 text-oatmeal-stone dark:text-oatmeal-stone" />
             Key Achievements
           </h3>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 animate-scale-up [animation-delay:100ms] hover:scale-105 transition-transform duration-300 hover:shadow-lg">
               <AcademicCapIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Self-Taught Excellence</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Mastered full-stack development, DevOps, and cybersecurity practices independently at age 14
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 animate-scale-up [animation-delay:200ms] hover:scale-105 transition-transform duration-300 hover:shadow-lg">
               <CodeBracketIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">YakaJS Creation</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Built production-grade JavaScript library with advanced features rivaling established frameworks
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 animate-scale-up [animation-delay:300ms] hover:scale-105 transition-transform duration-300 hover:shadow-lg">
               <ShieldCheckIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Security Expert</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Implemented GPG cryptography and automated CI/CD with 100% verified secure development workflow
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 animate-scale-up [animation-delay:400ms] hover:scale-105 transition-transform duration-300 hover:shadow-lg">
               <GlobeAltIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Open Source Contributor</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Active contributor to open-source community, sharing tools and knowledge with developers worldwide
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 animate-scale-up [animation-delay:500ms] hover:scale-105 transition-transform duration-300 hover:shadow-lg">
               <BeakerIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Research Aspirations</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Working toward PhD in Computer Science to contribute to cutting-edge technological innovations
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 animate-scale-up [animation-delay:600ms] hover:scale-105 transition-transform duration-300 hover:shadow-lg">
               <MapPinIcon className="w-10 h-10 mb-2 text-oatmeal-stone dark:text-oatmeal-stone" />
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Sri Lankan Pride</h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
@@ -145,14 +145,14 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer className="mt-16">
         <div className="px-2 max-sm:px-4">
-          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 animate-fade-in">
             Development Journey
           </h3>
           <div className="space-y-6">
             
-            <div className="flex gap-4">
+            <div className="flex gap-4 animate-slide-in-left [animation-delay:100ms]">
               <div className="flex flex-col items-center">
-                <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
+                <div className="w-3 h-3 rounded-full bg-oatmeal-stone animate-pulse"></div>
                 <div className="w-0.5 h-full bg-oatmeal-stone/30"></div>
               </div>
               <div className="pb-8">
@@ -165,7 +165,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 animate-slide-in-right [animation-delay:200ms]">
               <div className="flex flex-col items-center">
                 <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
                 <div className="w-0.5 h-full bg-oatmeal-stone/30"></div>
@@ -180,7 +180,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 animate-slide-in-left [animation-delay:300ms]">
               <div className="flex flex-col items-center">
                 <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
                 <div className="w-0.5 h-full bg-oatmeal-stone/30"></div>
@@ -195,7 +195,7 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 animate-slide-in-right [animation-delay:400ms]">
               <div className="flex flex-col items-center">
                 <div className="w-3 h-3 rounded-full bg-oatmeal-stone"></div>
               </div>
@@ -215,27 +215,27 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer className="mt-16">
         <div className="px-2 max-sm:px-4">
-          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 animate-fade-in">
             Stats & Metrics
           </h3>
           <div className="grid gap-4 md:grid-cols-4">
             
-            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center animate-scale-up [animation-delay:100ms] hover:scale-105 transition-transform duration-300">
               <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">5+</div>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Projects Completed</p>
             </div>
 
-            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center animate-scale-up [animation-delay:200ms] hover:scale-105 transition-transform duration-300">
               <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">1000+</div>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">GitHub Contributions</p>
             </div>
 
-            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center animate-scale-up [animation-delay:300ms] hover:scale-105 transition-transform duration-300">
               <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">3+</div>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Years Experience</p>
             </div>
 
-            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center">
+            <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 text-center animate-scale-up [animation-delay:400ms] hover:scale-105 transition-transform duration-300">
               <div className="text-3xl font-bold text-oatmeal-black dark:text-oatmeal-white mb-2">100%</div>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">GPG Verified</p>
             </div>
@@ -246,10 +246,10 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer className="mt-16">
         <div className="px-2 max-sm:px-4">
-          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 animate-fade-in">
             Availability Status
           </h3>
-          <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border-2 border-oatmeal-stone/30">
+          <div className="p-6 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30 border-2 border-oatmeal-stone/30 animate-slide-up [animation-delay:100ms]">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-4 h-4 rounded-full bg-oatmeal-stone animate-pulse"></div>
               <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white text-lg">Currently Available for Work</h4>
