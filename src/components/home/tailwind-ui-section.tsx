@@ -117,13 +117,7 @@ export default function TailwindUiSection() {
           </div>
         </div>
       </GridContainer>
-            className="inline-block rounded-4xl bg-black px-4 py-2 text-sm/6 font-semibold text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
-          >
-            Explore Tailwind Plus
-          </a>
-        </div>
-      </GridContainer>
-      <TabGroup>
+      <TabGroup style={{ display: 'none' }}>
         <GridContainer className="mt-16">
           <div className="mt-16 grid w-full overflow-x-hidden">
             <TabList className="grid grid-cols-[repeat(3,_minmax(125px,_1fr))] divide-x divide-gray-950/10 overflow-x-auto text-gray-950 dark:divide-white/10 dark:text-white">
