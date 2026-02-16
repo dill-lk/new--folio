@@ -56,11 +56,11 @@ export default function WhyTailwindCssSection() {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-pink-500 dark:text-pink-400">Skills & Tech Stack</CategoryHeader>
+        <CategoryHeader className="text-pink-500 dark:text-pink-400 animate-fade-in">Skills & Tech Stack</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
-        <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0">
+        <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0 animate-slide-up [animation-delay:100ms]">
           Building with modern technologies.
         </h2>
       </GridContainer>
@@ -74,7 +74,7 @@ export default function WhyTailwindCssSection() {
       </div>
 
       <GridContainer>
-        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white animate-slide-up [animation-delay:200ms]">
           My passion lies in <span className="font-semibold">frontend development</span> and <span className="font-semibold">cybersecurity</span>. 
           I love crafting beautiful, intuitive user experiences while ensuring every application is secure from the ground up. 
           I build modern, responsive interfaces with cutting-edge tools and implement robust security practices that protect users and data.
@@ -84,7 +84,7 @@ export default function WhyTailwindCssSection() {
       <GridContainer className="mt-10">
         <div className="px-2 max-sm:px-4">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <div>
+            <div className="animate-slide-up [animation-delay:300ms]">
               <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Frontend Development ⭐</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 <li>• JavaScript (ES6+) & TypeScript</li>
@@ -95,7 +95,7 @@ export default function WhyTailwindCssSection() {
                 <li>• Modern Web APIs</li>
               </ul>
             </div>
-            <div>
+            <div className="animate-slide-up [animation-delay:400ms]">
               <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Cybersecurity ⭐</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 <li>• Web Security & Vulnerabilities</li>
@@ -106,7 +106,7 @@ export default function WhyTailwindCssSection() {
                 <li>• Ethical Hacking Concepts</li>
               </ul>
             </div>
-            <div>
+            <div className="animate-slide-up [animation-delay:500ms]">
               <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Tools & DevOps</h3>
               <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 <li>• Git & GitHub Actions</li>
@@ -123,60 +123,60 @@ export default function WhyTailwindCssSection() {
 
       <GridContainer className="mt-16">
         <div className="px-2 max-sm:px-4">
-          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">Skill Proficiency</h3>
+          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6 animate-fade-in">Skill Proficiency</h3>
           <div className="space-y-4">
             
-            <div>
+            <div className="animate-slide-in-left [animation-delay:100ms]">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">JavaScript/TypeScript</span>
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '95%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '95%'}}></div>
               </div>
             </div>
 
-            <div>
+            <div className="animate-slide-in-left [animation-delay:200ms]">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">React & Next.js</span>
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Advanced</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '90%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '90%'}}></div>
               </div>
             </div>
 
-            <div>
+            <div className="animate-slide-in-left [animation-delay:300ms]">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">Web Security & Ethical Hacking</span>
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Advanced</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '85%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '85%'}}></div>
               </div>
             </div>
 
-            <div>
+            <div className="animate-slide-in-left [animation-delay:400ms]">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">Git & CI/CD</span>
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '92%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '92%'}}></div>
               </div>
             </div>
 
-            <div>
+            <div className="animate-slide-in-left [animation-delay:500ms]">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">HTML5 & CSS3</span>
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Expert</span>
               </div>
               <div className="w-full bg-oatmeal-card/30 rounded-full h-2 dark:bg-oatmeal-olive/30">
-                <div className="bg-oatmeal-stone h-2 rounded-full" style={{width: '93%'}}></div>
+                <div className="bg-oatmeal-stone h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '93%'}}></div>
               </div>
             </div>
 
-            <div>
+            <div className="animate-slide-in-left [animation-delay:600ms]">
               <div className="flex justify-between mb-2">
                 <span className="text-sm font-medium text-oatmeal-black dark:text-oatmeal-white">Node.js & APIs</span>
                 <span className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Intermediate</span>
