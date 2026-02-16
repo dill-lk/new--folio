@@ -4,6 +4,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import React from "react";
+import { LightBulbIcon } from "@heroicons/react/24/outline";
 import GridContainer from "../grid-container";
 import { BentoItem } from "./bento";
 import CategoryHeader from "./category-header";
@@ -97,8 +98,9 @@ export default function TailwindUiSection() {
       <GridContainer className="mt-8">
         <div className="px-2 max-sm:px-4">
           <div className="rounded-lg bg-sky-500/10 dark:bg-sky-400/10 p-6 border border-sky-500/20 dark:border-sky-400/20">
-            <p className="text-oatmeal-black dark:text-oatmeal-white font-medium mb-2">
-              💡 Interested in collaboration?
+            <p className="text-oatmeal-black dark:text-oatmeal-white font-medium mb-2 flex items-center gap-2">
+              <LightBulbIcon className="w-5 h-5 text-sky-500 dark:text-sky-400" />
+              Interested in collaboration?
             </p>
             <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
               I'm particularly interested in projects involving <span className="font-semibold">frontend development</span>, 

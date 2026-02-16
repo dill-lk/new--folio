@@ -2,6 +2,12 @@ import clsx from "clsx";
 import type { Element, ElementContent } from "hast";
 import React from "react";
 import type { ShikiTransformer } from "shiki";
+import { 
+  MicrophoneIcon, 
+  BoltIcon, 
+  LockClosedIcon, 
+  RocketLaunchIcon 
+} from "@heroicons/react/24/outline";
 import { html } from "../code-example";
 import { generateCss } from "../generated-css";
 import GridContainer from "../grid-container";
@@ -137,28 +143,28 @@ export default function ExplainerSection() {
           <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-4">Key Features:</h3>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex gap-3">
-              <span className="text-sky-500 dark:text-sky-400 text-xl">🎤</span>
+              <MicrophoneIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Voice Commands</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Native integration for voice-controlled web applications</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <span className="text-sky-500 dark:text-sky-400 text-xl">⚡</span>
+              <BoltIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Reactive State</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Built-in reactive state management with zero boilerplate</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <span className="text-sky-500 dark:text-sky-400 text-xl">🔒</span>
+              <LockClosedIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">100% Secure</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Every commit GPG-verified for complete code integrity</p>
               </div>
             </div>
             <div className="flex gap-3">
-              <span className="text-sky-500 dark:text-sky-400 text-xl">🚀</span>
+              <RocketLaunchIcon className="w-6 h-6 text-sky-500 dark:text-sky-400 flex-shrink-0" />
               <div>
                 <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Performance Optimized</h4>
                 <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Modern web standards with zero plugin dependencies</p>

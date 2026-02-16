@@ -1,5 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { 
+  MagnifyingGlassIcon, 
+  ShieldCheckIcon, 
+  ArrowPathIcon 
+} from "@heroicons/react/24/outline";
 import GridContainer from "../grid-container";
 import { BentoItem } from "./bento";
 import clerk from "./build-anything-section/clerk.png";
@@ -58,8 +63,9 @@ export default function BuildAnythingSection() {
           <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-4">Core Principles:</h3>
           <div className="space-y-4">
             <div>
-              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">
-                🔍 Deep Understanding Over Surface Knowledge
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2 flex items-center gap-2">
+                <MagnifyingGlassIcon className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+                Deep Understanding Over Surface Knowledge
               </h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 I don't just learn syntax—I understand how systems work at a fundamental level. From low-level 
@@ -67,8 +73,9 @@ export default function BuildAnythingSection() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">
-                🛡️ Security as a Foundation, Not an Afterthought
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2 flex items-center gap-2">
+                <ShieldCheckIcon className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+                Security as a Foundation, Not an Afterthought
               </h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Every project begins with security in mind. GPG-signed commits, encrypted communications, and 
@@ -76,8 +83,9 @@ export default function BuildAnythingSection() {
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">
-                ⚙️ Continuous Improvement Through Iteration
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2 flex items-center gap-2">
+                <ArrowPathIcon className="w-5 h-5 text-sky-500 dark:text-sky-400 flex-shrink-0" />
+                Continuous Improvement Through Iteration
               </h4>
               <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
                 Great software isn't built—it's refined. I embrace feedback, learn from failures, and constantly 
