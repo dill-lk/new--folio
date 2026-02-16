@@ -46,18 +46,18 @@ function VersionPicker() {
   return (
     <Menu>
       <MenuButton
-        className="flex items-center gap-0.5 rounded-2xl bg-gray-950/5 py-0.5 pr-1.5 pl-2.5 text-xs/5 font-medium text-gray-950 tabular-nums hover:bg-gray-950/7.5 data-active:bg-gray-950/7.5 dark:bg-white/10 dark:text-white dark:hover:bg-white/12.5 dark:data-active:bg-white/12.5"
+        className="flex items-center gap-0.5 rounded-2xl bg-oatmeal-card/20 py-0.5 pr-1.5 pl-2.5 text-xs/5 font-medium text-oatmeal-black tabular-nums hover:bg-oatmeal-card/30 data-active:bg-oatmeal-card/30 dark:bg-oatmeal-olive/30 dark:text-oatmeal-white dark:hover:bg-oatmeal-olive/40 dark:data-active:bg-oatmeal-olive/40"
         aria-label="Select version of library"
       >
         v4.1
-        <ChevronDownIcon className="size-4 fill-gray-400" />
+        <ChevronDownIcon className="size-4 fill-oatmeal-stone" />
       </MenuButton>
       <MenuItems
         anchor="bottom start"
-        className="mt-2 w-28 rounded-xl bg-white p-1 py-1 text-xs/7 font-medium text-gray-950 tabular-nums shadow-sm ring ring-gray-950/5 [--anchor-offset:calc(var(--spacing)*-1)] dark:bg-gray-950 dark:text-white dark:ring-white/10"
+        className="mt-2 w-28 rounded-xl bg-oatmeal-white p-1 py-1 text-xs/7 font-medium text-oatmeal-black tabular-nums shadow-sm ring ring-oatmeal-stone/20 [--anchor-offset:calc(var(--spacing)*-1)] dark:bg-oatmeal-black dark:text-oatmeal-white dark:ring-oatmeal-stone/10"
       >
         <MenuItem disabled>
-          <div className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-gray-950/5 dark:data-active:bg-white/10">
+          <div className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-oatmeal-card/20 dark:data-active:bg-oatmeal-olive/20">
             v4.1
             <CheckIcon className="size-4" />
           </div>
@@ -65,7 +65,7 @@ function VersionPicker() {
         <MenuItem>
           <a
             href="https://v3.tailwindcss.com"
-            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-gray-950/5 dark:data-active:bg-white/10"
+            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-oatmeal-card/20 dark:data-active:bg-oatmeal-olive/20"
           >
             v3.4.17
           </a>
@@ -73,7 +73,7 @@ function VersionPicker() {
         <MenuItem>
           <a
             href="https://v2.tailwindcss.com"
-            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-gray-950/5 dark:data-active:bg-white/10"
+            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-oatmeal-card/20 dark:data-active:bg-oatmeal-olive/20"
           >
             v2.2.19
           </a>
@@ -81,7 +81,7 @@ function VersionPicker() {
         <MenuItem>
           <a
             href="https://v1.tailwindcss.com"
-            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-gray-950/5 dark:data-active:bg-white/10"
+            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-oatmeal-card/20 dark:data-active:bg-oatmeal-olive/20"
           >
             v1.9.6
           </a>
@@ -89,7 +89,7 @@ function VersionPicker() {
         <MenuItem>
           <a
             href="https://tailwindcss-v0.netlify.app"
-            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-gray-950/5 dark:data-active:bg-white/10"
+            className="flex items-center justify-between gap-2 rounded-lg px-2.5 data-active:bg-oatmeal-card/20 dark:data-active:bg-oatmeal-olive/20"
           >
             v0.7.4
           </a>
@@ -104,7 +104,7 @@ export function Header(props: React.PropsWithChildren) {
   let router = useRouter();
 
   return (
-    <div className="bg-white dark:bg-gray-950">
+    <div className="bg-oatmeal-white dark:bg-oatmeal-black">
       <div className="flex h-14 items-center justify-between gap-8 px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <Link
@@ -116,16 +116,16 @@ export function Header(props: React.PropsWithChildren) {
               router.push("/brand");
             }}
           >
-            <Logo className="h-5 text-black dark:text-white" />
+            <Logo className="h-5 text-oatmeal-black dark:text-oatmeal-white" />
           </Link>
           <VersionPicker />
         </div>
         <div className="flex items-center gap-6 max-md:hidden">
-          <SearchButton className="inline-flex items-center gap-1 rounded-full bg-gray-950/2 px-2 py-1 inset-ring inset-ring-gray-950/8 dark:bg-white/5 dark:inset-ring-white/2">
+          <SearchButton className="inline-flex items-center gap-1 rounded-full bg-oatmeal-card/20 px-2 py-1 inset-ring inset-ring-oatmeal-stone/20 dark:bg-oatmeal-olive/30 dark:inset-ring-oatmeal-stone/10">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
-              className="-ml-0.5 size-4 fill-gray-600 dark:fill-gray-500"
+              className="-ml-0.5 size-4 fill-oatmeal-stone dark:fill-oatmeal-stone"
             >
               <path
                 fillRule="evenodd"
@@ -134,29 +134,29 @@ export function Header(props: React.PropsWithChildren) {
               />
             </svg>
 
-            <kbd className="hidden font-sans text-xs/4 text-gray-500 dark:text-gray-400 [.os-macos_&]:block">⌘K</kbd>
-            <kbd className="hidden font-sans text-xs/4 text-gray-500 not-[.os-macos_&]:block dark:text-gray-400">
+            <kbd className="hidden font-sans text-xs/4 text-oatmeal-stone dark:text-oatmeal-stone [.os-macos_&]:block">⌘K</kbd>
+            <kbd className="hidden font-sans text-xs/4 text-oatmeal-stone not-[.os-macos_&]:block dark:text-oatmeal-stone">
               Ctrl&nbsp;K
             </kbd>
           </SearchButton>
-          <Link href="/" className="text-sm/6 text-gray-950 dark:text-white">
+          <Link href="/" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
             Home
           </Link>
-          <Link href="#about" className="text-sm/6 text-gray-950 dark:text-white">
+          <Link href="#about" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
             About
           </Link>
-          <Link href="#skills" className="text-sm/6 text-gray-950 dark:text-white">
+          <Link href="#skills" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
             Skills
           </Link>
-          <Link href="#projects" className="text-sm/6 text-gray-950 dark:text-white">
+          <Link href="#projects" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
             Projects
           </Link>
-          <Link href="#contact" className="text-sm/6 text-gray-950 dark:text-white">
+          <Link href="#contact" className="text-sm/6 text-oatmeal-black dark:text-oatmeal-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
             Contact
           </Link>
 
           <Link href="https://github.com/yourusername" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer">
-            <GitHubLogo className="size-5 fill-black/40 dark:fill-gray-400" />
+            <GitHubLogo className="size-5 fill-oatmeal-stone/60 dark:fill-oatmeal-stone hover:fill-oatmeal-black dark:hover:fill-oatmeal-white transition-colors" />
           </Link>
         </div>
         <div className="flex items-center gap-2.5 md:hidden">
@@ -179,7 +179,7 @@ export function Header(props: React.PropsWithChildren) {
           <Dialog
             open={navIsOpen}
             onClose={() => setNavIsOpen(false)}
-            className="fixed inset-0 bg-white focus:outline-none md:hidden dark:bg-gray-950"
+            className="fixed inset-0 bg-oatmeal-white focus:outline-none md:hidden dark:bg-oatmeal-black"
           >
             <DialogPanel className="size-full overflow-y-auto">
               <div className="flex h-14 items-center justify-between px-4 py-4 sm:px-6">
@@ -193,19 +193,19 @@ export function Header(props: React.PropsWithChildren) {
               <div className="grid grid-cols-1 gap-1 px-1 pb-1 sm:px-3 sm:pb-3">
                 <Link
                   href="/docs"
-                  className="rounded-lg px-3 py-2 text-xl/9 font-medium text-gray-950 data-active:bg-gray-950/5 dark:text-white dark:hover:bg-white/10"
+                  className="rounded-lg px-3 py-2 text-xl/9 font-medium text-oatmeal-black data-active:bg-oatmeal-card/20 dark:text-oatmeal-white dark:hover:bg-oatmeal-olive/20"
                 >
                   Docs
                 </Link>
                 <a
                   href="/plus/?ref=top"
-                  className="rounded-lg px-3 py-2 text-xl/9 font-medium text-gray-950 data-active:bg-gray-950/5 dark:text-white dark:hover:bg-white/10"
+                  className="rounded-lg px-3 py-2 text-xl/9 font-medium text-oatmeal-black data-active:bg-oatmeal-card/20 dark:text-oatmeal-white dark:hover:bg-oatmeal-olive/20"
                 >
                   Plus
                 </a>
                 <Link
                   href="/blog"
-                  className="rounded-lg px-3 py-2 text-xl/9 font-medium text-gray-950 data-active:bg-gray-950/5 dark:text-white dark:hover:bg-white/10"
+                  className="rounded-lg px-3 py-2 text-xl/9 font-medium text-oatmeal-black data-active:bg-oatmeal-card/20 dark:text-oatmeal-white dark:hover:bg-oatmeal-olive/20"
                 >
                   Blog
                 </Link>
