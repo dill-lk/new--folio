@@ -53,6 +53,41 @@ export default function BuildAnythingSection() {
         </p>
       </GridContainer>
 
+      <GridContainer className="mt-8">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-4">Core Principles:</h3>
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">
+                🔍 Deep Understanding Over Surface Knowledge
+              </h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                I don't just learn syntax—I understand how systems work at a fundamental level. From low-level 
+                operations to high-level architecture, true mastery comes from knowing the "why" behind the "how."
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">
+                🛡️ Security as a Foundation, Not an Afterthought
+              </h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Every project begins with security in mind. GPG-signed commits, encrypted communications, and 
+                vulnerability-aware coding aren't optional—they're essential parts of professional development.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">
+                ⚙️ Continuous Improvement Through Iteration
+              </h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Great software isn't built—it's refined. I embrace feedback, learn from failures, and constantly 
+                iterate to make each version better than the last. Perfection is a journey, not a destination.
+              </p>
+            </div>
+          </div>
+        </div>
+      </GridContainer>
+
       <GridContainer className="mt-18">
         <div className="h-auto bg-gray-950/5 p-2 dark:bg-white/10">
           <BentoItem className="flex h-full flex-row overflow-hidden p-0!">

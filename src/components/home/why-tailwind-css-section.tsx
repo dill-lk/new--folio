@@ -80,6 +80,43 @@ export default function WhyTailwindCssSection() {
         </p>
       </GridContainer>
 
+      <GridContainer className="mt-10">
+        <div className="px-2 max-sm:px-4">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div>
+              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Frontend Development</h3>
+              <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                <li>• JavaScript (ES6+) & TypeScript</li>
+                <li>• React & Next.js</li>
+                <li>• HTML5, CSS3, Tailwind CSS</li>
+                <li>• Responsive UI/UX Design</li>
+                <li>• YakaJS (Author)</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">Backend & Tools</h3>
+              <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                <li>• Node.js & API Design</li>
+                <li>• RESTful Services</li>
+                <li>• Database Architecture</li>
+                <li>• CLI Tool Development</li>
+                <li>• Performance Optimization</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-oatmeal-black dark:text-oatmeal-white mb-3">DevOps & Security</h3>
+              <ul className="space-y-2 text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                <li>• Git & GitHub Actions</li>
+                <li>• CI/CD Pipelines</li>
+                <li>• GPG Cryptography</li>
+                <li>• Linux CLI Mastery</li>
+                <li>• Secure Coding Practices</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </GridContainer>
+
       <GridContainer className="mt-16">
         <div className="grid w-full grid-flow-dense grid-cols-30 gap-2 bg-gray-950/5 p-2 dark:bg-white/10">
           <BentoItem className="col-span-full">

@@ -79,6 +79,58 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
         </p>
       </GridContainer>
 
+      <GridContainer className="mt-12">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-2xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-6">
+            🏆 Key Achievements
+          </h3>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <div className="text-3xl mb-2">📚</div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Self-Taught Excellence</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Mastered full-stack development, DevOps, and cybersecurity practices independently at age 14
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <div className="text-3xl mb-2">⚡</div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">YakaJS Creation</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Built production-grade JavaScript library with advanced features rivaling established frameworks
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <div className="text-3xl mb-2">🔐</div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Security Expert</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Implemented GPG cryptography and automated CI/CD with 100% verified secure development workflow
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <div className="text-3xl mb-2">🌐</div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Open Source Contributor</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Active contributor to open-source community, sharing tools and knowledge with developers worldwide
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <div className="text-3xl mb-2">🎯</div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Research Aspirations</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Working toward PhD in Computer Science to contribute to cutting-edge technological innovations
+              </p>
+            </div>
+            <div className="p-4 rounded-lg bg-oatmeal-card/10 dark:bg-oatmeal-olive/30">
+              <div className="text-3xl mb-2">🇱🇰</div>
+              <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white mb-2">Sri Lankan Pride</h4>
+              <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+                Representing Sri Lanka in the global tech community, proving age is no barrier to excellence
+              </p>
+            </div>
+          </div>
+        </div>
+      </GridContainer>
+
       <section style={{ display: 'none' }}>
         <div className="relative isolate mt-16">
           <div className="pointer-events-none absolute inset-0 z-10 grid grid-cols-2 gap-10 max-md:gap-5 lg:grid-cols-3 xl:grid-cols-4">

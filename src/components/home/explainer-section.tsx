@@ -127,10 +127,55 @@ export default function ExplainerSection() {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
-          YakaJS is my flagship open-source project. It is a lightweight, zero-dependency JavaScript library featuring 
-          voice commands, reactive state management, 100% GPG-verified development cycle, and optimized performance 
-          for modern web standards with zero plugins required.
+          YakaJS is my flagship open-source project—a lightweight, zero-dependency JavaScript library that combines power with simplicity. 
+          Built from the ground up with security and performance in mind, it represents my commitment to creating tools that developers can trust.
         </p>
+      </GridContainer>
+
+      <GridContainer className="mt-8">
+        <div className="px-2 max-sm:px-4">
+          <h3 className="text-xl font-semibold text-oatmeal-black dark:text-oatmeal-white mb-4">Key Features:</h3>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="flex gap-3">
+              <span className="text-sky-500 dark:text-sky-400 text-xl">🎤</span>
+              <div>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Voice Commands</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Native integration for voice-controlled web applications</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <span className="text-sky-500 dark:text-sky-400 text-xl">⚡</span>
+              <div>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Reactive State</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Built-in reactive state management with zero boilerplate</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <span className="text-sky-500 dark:text-sky-400 text-xl">🔒</span>
+              <div>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">100% Secure</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Every commit GPG-verified for complete code integrity</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <span className="text-sky-500 dark:text-sky-400 text-xl">🚀</span>
+              <div>
+                <h4 className="font-semibold text-oatmeal-black dark:text-oatmeal-white">Performance Optimized</h4>
+                <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">Modern web standards with zero plugin dependencies</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </GridContainer>
+
+      <GridContainer className="mt-8">
+        <div className="px-2 max-sm:px-4">
+          <p className="text-base text-oatmeal-stone dark:text-oatmeal-white">
+            <span className="font-semibold">Technical Highlights:</span> More powerful than jQuery in functionality, yet simpler to write. 
+            YakaJS demonstrates my ability to analyze existing solutions, identify pain points, and create better alternatives 
+            that prioritize developer experience without compromising on capability.
+          </p>
+        </div>
       </GridContainer>
 
       <GridContainer className="mt-16">

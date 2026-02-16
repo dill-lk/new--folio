@@ -89,8 +89,23 @@ export default function TailwindUiSection() {
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-oatmeal-stone max-sm:px-4 dark:text-oatmeal-white">
           I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. 
-          Feel free to reach out through any of the following channels.
+          Whether you're looking for a dedicated developer, a technical consultant, or a collaborator on an exciting venture, 
+          I'd love to hear from you. Let's build something amazing together!
         </p>
+      </GridContainer>
+
+      <GridContainer className="mt-8">
+        <div className="px-2 max-sm:px-4">
+          <div className="rounded-lg bg-sky-500/10 dark:bg-sky-400/10 p-6 border border-sky-500/20 dark:border-sky-400/20">
+            <p className="text-oatmeal-black dark:text-oatmeal-white font-medium mb-2">
+              💡 Interested in collaboration?
+            </p>
+            <p className="text-sm text-oatmeal-stone dark:text-oatmeal-white">
+              I'm particularly interested in projects involving JavaScript libraries, developer tools, 
+              secure systems architecture, or anything that pushes the boundaries of web technology.
+            </p>
+          </div>
+        </div>
       </GridContainer>
 
       <GridContainer className="mt-10">
