@@ -111,12 +111,12 @@ export default function ExplainerSection() {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-sky-500 dark:text-sky-400">How it works</CategoryHeader>
+        <CategoryHeader className="text-sky-500 dark:text-sky-400">Featured Project</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
         <h2 className="mt-4 px-2 text-[2.5rem]/10 font-medium tracking-tighter max-sm:px-4 2xl:mt-0">
-          Ship faster and smaller.
+          YakaJS: More powerful than jQuery, simpler to write.
         </h2>
       </GridContainer>
 
@@ -127,9 +127,9 @@ export default function ExplainerSection() {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Tailwind automatically removes all unused CSS when building for production, which means your final CSS bundle
-          is the smallest it could possibly be. In fact, most Tailwind projects ship less than 10kB of CSS to the
-          client.
+          YakaJS is my flagship open-source project. It is a lightweight, zero-dependency JavaScript library featuring 
+          voice commands, reactive state management, 100% GPG-verified development cycle, and optimized performance 
+          for modern web standards with zero plugins required.
         </p>
       </GridContainer>
 

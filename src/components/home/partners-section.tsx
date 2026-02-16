@@ -15,12 +15,12 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-sky-500 dark:text-sky-400">Sponsors</CategoryHeader>
+        <CategoryHeader className="text-sky-500 dark:text-sky-400">About Me</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
         <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0">
-          Supported by the best.
+          Building the Future of Web with Code & Security
         </h2>
       </GridContainer>
 
@@ -34,26 +34,29 @@ export default function PartnersSection({ sponsors }: { sponsors: Sponsor[] }) {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Tailwind is supported by incredible partners and sponsors who make it possible for a team of talented
-          designers and engineers to maintain the framework full-time.
+          Hi, I'm Jinuk Chanthusa. A 14-year-old Full-Stack Developer and Open Source Contributor from Sri Lanka. 
+          I specialize in building high-performance JavaScript libraries and secure development workflows. 
+          My goal? To reach the pinnacle of research in Computer Science and beyond.
         </p>
       </GridContainer>
 
-      <GridContainer className="mt-10">
-        <div className="px-2 max-sm:px-4">
-          <Link
-            href="/sponsors"
-            className="inline-flex items-center justify-center gap-2 rounded-4xl bg-black px-4 py-2 text-sm/6 font-semibold text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
-          >
-            Become a sponsor
-            <svg fill="currentColor" aria-hidden="true" viewBox="0 0 10 10" className="-mr-0.5 w-2.5">
-              <path d="M4.85355 0.146423L9.70711 4.99998L4.85355 9.85353L4.14645 9.14642L7.79289 5.49998H0V4.49998H7.79289L4.14645 0.85353L4.85355 0.146423Z"></path>
-            </svg>
-          </Link>
-        </div>
+      <GridContainer className="mt-8">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+          I am a self-taught developer with a deep passion for Software Engineering and DevOps. While most people my age 
+          are just starting with code, I am building complex tools like YakaJS—a next-gen JavaScript library designed to 
+          simplify state management and UI interactions.
+        </p>
       </GridContainer>
 
-      <section>
+      <GridContainer className="mt-8">
+        <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
+          I don't just write code; I secure it. I have mastered GPG Cryptography for commit verification and GitHub Actions 
+          for CI/CD automation. My journey is fueled by a dream to pursue a PhD in South Korea and contribute to world-class 
+          technological innovations.
+        </p>
+      </GridContainer>
+
+      <section style={{ display: 'none' }}>
         <div className="relative isolate mt-16">
           <div className="pointer-events-none absolute inset-0 z-10 grid grid-cols-2 gap-10 max-md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
             <div className="border-r border-gray-950/5 dark:border-white/10"></div>

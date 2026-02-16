@@ -56,12 +56,12 @@ export default function WhyTailwindCssSection() {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-pink-500 dark:text-pink-400">Why Tailwind CSS?</CategoryHeader>
+        <CategoryHeader className="text-pink-500 dark:text-pink-400">Skills & Tech Stack</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
         <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4 2xl:mt-0">
-          Built for the modern web.
+          Building with modern technologies.
         </h2>
       </GridContainer>
 
@@ -75,8 +75,8 @@ export default function WhyTailwindCssSection() {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Tailwind is unapologetically modern, and takes advantage of all the latest and greatest CSS features to make
-          the developer experience as enjoyable as possible.
+          My technical expertise spans across frontend development, backend engineering, DevOps, and cybersecurity. 
+          I build secure, scalable solutions using cutting-edge tools and best practices.
         </p>
       </GridContainer>
 

@@ -69,12 +69,12 @@ export default function TailwindUiSection() {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-pink-600 dark:text-pink-500">Ready-made Components</CategoryHeader>
+        <CategoryHeader className="text-pink-600 dark:text-pink-500">Get in Touch</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
-        <h2 className="px-2 text-[2.5rem]/10 font-medium tracking-tighter max-sm:px-4 2xl:mt-0">
-          Move even faster with Tailwind Plus.
+        <h2 className="px-2 text-[2.5rem]/10 font-medium tracking-tighter max-sm:px-4 2xl:mt-0" id="contact">
+          Want to collaborate, build something powerful, or talk tech?
         </h2>
       </GridContainer>
 
@@ -88,16 +88,35 @@ export default function TailwindUiSection() {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Tailwind Plus is a collection of beautiful, fully responsive UI components, designed and developed by us, the
-          creators of Tailwind CSS. It's got hundreds of ready-to-use examples to choose from, and is guaranteed to help
-          you find the perfect starting point for what you want to build.
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. 
+          Feel free to reach out through any of the following channels.
         </p>
       </GridContainer>
 
       <GridContainer className="mt-10">
         <div className="px-2 max-sm:px-4">
-          <a
-            href="https://tailwindcss.com/plus?ref=home"
+          <div className="space-y-4">
+            <p className="text-base text-gray-700 dark:text-gray-300">
+              <span className="font-semibold">Email:</span>{" "}
+              <a href="mailto:your@email.com" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                your@email.com
+              </a>
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300">
+              <span className="font-semibold">GitHub:</span>{" "}
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                github.com/yourusername
+              </a>
+            </p>
+            <p className="text-base text-gray-700 dark:text-gray-300">
+              <span className="font-semibold">LinkedIn:</span>{" "}
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">
+                linkedin.com/in/yourusername
+              </a>
+            </p>
+          </div>
+        </div>
+      </GridContainer>
             className="inline-block rounded-4xl bg-black px-4 py-2 text-sm/6 font-semibold text-white hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             Explore Tailwind Plus

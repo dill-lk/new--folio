@@ -31,12 +31,12 @@ export default function BuildAnythingSection() {
       </div>
 
       <GridContainer className="2xl:before:hidden 2xl:after:hidden">
-        <CategoryHeader className="text-fuchsia-500 dark:text-fuchsia-400">Tailwind in the wild</CategoryHeader>
+        <CategoryHeader className="text-fuchsia-500 dark:text-fuchsia-400">Philosophy</CategoryHeader>
       </GridContainer>
 
       <GridContainer>
         <h2 className="max-w-lg px-2 text-[2.5rem]/10 font-medium tracking-tighter text-balance max-sm:px-4">
-          Build whatever you want, without touching your CSS file.
+          Technology should not be used blindly.
         </h2>
       </GridContainer>
 
@@ -47,8 +47,9 @@ export default function BuildAnythingSection() {
 
       <GridContainer>
         <p className="max-w-(--breakpoint-md) px-2 text-base/7 text-gray-600 max-sm:px-4 dark:text-gray-400">
-          Because Tailwind is so low-level, it never encourages you to design the same site twice. Some of your favorite
-          sites are built with Tailwind, and you probably had no idea.
+          It should be understood, optimized, and mastered. I believe in dissecting technology, rebuilding it, 
+          and pushing its limits to create smarter, more powerful systems. Every line of code should serve a purpose, 
+          and every system should be built with intention and precision.
         </p>
       </GridContainer>
 
