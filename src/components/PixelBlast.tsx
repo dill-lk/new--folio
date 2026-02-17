@@ -4,7 +4,7 @@ interface PixelBlastProps {
   modelPath: string;
 }
 
-const PixelBlast = ({ modelPath }: PixelBlastProps) => {
+const PixelBlast = ({ modelPath: _modelPath }: PixelBlastProps) => {
   // Component implementation
   return null;
 };
