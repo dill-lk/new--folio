@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CINEMATIC SIMULATION // TECHNICAL PORTFOLIO</title>
+    <title>Neural Bridge // Living Organism Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -13,273 +13,318 @@
 
         body {
             font-family: 'Courier New', 'Consolas', monospace;
-            background: #000;
+            background: #0a0e1a;
             color: #0f0;
             overflow: hidden;
             cursor: none;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
 
-        /* Main Canvas - GPU Accelerated */
-        #main-canvas {
+        /* Main Ocean Canvas */
+        #ocean-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: 1;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
         }
 
-        /* Overlay Canvases */
-        #grain-layer,
-        #ghost-layer,
-        #glitch-layer,
-        #fog-layer {
+        /* Distortion Layer */
+        #distortion-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
+            z-index: 2;
             pointer-events: none;
         }
 
-        #grain-layer { z-index: 2; mix-blend-mode: screen; }
-        #ghost-layer { z-index: 3; }
-        #glitch-layer { z-index: 4; mix-blend-mode: difference; }
-        #fog-layer { z-index: 5; mix-blend-mode: screen; }
-
-        /* Technical Overlays */
-        .tech-overlay {
+        /* Pixel Creatures Layer */
+        #creatures-canvas {
             position: fixed;
-            font-size: 8px;
-            color: #0f0;
-            opacity: 0.6;
-            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 3;
             pointer-events: none;
-            font-family: 'Courier New', monospace;
-            text-shadow: 0 0 3px #0f0;
-            line-height: 1.2;
         }
 
-        #sys-info-tl { top: 5px; left: 5px; }
-        #sys-info-tr { top: 5px; right: 5px; text-align: right; }
-        #sys-info-bl { bottom: 5px; left: 5px; }
-        #sys-info-br { bottom: 5px; right: 5px; text-align: right; }
-
-        /* Data Greebles */
-        #greeble-top,
-        #greeble-bottom {
+        /* Info Stream */
+        #info-stream {
             position: fixed;
+            bottom: 10px;
+            left: 0;
             width: 100%;
-            height: 10px;
-            font-size: 8px;
-            color: #0f0;
-            opacity: 0.3;
-            z-index: 101;
+            font-size: 10px;
+            color: #00ff88;
+            opacity: 0;
+            z-index: 100;
             white-space: nowrap;
             overflow: hidden;
-            pointer-events: none;
+            text-shadow: 0 0 5px #00ff88;
+            animation: fade-in-out 3s ease-in-out;
         }
 
-        #greeble-top { top: 0; }
-        #greeble-bottom { bottom: 0; }
+        @keyframes fade-in-out {
+            0%, 100% { opacity: 0; }
+            10%, 90% { opacity: 0.8; }
+        }
 
-        .greeble-scroll {
+        .info-scroll {
             display: inline-block;
-            animation: scroll-left 20s linear infinite;
+            animation: scroll-info 8s linear;
         }
 
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes scroll-info {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
         }
 
-        /* Custom Cursor */
-        #cursor-ring {
+        /* Custom Cursor - Pixel Style */
+        #pixel-cursor {
             position: fixed;
-            width: 60px;
-            height: 60px;
+            width: 16px;
+            height: 16px;
             pointer-events: none;
             z-index: 10000;
-            font-size: 40px;
-            color: #00ffff;
-            text-align: center;
-            line-height: 60px;
-            transition: all 0.1s ease;
-        }
-
-        /* Focus Ring */
-        #focus-ring {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 20px;
-            color: #00ff00;
-            transition: all 0.3s ease;
-        }
-
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #000;
-            z-index: 100000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        #decode-canvas {
-            width: 100vw;
-            height: 100vh;
-        }
-
-        #loading-text {
-            position: absolute;
-            font-size: 20px;
-            color: #0f0;
-            text-shadow: 0 0 10px #0f0;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Chromatic Aberration Layers */
-        .chromatic-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 6;
-            mix-blend-mode: screen;
-        }
-
-        #chroma-r { opacity: 0.5; }
-        #chroma-g { opacity: 0.5; }
-        #chroma-b { opacity: 0.5; }
-
-        /* Content Layer */
-        #content-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        /* Interactive Elements */
-        .interactive-zone {
-            pointer-events: all;
-            cursor: none;
-        }
-
-        /* Scanline Decoder */
-        #scanline {
-            position: fixed;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right,
-                transparent,
-                #00ffff,
-                #ff00ff,
-                #00ffff,
-                transparent
+            background: linear-gradient(45deg, 
+                #00ff00 0%, #00ff00 25%,
+                transparent 25%, transparent 50%,
+                #00ff00 50%, #00ff00 75%,
+                transparent 75%, transparent 100%
             );
-            box-shadow: 0 0 20px #0ff;
-            z-index: 100001;
+            background-size: 8px 8px;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        /* Pixel Grid Overlay */
+        .pixel-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, 
+                    transparent, 
+                    transparent 3px, 
+                    rgba(0, 255, 0, 0.03) 3px, 
+                    rgba(0, 255, 0, 0.03) 4px
+                ),
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 3px, 
+                    rgba(0, 255, 0, 0.03) 3px, 
+                    rgba(0, 255, 0, 0.03) 4px
+                );
             pointer-events: none;
+            z-index: 4;
+        }
+
+        /* Retro CRT Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 255, 0, 0.02) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+            animation: crt-scan 8s linear infinite;
+        }
+
+        @keyframes crt-scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        /* Living Organism Pulse */
+        @keyframes organism-pulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1); }
+        }
+
+        #ocean-canvas {
+            animation: organism-pulse 4s ease-in-out infinite;
+        }
+
+        /* Neural Bridge Connections */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        /* Content Container */
+        #content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+        }
+
+        .title {
+            font-size: clamp(24px, 6vw, 72px);
+            color: #00ff88;
+            text-shadow: 
+                0 0 10px #00ff88,
+                0 0 20px #00ff88,
+                0 0 30px #00ff88;
+            margin-bottom: 20px;
+            animation: title-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes title-glow {
+            0%, 100% { text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+            50% { text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88, 0 0 60px #00ff88; }
+        }
+
+        .subtitle {
+            font-size: clamp(14px, 3vw, 24px);
+            color: #00ffff;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .char-display {
+            font-size: 16px;
+            color: #00ff00;
+            opacity: 0.5;
+            letter-spacing: 3px;
+        }
+
+        /* Pixel Creatures Info */
+        .creature-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #00ff88;
+            opacity: 0.6;
+            z-index: 100;
+            line-height: 1.4;
+        }
+
+        /* Stats Panel - Game Style */
+        .stats-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff00;
+            padding: 10px;
+            font-size: 10px;
+            color: #00ff88;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .stat-bar {
+            width: 100px;
+            height: 8px;
+            background: #001100;
+            border: 1px solid #00ff00;
+            margin: 5px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #00ff88);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 5px #00ff00;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <canvas id="decode-canvas"></canvas>
-        <div id="scanline"></div>
-        <div id="loading-text">DECODING MEMORY BUFFER...</div>
-    </div>
+    <!-- Pixel Grid -->
+    <div class="pixel-grid"></div>
+    
+    <!-- CRT Effect -->
+    <div class="crt-overlay"></div>
 
     <!-- Canvas Layers -->
-    <canvas id="main-canvas"></canvas>
-    <canvas id="grain-layer"></canvas>
-    <canvas id="ghost-layer"></canvas>
-    <canvas id="glitch-layer"></canvas>
-    <canvas id="fog-layer"></canvas>
-
-    <!-- Chromatic Aberration Layers -->
-    <canvas id="chroma-r" class="chromatic-layer"></canvas>
-    <canvas id="chroma-g" class="chromatic-layer"></canvas>
-    <canvas id="chroma-b" class="chromatic-layer"></canvas>
-
-    <!-- Content Layer -->
-    <canvas id="content-layer"></canvas>
-
-    <!-- Technical Overlays -->
-    <div id="sys-info-tl" class="tech-overlay"></div>
-    <div id="sys-info-tr" class="tech-overlay"></div>
-    <div id="sys-info-bl" class="tech-overlay"></div>
-    <div id="sys-info-br" class="tech-overlay"></div>
-
-    <!-- Data Greebles -->
-    <div id="greeble-top"></div>
-    <div id="greeble-bottom"></div>
+    <canvas id="ocean-canvas"></canvas>
+    <canvas id="distortion-canvas"></canvas>
+    <canvas id="creatures-canvas"></canvas>
+    <canvas id="neural-canvas"></canvas>
 
     <!-- Custom Cursor -->
-    <div id="cursor-ring">+</div>
-    <div id="focus-ring"></div>
+    <div id="pixel-cursor"></div>
+
+    <!-- Info Stream -->
+    <div id="info-stream"></div>
+
+    <!-- Creature Info -->
+    <div class="creature-info">
+        <div>ORGANISMS: <span id="organism-count">0</span></div>
+        <div>ACTIVITY: <span id="activity-level">IDLE</span></div>
+        <div>SIGNAL: <span id="signal-strength">█████░░░░░</span></div>
+    </div>
+
+    <!-- Stats Panel -->
+    <div class="stats-panel">
+        <div>NEURAL SYNC</div>
+        <div class="stat-bar">
+            <div class="stat-fill" id="neural-sync" style="width: 75%"></div>
+        </div>
+        <div>OCEAN FLOW</div>
+        <div class="stat-bar">
+            <div class="stat-fill" id="ocean-flow" style="width: 60%"></div>
+        </div>
+        <div>DISTORTION</div>
+        <div class="stat-bar">
+            <div class="stat-fill" id="distortion-level" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <div class="title">NEURAL BRIDGE</div>
+        <div class="subtitle">Living Organism Portfolio</div>
+        <div class="char-display">.'-:;^=+/"|)\\&lt;&gt;iv%xclrs{*}I?!]</div>
+    </div>
 
     <script>
         // ===== CONFIGURATION =====
-        const CONFIG = {
-            charSize: 10,
-            fps: 60,
-            particleCount: 200,
-            glitchIntensity: 0.3,
-            fogDensity: 0.5
-        };
-
-        // ===== CHARACTER SETS =====
         const CHARS = {
-            all: ".'-:;^=+/\"|)\\<>iv%xclrs{*}I?!]".split(''),
-            depth_far: ".'-: ".split(''),
-            depth_mid: ";^=+/\"|)\\".split(''),
-            depth_near: "<>iv%xclrs{*}I?!]".split(''),
-            technical: "[]{}()<>/\\|".split(''),
-            glitch: "!?*#%&".split(''),
-            vertices: "+*".split(''),
-            edges: "/\\-`".split(''),
-            occlusion: ".:".split('')
+            ocean: ".'-: ".split(''),
+            calm: ".-_~".split(''),
+            distortion: "xclrs{}".split(''),
+            wave: "^=+/".split(''),
+            intense: "%*#@".split(''),
+            all: ".'-:;^=+/\"|)\\<>iv%xclrs{*}I?!]".split('')
         };
 
         // ===== CANVAS SETUP =====
         const canvases = {
-            main: document.getElementById('main-canvas'),
-            grain: document.getElementById('grain-layer'),
-            ghost: document.getElementById('ghost-layer'),
-            glitch: document.getElementById('glitch-layer'),
-            fog: document.getElementById('fog-layer'),
-            chromaR: document.getElementById('chroma-r'),
-            chromaG: document.getElementById('chroma-g'),
-            chromaB: document.getElementById('chroma-b'),
-            content: document.getElementById('content-layer'),
-            decode: document.getElementById('decode-canvas')
+            ocean: document.getElementById('ocean-canvas'),
+            distortion: document.getElementById('distortion-canvas'),
+            creatures: document.getElementById('creatures-canvas'),
+            neural: document.getElementById('neural-canvas')
         };
 
-        const contexts = {};
+        const ctx = {};
         Object.keys(canvases).forEach(key => {
-            contexts[key] = canvases[key].getContext('2d', { alpha: true });
+            ctx[key] = canvases[key].getContext('2d', { alpha: true });
         });
 
         function resizeCanvases() {
@@ -291,739 +336,421 @@
         resizeCanvases();
         window.addEventListener('resize', resizeCanvases);
 
-        // ===== PERLIN NOISE =====
-        class PerlinNoise {
+        // ===== OCEAN PARTICLE SYSTEM =====
+        class OceanParticle {
             constructor() {
-                this.gradients = {};
-                this.memory = {};
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.char = CHARS.ocean[Math.floor(Math.random() * CHARS.ocean.length)];
+                this.baseChar = this.char;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.phase = Math.random() * Math.PI * 2;
+                this.size = 10;
+                this.distorted = false;
+                this.distortionTimer = 0;
             }
 
-            rand_vect() {
-                const theta = Math.random() * 2 * Math.PI;
-                return { x: Math.cos(theta), y: Math.sin(theta) };
+            update(time) {
+                // Ocean wave motion (Galle/Matara vibe)
+                const waveX = Math.sin(time * 0.001 + this.phase) * 2;
+                const waveY = Math.cos(time * 0.001 + this.phase * 0.7) * 1;
+                
+                this.x += this.vx + waveX * 0.1;
+                this.y += this.vy + waveY * 0.1;
+                
+                // Wrap around
+                if (this.x < -50) this.x = window.innerWidth + 50;
+                if (this.x > window.innerWidth + 50) this.x = -50;
+                if (this.y < -50) this.y = window.innerHeight + 50;
+                if (this.y > window.innerHeight + 50) this.y = -50;
+                
+                // Update distortion
+                if (this.distorted) {
+                    this.distortionTimer--;
+                    if (this.distortionTimer <= 0) {
+                        this.distorted = false;
+                        this.char = this.baseChar;
+                    }
+                }
             }
 
-            dot_prod_grid(x, y, vx, vy) {
-                let g_vect;
-                const d_vect = { x: x - vx, y: y - vy };
-                const grid_key = `${vx},${vy}`;
+            distort(mouseX, mouseY) {
+                const dx = this.x - mouseX;
+                const dy = this.y - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < 100) {
+                    this.distorted = true;
+                    this.distortionTimer = 30;
+                    this.char = CHARS.distortion[Math.floor(Math.random() * CHARS.distortion.length)];
+                    return true;
+                }
+                return false;
+            }
 
-                if (this.gradients[grid_key]) {
-                    g_vect = this.gradients[grid_key];
+            draw(ctx) {
+                ctx.font = `${this.size}px Courier New`;
+                
+                if (this.distorted) {
+                    // Digital distortion colors
+                    const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00'];
+                    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
                 } else {
-                    g_vect = this.rand_vect();
-                    this.gradients[grid_key] = g_vect;
+                    // Ocean colors
+                    const hue = 180 + Math.sin(this.phase) * 30;
+                    const alpha = 0.3 + Math.sin(this.phase + Date.now() * 0.001) * 0.2;
+                    ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha})`;
                 }
-
-                return d_vect.x * g_vect.x + d_vect.y * g_vect.y;
-            }
-
-            smootherstep(x) {
-                return 6 * x ** 5 - 15 * x ** 4 + 10 * x ** 3;
-            }
-
-            interp(x, a, b) {
-                return a + this.smootherstep(x) * (b - a);
-            }
-
-            get(x, y) {
-                const xf = Math.floor(x);
-                const yf = Math.floor(y);
-
-                const tl = this.dot_prod_grid(x, y, xf, yf);
-                const tr = this.dot_prod_grid(x, y, xf + 1, yf);
-                const bl = this.dot_prod_grid(x, y, xf, yf + 1);
-                const br = this.dot_prod_grid(x, y, xf + 1, yf + 1);
-
-                const xt = this.interp(x - xf, tl, tr);
-                const xb = this.interp(x - xf, bl, br);
-                return this.interp(y - yf, xt, xb);
-            }
-        }
-
-        // ===== VECTOR FIELD =====
-        class VectorField {
-            constructor() {
-                this.scale = 0.02;
-                this.time = 0;
-            }
-
-            get(x, y) {
-                const angle = Math.sin(x * this.scale + this.time) * Math.cos(y * this.scale + this.time);
-                return {
-                    x: Math.cos(angle) * 0.5,
-                    y: Math.sin(angle) * 0.5
-                };
-            }
-
-            update() {
-                this.time += 0.01;
-            }
-        }
-
-        // ===== GRAIN SYSTEM =====
-        class GrainSystem {
-            constructor() {
-                this.particles = [];
-                this.vectorField = new VectorField();
-                this.init();
-            }
-
-            init() {
-                for (let i = 0; i < 500; i++) {
-                    this.particles.push({
-                        x: Math.random() * window.innerWidth,
-                        y: Math.random() * window.innerHeight,
-                        char: Math.random() < 0.5 ? '.' : ':',
-                        opacity: 0.1 + Math.random() * 0.1
-                    });
-                }
-            }
-
-            update() {
-                this.vectorField.update();
                 
-                this.particles.forEach(p => {
-                    const vec = this.vectorField.get(p.x, p.y);
-                    p.x += vec.x;
-                    p.y += vec.y;
+                ctx.fillText(this.char, this.x, this.y);
+            }
+        }
+
+        // ===== PIXEL CREATURE (Animal Garden Style) =====
+        class PixelCreature {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.size = 20;
+                this.color = ['#00ff00', '#00ffff', '#00ff88', '#88ff00'][Math.floor(Math.random() * 4)];
+                this.frame = 0;
+                this.animSpeed = 0.1;
+                this.type = Math.floor(Math.random() * 3); // Different creature types
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Bounce off edges
+                if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
+                
+                this.frame += this.animSpeed;
+            }
+
+            drawPixelArt(ctx, pixels, scale = 2) {
+                const offsetX = Math.floor(this.x);
+                const offsetY = Math.floor(this.y);
+                
+                for (let y = 0; y < pixels.length; y++) {
+                    for (let x = 0; x < pixels[y].length; x++) {
+                        if (pixels[y][x]) {
+                            ctx.fillStyle = this.color;
+                            ctx.fillRect(
+                                offsetX + x * scale,
+                                offsetY + y * scale,
+                                scale,
+                                scale
+                            );
+                        }
+                    }
+                }
+            }
+
+            draw(ctx) {
+                // Different creature sprites (retro game style)
+                const creatures = [
+                    // Type 0: Simple creature
+                    [
+                        [0,1,0,1,0],
+                        [0,1,1,1,0],
+                        [1,1,1,1,1],
+                        [0,1,0,1,0],
+                        [1,0,0,0,1]
+                    ],
+                    // Type 1: Bird-like
+                    [
+                        [0,0,1,0,0],
+                        [0,1,1,1,0],
+                        [1,1,1,1,1],
+                        [0,1,0,1,0],
+                        [0,0,0,0,0]
+                    ],
+                    // Type 2: Fish-like
+                    [
+                        [0,0,1,1,0],
+                        [0,1,1,1,1],
+                        [1,1,1,1,0],
+                        [0,1,1,1,1],
+                        [0,0,1,1,0]
+                    ]
+                ];
+                
+                const sprite = creatures[this.type];
+                
+                // Add animation bobbing
+                const bob = Math.sin(this.frame) * 2;
+                const tempY = this.y;
+                this.y += bob;
+                
+                this.drawPixelArt(ctx, sprite, 3);
+                
+                this.y = tempY;
+            }
+        }
+
+        // ===== NEURAL CONNECTION =====
+        class NeuralConnection {
+            constructor(x1, y1, x2, y2) {
+                this.x1 = x1;
+                this.y1 = y1;
+                this.x2 = x2;
+                this.y2 = y2;
+                this.energy = 0;
+                this.maxEnergy = 1;
+            }
+
+            pulse() {
+                this.energy = this.maxEnergy;
+            }
+
+            update() {
+                this.energy *= 0.95;
+            }
+
+            draw(ctx) {
+                if (this.energy > 0.1) {
+                    const steps = 20;
+                    ctx.font = '10px Courier New';
                     
-                    // Brownian flicker
-                    if (Math.random() < 0.1) {
-                        p.char = ['.', ':', "'", '^'][Math.floor(Math.random() * 4)];
-                    }
-                    
-                    // Wrap around
-                    if (p.x < 0) p.x = window.innerWidth;
-                    if (p.x > window.innerWidth) p.x = 0;
-                    if (p.y < 0) p.y = window.innerHeight;
-                    if (p.y > window.innerHeight) p.y = 0;
-                });
-            }
-
-            draw(ctx) {
-                ctx.clearRect(0, 0, canvases.grain.width, canvases.grain.height);
-                ctx.font = '8px Courier New';
-                
-                this.particles.forEach(p => {
-                    ctx.fillStyle = `rgba(0, 255, 0, ${p.opacity})`;
-                    ctx.fillText(p.char, p.x, p.y);
-                });
-            }
-        }
-
-        // ===== GHOSTING BUFFER =====
-        class GhostBuffer {
-            constructor() {
-                this.trails = [];
-                this.decayChain = ['%', 'x', 's', 'v', 'i', '.', ' '];
-            }
-
-            addTrail(x, y, char) {
-                this.trails.push({
-                    x, y, char,
-                    age: 0,
-                    maxAge: this.decayChain.length
-                });
-            }
-
-            update() {
-                for (let i = this.trails.length - 1; i >= 0; i--) {
-                    this.trails[i].age += 0.1;
-                    if (this.trails[i].age >= this.trails[i].maxAge) {
-                        this.trails.splice(i, 1);
-                    }
-                }
-            }
-
-            draw(ctx) {
-                ctx.clearRect(0, 0, canvases.ghost.width, canvases.ghost.height);
-                ctx.font = '12px Courier New';
-                
-                this.trails.forEach(t => {
-                    const index = Math.floor(t.age);
-                    if (index < this.decayChain.length) {
-                        const char = this.decayChain[index];
-                        const opacity = 1 - (t.age / t.maxAge);
-                        ctx.fillStyle = `rgba(0, 255, 0, ${opacity * 0.5})`;
-                        ctx.fillText(char, t.x, t.y);
-                    }
-                });
-            }
-        }
-
-        // ===== VOLUMETRIC FOG (SDF-based) =====
-        class VolumetricFog {
-            constructor() {
-                this.lightX = window.innerWidth / 2;
-                this.lightY = window.innerHeight / 2;
-                this.time = 0;
-                this.perlin = new PerlinNoise();
-            }
-
-            update() {
-                this.time += 0.01;
-                // Oscillate light source
-                this.lightX = window.innerWidth / 2 + Math.sin(this.time) * 200;
-                this.lightY = window.innerHeight / 2 + Math.cos(this.time * 0.7) * 150;
-            }
-
-            getCharByDistance(dist, noise) {
-                const combined = dist + noise * 50;
-                
-                if (combined < 50) return '!';
-                if (combined < 100) return 'I';
-                if (combined < 150) return '{';
-                if (combined < 200) return 'x';
-                if (combined < 250) return '%';
-                if (combined < 300) return ';';
-                if (combined < 350) return ':';
-                if (combined < 400) return '-';
-                return '.';
-            }
-
-            draw(ctx) {
-                ctx.clearRect(0, 0, canvases.fog.width, canvases.fog.height);
-                ctx.font = '10px Courier New';
-                
-                const step = 20;
-                for (let x = 0; x < window.innerWidth; x += step) {
-                    for (let y = 0; y < window.innerHeight; y += step) {
-                        const dx = x - this.lightX;
-                        const dy = y - this.lightY;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
+                    for (let i = 0; i < steps; i++) {
+                        const t = i / steps;
+                        const x = this.x1 + (this.x2 - this.x1) * t;
+                        const y = this.y1 + (this.y2 - this.y1) * t;
                         
-                        const noise = this.perlin.get(x * 0.01, y * 0.01);
-                        const char = this.getCharByDistance(dist, noise);
+                        const chars = ['|', '/', '-', '\\'];
+                        const char = chars[i % chars.length];
                         
-                        const brightness = Math.max(0, 1 - dist / 400);
-                        ctx.fillStyle = `rgba(0, 255, 255, ${brightness * 0.3})`;
+                        ctx.fillStyle = `rgba(0, 255, 255, ${this.energy * 0.8})`;
                         ctx.fillText(char, x, y);
                     }
                 }
             }
         }
 
-        // ===== TEMPORAL ANTI-ALIASING =====
-        class TemporalAA {
+        // ===== INFO STREAM SYSTEM =====
+        class InfoStream {
             constructor() {
-                this.flickerState = new Map();
-            }
-
-            shouldFlicker(key, char1, char2) {
-                if (!this.flickerState.has(key)) {
-                    this.flickerState.set(key, {
-                        frame: 0,
-                        char1,
-                        char2
-                    });
-                }
-                
-                const state = this.flickerState.get(key);
-                state.frame++;
-                
-                if (state.frame > 3) {
-                    this.flickerState.delete(key);
-                    return char2;
-                }
-                
-                return state.frame % 2 === 0 ? char1 : char2;
-            }
-        }
-
-        // ===== PARTICLE SYSTEM =====
-        class Particle {
-            constructor(x, y, vx = 0, vy = 0, depth = 1) {
-                this.x = x;
-                this.y = y;
-                this.vx = vx || (Math.random() - 0.5) * 3;
-                this.vy = vy || (Math.random() - 0.5) * 3;
-                this.depth = depth; // 0 = far, 1 = mid, 2 = near
-                this.char = this.getCharByDepth();
-                this.life = 1;
-                this.decay = 0.005 + Math.random() * 0.01;
-                this.size = 8 + depth * 4;
-                this.rotation = Math.random() * Math.PI * 2;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.2;
-                this.hue = Math.random() * 360;
-            }
-
-            getCharByDepth() {
-                if (this.depth === 0) return CHARS.depth_far[Math.floor(Math.random() * CHARS.depth_far.length)];
-                if (this.depth === 1) return CHARS.depth_mid[Math.floor(Math.random() * CHARS.depth_mid.length)];
-                return CHARS.depth_near[Math.floor(Math.random() * CHARS.depth_near.length)];
-            }
-
-            update(scrollSpeed = 0) {
-                this.x += this.vx;
-                this.y += this.vy + scrollSpeed * (this.depth + 1) * 0.5;
-                this.vx *= 0.99;
-                this.vy *= 0.99;
-                this.life -= this.decay;
-                this.rotation += this.rotationSpeed;
-                this.hue = (this.hue + 1) % 360;
-                
-                // Wrap around for parallax effect
-                if (this.y > window.innerHeight + 50) {
-                    this.y = -50;
-                }
-            }
-
-            draw(ctx) {
-                if (this.life > 0) {
-                    ctx.save();
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate(this.rotation);
-                    ctx.font = `${this.size}px Courier New`;
-                    
-                    const opacity = this.life * (0.3 + this.depth * 0.3);
-                    ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${opacity})`;
-                    ctx.fillText(this.char, 0, 0);
-                    ctx.restore();
-                }
-            }
-
-            isDead() {
-                return this.life <= 0;
-            }
-        }
-
-        // ===== KINETIC TYPOGRAPHY =====
-        class KineticText {
-            constructor(text, x, y) {
-                this.text = text;
-                this.centerX = x;
-                this.centerY = y;
-                this.particles = [];
-                this.state = 'idle'; // idle, exploding, orbiting, reforming
-                this.explode();
-            }
-
-            explode() {
-                this.particles = [];
-                for (let i = 0; i < this.text.length; i++) {
-                    const angle = (Math.PI * 2 * i) / this.text.length;
-                    this.particles.push({
-                        char: this.text[i],
-                        x: this.centerX,
-                        y: this.centerY,
-                        targetX: this.centerX + Math.cos(angle) * 100,
-                        targetY: this.centerY + Math.sin(angle) * 100,
-                        orbitAngle: angle,
-                        orbitRadius: 100,
-                        phase: 0
-                    });
-                }
-            }
-
-            hover(mouseX, mouseY) {
-                this.state = 'orbiting';
-                this.centerX = mouseX;
-                this.centerY = mouseY;
-            }
-
-            unhover() {
-                this.state = 'reforming';
-            }
-
-            update() {
-                this.particles.forEach((p, i) => {
-                    if (this.state === 'orbiting') {
-                        // Spiral orbit: r = a + b*theta
-                        p.orbitAngle += 0.05;
-                        p.orbitRadius = 50 + 50 * Math.sin(p.orbitAngle);
-                        p.x = this.centerX + Math.cos(p.orbitAngle) * p.orbitRadius;
-                        p.y = this.centerY + Math.sin(p.orbitAngle) * p.orbitRadius;
-                    } else {
-                        // Move to target position
-                        p.x += (p.targetX - p.x) * 0.1;
-                        p.y += (p.targetY - p.y) * 0.1;
-                    }
-                    p.phase += 0.1;
-                });
-            }
-
-            draw(ctx) {
-                ctx.font = '20px Courier New';
-                this.particles.forEach(p => {
-                    const brightness = 0.5 + Math.sin(p.phase) * 0.5;
-                    ctx.fillStyle = `rgba(0, 255, 255, ${brightness})`;
-                    ctx.fillText(p.char, p.x, p.y);
-                });
-            }
-        }
-
-        // ===== CHROMATIC ABERRATION =====
-        class ChromaticAberration {
-            constructor() {
-                this.offsetX = 2;
-                this.offsetY = 2;
-            }
-
-            draw(text, x, y) {
-                // Red channel
-                contexts.chromaR.fillStyle = 'rgba(255, 0, 0, 0.5)';
-                contexts.chromaR.font = '20px Courier New';
-                contexts.chromaR.fillText(text, x - this.offsetX, y - this.offsetY);
-                
-                // Green channel
-                contexts.chromaG.fillStyle = 'rgba(0, 255, 0, 0.5)';
-                contexts.chromaG.font = '20px Courier New';
-                contexts.chromaG.fillText(text, x, y);
-                
-                // Blue channel
-                contexts.chromaB.fillStyle = 'rgba(0, 0, 255, 0.5)';
-                contexts.chromaB.font = '20px Courier New';
-                contexts.chromaB.fillText(text, x + this.offsetX, y + this.offsetY);
-            }
-
-            clear() {
-                contexts.chromaR.clearRect(0, 0, canvases.chromaR.width, canvases.chromaR.height);
-                contexts.chromaG.clearRect(0, 0, canvases.chromaG.width, canvases.chromaG.height);
-                contexts.chromaB.clearRect(0, 0, canvases.chromaB.width, canvases.chromaB.height);
-            }
-        }
-
-        // ===== NEURAL CONNECTION MAP =====
-        class NeuralMap {
-            constructor() {
-                this.nodes = [
-                    { x: 200, y: 200, label: 'JS', energy: 0 },
-                    { x: 400, y: 200, label: 'ASCII', energy: 0 },
-                    { x: 300, y: 350, label: 'Canvas', energy: 0 },
-                    { x: 500, y: 350, label: 'WebGL', energy: 0 }
+                this.messages = [
+                    "[INFO: Searching for a Pure Signal...]",
+                    "[INFO: Neural Bridge Connection Established...]",
+                    "[INFO: Ocean Particles Synchronized...]",
+                    "[INFO: Digital Distortion Detected...]",
+                    "[INFO: Living Organism Active...]",
+                    "[INFO: Pixel Creatures Spawning...]",
+                    "[INFO: සංඥා සෙවීම (Signal Search)...]",
+                    "[INFO: ජීවී ජීව විද්‍යුත් පද්ධතිය (Living System)...]",
+                    "[INFO: මුහුදු රිද්මය (Ocean Rhythm)...]"
                 ];
-                this.connections = [
-                    [0, 1], [1, 2], [2, 3], [0, 2], [1, 3]
-                ];
+                this.lastShow = Date.now();
             }
 
-            activateNode(index) {
-                this.nodes[index].energy = 1;
-            }
-
-            update() {
-                this.nodes.forEach(node => {
-                    node.energy *= 0.95; // Decay
-                });
-            }
-
-            draw(ctx) {
-                // Draw connections
-                this.connections.forEach(([a, b]) => {
-                    const nodeA = this.nodes[a];
-                    const nodeB = this.nodes[b];
-                    const energy = Math.max(nodeA.energy, nodeB.energy);
+            show() {
+                const now = Date.now();
+                if (now - this.lastShow > 10000) { // Every 10 seconds
+                    this.lastShow = now;
+                    const stream = document.getElementById('info-stream');
+                    const msg = this.messages[Math.floor(Math.random() * this.messages.length)];
                     
-                    if (energy > 0.1) {
-                        const chars = ['\\', '|', '/', '-'];
-                        const steps = 20;
-                        
-                        for (let i = 0; i < steps; i++) {
-                            const t = i / steps;
-                            const x = nodeA.x + (nodeB.x - nodeA.x) * t;
-                            const y = nodeA.y + (nodeB.y - nodeA.y) * t;
-                            const char = chars[i % chars.length];
-                            
-                            ctx.fillStyle = `rgba(0, 255, 0, ${energy})`;
-                            ctx.fillText(char, x, y);
-                        }
-                    }
-                });
-                
-                // Draw nodes
-                ctx.font = '20px Courier New';
-                this.nodes.forEach(node => {
-                    const pulse = node.energy > 0.5 ? '!' : node.energy > 0.3 ? '%' : '[';
-                    ctx.fillStyle = `rgba(0, 255, 255, ${0.5 + node.energy * 0.5})`;
-                    ctx.fillText(`${pulse}${node.label}${pulse}`, node.x, node.y);
-                });
+                    stream.innerHTML = `<span class="info-scroll">${msg}</span>`;
+                    stream.style.animation = 'none';
+                    setTimeout(() => {
+                        stream.style.animation = 'fade-in-out 3s ease-in-out';
+                    }, 10);
+                }
             }
         }
 
-        // ===== BINARY REBIRTH LOADER =====
-        class BinaryRebirth {
-            constructor(onComplete) {
-                this.onComplete = onComplete;
-                this.rows = Math.floor(window.innerHeight / 12);
-                this.cols = Math.floor(window.innerWidth / 8);
-                this.grid = [];
-                this.scanlineY = 0;
-                this.complete = false;
-                this.init();
-            }
+        // ===== INITIALIZE SYSTEMS =====
+        const oceanParticles = [];
+        const pixelCreatures = [];
+        const neuralConnections = [];
+        const infoStream = new InfoStream();
 
-            init() {
-                for (let y = 0; y < this.rows; y++) {
-                    const row = [];
-                    for (let x = 0; x < this.cols; x++) {
-                        row.push({
-                            char: ['%', '&', '#', '*'][Math.floor(Math.random() * 4)],
-                            decoded: false
-                        });
-                    }
-                    this.grid.push(row);
-                }
-            }
-
-            update() {
-                if (this.complete) return;
-                
-                this.scanlineY += 3;
-                
-                const currentRow = Math.floor(this.scanlineY / 12);
-                if (currentRow < this.rows) {
-                    // Decode current row
-                    this.grid[currentRow].forEach(cell => {
-                        cell.decoded = true;
-                        cell.char = CHARS.all[Math.floor(Math.random() * CHARS.all.length)];
-                    });
-                }
-                
-                if (this.scanlineY > window.innerHeight) {
-                    this.complete = true;
-                    setTimeout(() => this.onComplete(), 500);
-                }
-            }
-
-            draw(ctx) {
-                ctx.fillStyle = '#000';
-                ctx.fillRect(0, 0, canvases.decode.width, canvases.decode.height);
-                ctx.font = '10px Courier New';
-                
-                this.grid.forEach((row, y) => {
-                    row.forEach((cell, x) => {
-                        if (cell.decoded) {
-                            ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
-                        } else {
-                            ctx.fillStyle = 'rgba(255, 0, 255, 0.5)';
-                        }
-                        ctx.fillText(cell.char, x * 8, y * 12);
-                    });
-                });
-            }
+        // Create ocean particles
+        for (let i = 0; i < 300; i++) {
+            oceanParticles.push(new OceanParticle());
         }
 
-        // ===== SYSTEM INITIALIZATION =====
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let scrollSpeed = 0;
+        // Create pixel creatures
+        for (let i = 0; i < 8; i++) {
+            pixelCreatures.push(new PixelCreature());
+        }
 
-        const grainSystem = new GrainSystem();
-        const ghostBuffer = new GhostBuffer();
-        const volumetricFog = new VolumetricFog();
-        const temporalAA = new TemporalAA();
-        const chromaAberration = new ChromaticAberration();
-        const neuralMap = new NeuralMap();
-
-        const particles = [];
-        const kineticTexts = [];
-
-        // Create parallax particles
-        for (let i = 0; i < 100; i++) {
-            particles.push(new Particle(
+        // Create neural connections
+        for (let i = 0; i < 5; i++) {
+            neuralConnections.push(new NeuralConnection(
                 Math.random() * window.innerWidth,
                 Math.random() * window.innerHeight,
-                0, 0,
-                Math.floor(Math.random() * 3)
+                Math.random() * window.innerWidth,
+                Math.random() * window.innerHeight
             ));
         }
 
         // ===== MOUSE TRACKING =====
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let distortionCount = 0;
+
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            // Add ghost trail
-            if (Math.random() < 0.3) {
-                ghostBuffer.addTrail(mouseX, mouseY, '%');
+            // Update custom cursor
+            const cursor = document.getElementById('pixel-cursor');
+            cursor.style.left = (mouseX - 8) + 'px';
+            cursor.style.top = (mouseY - 8) + 'px';
+            
+            // Distort nearby particles
+            distortionCount = 0;
+            oceanParticles.forEach(p => {
+                if (p.distort(mouseX, mouseY)) {
+                    distortionCount++;
+                }
+            });
+            
+            // Update distortion stat
+            const distortionPercent = Math.min(100, (distortionCount / 10) * 100);
+            document.getElementById('distortion-level').style.width = distortionPercent + '%';
+            
+            // Update activity
+            if (distortionCount > 5) {
+                document.getElementById('activity-level').textContent = 'HIGH';
+            } else if (distortionCount > 0) {
+                document.getElementById('activity-level').textContent = 'ACTIVE';
+            } else {
+                document.getElementById('activity-level').textContent = 'IDLE';
             }
             
-            // Update cursor
-            const cursor = document.getElementById('cursor-ring');
-            cursor.style.left = (mouseX - 30) + 'px';
-            cursor.style.top = (mouseY - 30) + 'px';
-            
-            // Update focus ring
-            const focusRing = document.getElementById('focus-ring');
-            const ringChars = ['(', ')', '<', '>', '/', '\\'];
-            const ringRadius = 40;
-            let ringHTML = '';
-            ringChars.forEach((char, i) => {
-                const angle = (Math.PI * 2 * i) / ringChars.length;
-                const x = mouseX + Math.cos(angle) * ringRadius;
-                const y = mouseY + Math.sin(angle) * ringRadius;
-                ringHTML += `<span style="position:absolute;left:${x}px;top:${y}px">${char}</span>`;
+            // Pulse nearest neural connection
+            neuralConnections.forEach(nc => {
+                const dx = nc.x1 - mouseX;
+                const dy = nc.y1 - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    nc.pulse();
+                }
             });
-            focusRing.innerHTML = ringHTML;
         });
 
-        // ===== TECHNICAL OVERLAY UPDATES =====
-        function updateTechOverlays() {
-            const now = new Date();
-            const fps = Math.floor(1000 / 16.67);
-            
-            document.getElementById('sys-info-tl').innerHTML = `
-SYS_LOAD: [||||||||||..] 82%
-BUFF_ADDR: 0x7FF${Math.floor(Math.random() * 999).toString(16)}
-TIME: ${now.toLocaleTimeString()}
-            `.trim();
-            
-            document.getElementById('sys-info-tr').innerHTML = `
-FPS: ${fps}
-PARTICLES: ${particles.length}
-NEURAL_ACTIVE: ${neuralMap.nodes.filter(n => n.energy > 0.1).length}
-            `.trim();
-            
-            document.getElementById('sys-info-bl').innerHTML = `
-CURSOR: [${mouseX.toFixed(0)}, ${mouseY.toFixed(0)}]
-SCROLL: ${scrollSpeed.toFixed(2)}
-            `.trim();
-            
-            document.getElementById('sys-info-br').innerHTML = `
-RES: ${window.innerWidth}x${window.innerHeight}
-MODE: CINEMATIC_SIMULATION
-ENGINE: GPU_ACCELERATED
-            `.trim();
-        }
-
-        // ===== DATA GREEBLES =====
-        function initGreebles() {
-            const greebleChars = ".-:;^=+/\"|)\\<>".split('');
-            let greebleString = '';
-            for (let i = 0; i < 500; i++) {
-                greebleString += greebleChars[Math.floor(Math.random() * greebleChars.length)];
-            }
-            
-            document.getElementById('greeble-top').innerHTML = 
-                `<span class="greeble-scroll">${greebleString}${greebleString}</span>`;
-            document.getElementById('greeble-bottom').innerHTML = 
-                `<span class="greeble-scroll">${greebleString}${greebleString}</span>`;
-            
-            // Bit-flip animation
-            setInterval(() => {
-                const elements = document.querySelectorAll('.greeble-scroll');
-                elements.forEach(el => {
-                    const text = el.textContent;
-                    const pos = Math.floor(Math.random() * text.length);
-                    const newChar = greebleChars[Math.floor(Math.random() * greebleChars.length)];
-                    el.textContent = text.substring(0, pos) + newChar + text.substring(pos + 1);
-                });
-            }, 100);
-        }
-
         // ===== MAIN RENDER LOOP =====
-        function render() {
-            // Update systems
-            grainSystem.update();
-            ghostBuffer.update();
-            volumetricFog.update();
-            neuralMap.update();
-            
-            // Update particles
-            for (let i = particles.length - 1; i >= 0; i--) {
-                particles[i].update(scrollSpeed);
-                if (particles[i].isDead()) {
-                    particles.splice(i, 1);
-                    // Respawn in parallax layer
-                    particles.push(new Particle(
-                        Math.random() * window.innerWidth,
-                        -50,
-                        0, 0,
-                        Math.floor(Math.random() * 3)
-                    ));
-                }
-            }
-            
-            // Update kinetic texts
-            kineticTexts.forEach(kt => kt.update());
-            
-            // Draw layers
-            grainSystem.draw(contexts.grain);
-            ghostBuffer.draw(contexts.ghost);
-            volumetricFog.draw(contexts.fog);
-            
-            // Draw main content
-            const ctx = contexts.main;
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvases.main.width, canvases.main.height);
-            
-            particles.forEach(p => p.draw(ctx));
-            
-            // Draw neural map
-            neuralMap.draw(contexts.content);
-            
-            // Draw kinetic texts
-            chromaAberration.clear();
-            kineticTexts.forEach(kt => kt.draw(contexts.content));
-            
-            // Draw title with chromatic aberration
-            chromaAberration.draw('CINEMATIC PORTFOLIO', window.innerWidth / 2 - 150, 100);
-            
-            // Update tech overlays
-            if (Math.random() < 0.1) {
-                updateTechOverlays();
-            }
-            
-            requestAnimationFrame(render);
-        }
+        let lastTime = Date.now();
+        let frameCount = 0;
 
-        // ===== LOADING SEQUENCE =====
-        function startLoadingSequence() {
-            const loader = new BinaryRebirth(() => {
-                document.getElementById('loading-screen').style.display = 'none';
-                startMainExperience();
+        function animate() {
+            const currentTime = Date.now();
+            frameCount++;
+            
+            // Clear canvases
+            ctx.ocean.fillStyle = 'rgba(10, 14, 26, 0.1)';
+            ctx.ocean.fillRect(0, 0, canvases.ocean.width, canvases.ocean.height);
+            ctx.distortion.clearRect(0, 0, canvases.distortion.width, canvases.distortion.height);
+            ctx.creatures.clearRect(0, 0, canvases.creatures.width, canvases.creatures.height);
+            ctx.neural.clearRect(0, 0, canvases.neural.width, canvases.neural.height);
+            
+            // Update and draw ocean particles
+            oceanParticles.forEach(p => {
+                p.update(currentTime);
+                p.draw(ctx.ocean);
             });
             
-            const scanline = document.getElementById('scanline');
+            // Update and draw pixel creatures
+            pixelCreatures.forEach(c => {
+                c.update();
+                c.draw(ctx.creatures);
+            });
             
-            function animateLoader() {
-                loader.update();
-                loader.draw(contexts.decode);
-                
-                scanline.style.top = loader.scanlineY + 'px';
-                
-                if (!loader.complete) {
-                    requestAnimationFrame(animateLoader);
-                }
+            // Update and draw neural connections
+            neuralConnections.forEach(nc => {
+                nc.update();
+                nc.draw(ctx.neural);
+            });
+            
+            // Update organism count
+            document.getElementById('organism-count').textContent = pixelCreatures.length;
+            
+            // Update signal strength
+            const signals = Math.floor((frameCount % 100) / 10);
+            const signalBar = '█'.repeat(signals) + '░'.repeat(10 - signals);
+            document.getElementById('signal-strength').textContent = signalBar;
+            
+            // Update ocean flow stat
+            const flowPercent = 50 + Math.sin(currentTime * 0.001) * 30;
+            document.getElementById('ocean-flow').style.width = flowPercent + '%';
+            
+            // Update neural sync
+            const syncPercent = 60 + Math.cos(currentTime * 0.0007) * 20;
+            document.getElementById('neural-sync').style.width = syncPercent + '%';
+            
+            // Show info stream
+            infoStream.show();
+            
+            // Random neural pulse
+            if (Math.random() < 0.02) {
+                const nc = neuralConnections[Math.floor(Math.random() * neuralConnections.length)];
+                nc.pulse();
             }
             
-            animateLoader();
-        }
-
-        // ===== MAIN EXPERIENCE =====
-        function startMainExperience() {
-            initGreebles();
-            updateTechOverlays();
+            // Spawn new creature occasionally
+            if (Math.random() < 0.001 && pixelCreatures.length < 12) {
+                pixelCreatures.push(new PixelCreature());
+            }
             
-            // Create kinetic texts
-            kineticTexts.push(new KineticText('TECHNICAL', window.innerWidth / 2, window.innerHeight / 2));
-            
-            // Activate neural nodes periodically
-            setInterval(() => {
-                neuralMap.activateNode(Math.floor(Math.random() * neuralMap.nodes.length));
-            }, 2000);
-            
-            // Start main render loop
-            render();
-            
-            console.log('%c.\\'-:;^=+/"|)\\\\<>iv%xclrs{*}I?!]...', 
-                'color: #0f0; font-size: 24px; font-family: monospace; text-shadow: 0 0 10px #0f0;');
-            console.log('%cCINEMATIC SIMULATION INITIALIZED', 
-                'color: #0ff; font-size: 16px; font-family: monospace;');
+            lastTime = currentTime;
+            requestAnimationFrame(animate);
         }
 
         // ===== START =====
         window.addEventListener('load', () => {
-            startLoadingSequence();
+            console.log('%c.\\'-:;^=+/"|)\\\\<>iv%xclrs{*}I?!]...', 
+                'color: #00ff88; font-size: 24px; font-family: monospace; text-shadow: 0 0 10px #00ff88;');
+            console.log('%cNEURAL BRIDGE // LIVING ORGANISM', 
+                'color: #00ffff; font-size: 16px; font-family: monospace;');
+            console.log('%cමෙය ජීවමාන ජීව විද්‍යුත් පද්ධතියකි', 
+                'color: #00ff00; font-size: 14px; font-family: monospace;');
+            
+            animate();
+            
+            // Initial info stream
+            setTimeout(() => infoStream.show(), 2000);
         });
 
-        // Scroll detection
-        let lastScrollY = 0;
-        window.addEventListener('scroll', () => {
-            scrollSpeed = window.scrollY - lastScrollY;
-            lastScrollY = window.scrollY;
+        // ===== CLICK TO ADD CREATURES =====
+        document.addEventListener('click', (e) => {
+            if (pixelCreatures.length < 20) {
+                const creature = new PixelCreature();
+                creature.x = e.clientX;
+                creature.y = e.clientY;
+                pixelCreatures.push(creature);
+                
+                // Create burst of ocean particles
+                for (let i = 0; i < 20; i++) {
+                    const p = new OceanParticle();
+                    p.x = e.clientX;
+                    p.y = e.clientY;
+                    p.vx = (Math.random() - 0.5) * 5;
+                    p.vy = (Math.random() - 0.5) * 5;
+                    p.distort(e.clientX, e.clientY);
+                    oceanParticles.push(p);
+                    
+                    // Remove old particles
+                    if (oceanParticles.length > 500) {
+                        oceanParticles.shift();
+                    }
+                }
+            }
         });
+
+        // ===== BREATHING EFFECT =====
+        setInterval(() => {
+            const content = document.getElementById('content');
+            const scale = 1 + Math.sin(Date.now() * 0.001) * 0.02;
+            content.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        }, 50);
     </script>
 </body>
 </html>
