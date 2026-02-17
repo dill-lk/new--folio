@@ -276,3 +276,54 @@ See [VIDEO_TO_ASCII.md](./VIDEO_TO_ASCII.md) for complete guide including:
 - Examples
 
 **This is a professional, production-ready system for cinematic ASCII intros!**
+
+## 🚀 ULTRA ADVANCED Features
+
+The portfolio now includes **cutting-edge visualization technology** with switchable advanced modes!
+
+### Advanced Modes (Bottom-Right Button)
+
+**1. Raymarching Shader** 🔮
+- Real-time 3D raymarching algorithm
+- WebGL2 GLSL shaders
+- Animated spheres, boxes, torus
+- Fractal noise (FBM)
+- Fresnel lighting + AO
+- Mouse-interactive geometry
+
+**2. Massive Particle System** ⚡
+- **50,000 interactive particles!**
+- Full physics (gravity, damping, velocity)
+- Mouse attraction/repulsion
+- Particle connections
+- Life cycle management
+- ASCII character rendering
+
+**3. Default Mode** 🎨
+- WebGL pixelated background
+- Mouse-reactive text
+
+### Technical Specs:
+
+**Raymarching:**
+- MAX_STEPS: 100
+- SDF (Signed Distance Functions)
+- Smooth blending
+- 60 FPS GPU-accelerated
+
+**Particles:**
+- Count: 50,000
+- Physics: Real-time Euler integration
+- Forces: Gravity + attraction + repulsion
+- Connections: Dynamic web patterns
+
+### Documentation:
+
+See [ADVANCED_FEATURES.md](./ADVANCED_FEATURES.md) for complete technical reference including:
+- Algorithm explanations
+- Code examples
+- Performance tuning
+- Troubleshooting
+- Advanced concepts (SDF, FBM, raymarching)
+
+**This is the MOST ADVANCED portfolio on the web!** 🔥
