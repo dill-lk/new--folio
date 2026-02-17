@@ -20,6 +20,12 @@ const VideoASCIIIntro = dynamic(() => import('@/components/VideoASCIIIntro'), {
   loading: () => null,
 });
 
+// ULTRA ADVANCED: Mode controller with shader, particles, audio
+const AdvancedModeController = dynamic(() => import('@/components/AdvancedModeController'), {
+  ssr: false,
+  loading: () => null,
+});
+
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -53,6 +59,9 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* WebGL Pixelated Background - only on client */}
       {isMounted && introCompleted && <PixelatedBackground />}
+      
+      {/* ULTRA ADVANCED Mode Controller */}
+      {isMounted && introCompleted && <AdvancedModeController />}
       
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center p-8 relative z-10">
