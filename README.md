@@ -186,3 +186,35 @@ Created by [Your Name]
 ---
 
 **Made with ♥ in PIXELATED 2026**
+
+## 🎬 Cinematic ASCII Intro
+
+The portfolio features an epic cinematic ASCII intro sequence on first visit!
+
+### Features:
+- **Particle Effects**: ASCII characters construct letters from hundreds of particles
+- **Matrix Rain**: Cascading green-style ASCII rain effect
+- **3D ASCII Cube**: Rotating wireframe cube made entirely of ASCII characters
+- **Glitch Transitions**: Screen-slice glitch effects between scenes
+- **Multi-Scene Timeline**: 8 distinct animated scenes
+
+### ASCII Characters Used:
+```
+. / * \ ` % # @ + - = ~
+```
+
+Small characters dynamically form large text like "WELCOME" and "2026".
+
+### Controls:
+- **Skip Button**: Bottom right corner to skip intro
+- **Auto-play**: Plays once per session
+- **Scene Indicator**: Bottom left shows current scene
+
+### Technical:
+- Canvas-based 60 FPS animations
+- Particle physics simulation
+- 3D matrix transformations
+- Real-time character generation
+- Session storage for one-time viewing
+
+This is **true 2026 technology** - a fully cinematic ASCII video experience!
