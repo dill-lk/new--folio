@@ -226,3 +226,102 @@ npm run deploy:netlify
 ```
 
 Your portfolio is now ready for the world! 🌍✨
+
+---
+
+## 🚨 Troubleshooting 404 Errors
+
+### If you see "404: NOT_FOUND" on Vercel:
+
+1. **Check Build Logs**
+   - Go to your deployment on Vercel
+   - Click on the failed deployment
+   - Review build logs for errors
+
+2. **Verify Output Directory**
+   - Ensure `out/` directory exists after build
+   - Should contain `index.html` and `404.html`
+
+3. **Common Fixes:**
+
+   **For Vercel:**
+   - Use Vercel's automatic detection (don't use custom vercel.json)
+   - Or use minimal config:
+   ```json
+   {
+     "buildCommand": "npm run build",
+     "outputDirectory": "out"
+   }
+   ```
+
+   **For WebGL Issues:**
+   - Components use dynamic imports with `ssr: false`
+   - Error boundaries catch WebGL failures
+   - Falls back gracefully if WebGL not supported
+
+4. **Manual Deployment Steps:**
+   ```bash
+   # Clean build
+   rm -rf .next out node_modules
+   npm install
+   npm run build
+   
+   # Verify output
+   ls -la out/
+   
+   # Should see:
+   # - index.html
+   # - 404.html
+   # - _next/ directory
+   ```
+
+5. **If Still Getting 404:**
+   - Delete and recreate the Vercel project
+   - Use "Import Git Repository" instead of CLI
+   - Let Vercel auto-detect Next.js settings
+   - Don't override build/output settings
+
+### Testing Before Deploy
+
+Always test locally first:
+```bash
+npm run build
+npx serve out -l 3000
+# Visit http://localhost:3000
+```
+
+If it works locally but not on Vercel/Netlify:
+- Check platform-specific build logs
+- Verify Node.js version (needs 18+)
+- Check for environment-specific issues
+- Review platform documentation
+
+### Platform-Specific Notes
+
+**Vercel:**
+- Best for Next.js (native support)
+- Auto-detects configuration
+- No custom config needed usually
+
+**Netlify:**
+- Uses `netlify.toml` for config
+- Ensure redirects don't conflict
+- Check `_redirects` file if present
+
+**GitHub Pages:**
+- Requires `.nojekyll` file
+- May need `basePath` if using subdirectory
+- Use GitHub Actions for deployment
+
+### Need More Help?
+
+Check these resources:
+- Next.js Static Export: https://nextjs.org/docs/app/building-your-application/deploying/static-exports
+- Vercel Documentation: https://vercel.com/docs
+- Netlify Documentation: https://docs.netlify.com
+
+Or open an issue in the repository with:
+- Build logs
+- Error messages
+- Platform you're deploying to
+- Steps you've tried

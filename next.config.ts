@@ -5,10 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  trailingSlash: true,
-  // Ensure proper asset prefix for static hosting
-  assetPrefix: process.env.NODE_ENV === 'production' ? undefined : undefined,
-  basePath: '',
+  // Disable strict mode for better compatibility
+  reactStrictMode: false,
 };
 
 export default nextConfig;

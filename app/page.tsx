@@ -1,20 +1,32 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import PixelatedBackground from '@/components/PixelatedBackground';
-import MouseReactiveText from '@/components/MouseReactiveText';
+import dynamic from 'next/dynamic';
+
+// Dynamic imports for WebGL components (client-side only)
+const PixelatedBackground = dynamic(() => import('@/components/PixelatedBackground'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const MouseReactiveText = dynamic(() => import('@/components/MouseReactiveText'), {
+  ssr: false,
+  loading: () => <span>Loading...</span>,
+});
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     setIsLoaded(true);
   }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* WebGL Pixelated Background */}
-      <PixelatedBackground />
+      {/* WebGL Pixelated Background - only on client */}
+      {isMounted && <PixelatedBackground />}
       
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center p-8 relative z-10">
