@@ -64,7 +64,7 @@ function MouseReactiveLetter({
 }: {
   letter: string;
   mousePos: { x: number; y: number };
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   index: number;
 }) {
   const letterRef = useRef<HTMLSpanElement>(null);
