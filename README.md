@@ -8,10 +8,13 @@ A modern, fully animated portfolio website with a retro pixelated aesthetic. Bui
 - ⚫⚪ **Strict Black & White** - Minimalist color palette
 - 🎨 **ASCII Art Elements** - Custom logo and decorations
 - 💫 **Fully Animated** - Smooth transitions and effects
+- 🌐 **Interactive WebGL** - Mouse-reactive background with custom shaders
+- 🖱️ **Mouse-Reactive Text** - Text responds to cursor proximity
 - 📺 **CRT Screen Effect** - Authentic retro monitor simulation
 - 📱 **Fully Responsive** - Works perfectly on all devices
 - ⚡ **Fast Performance** - Optimized Next.js build
 - 🎯 **SEO Ready** - Proper metadata and structure
+- ✅ **Production Ready** - Static export with no 404 errors
 
 ## 🚀 Quick Start
 
@@ -38,6 +41,49 @@ npm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 📦 Production Build
+
+Build for production:
+```bash
+npm run build
+```
+
+This creates an optimized static export in the `out/` directory that can be deployed anywhere.
+
+Test production build locally:
+```bash
+npx serve out
+```
+
+## 🚀 Deployment
+
+This portfolio is ready to deploy! See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+
+### Quick Deploy Options:
+
+**Vercel (Recommended):**
+```bash
+npm install -g vercel
+vercel
+```
+
+**Netlify:**
+```bash
+npm install -g netlify-cli
+netlify deploy --prod
+```
+
+**GitHub Pages:**
+Push to `main` branch and enable GitHub Actions in repository settings.
+
+### ✅ No 404 Errors
+
+The portfolio is configured with:
+- Static HTML export (`output: 'export'`)
+- Custom 404 page with ASCII art
+- Proper routing configuration
+- Deployment configs for all major platforms
 
 ## 📁 Project Structure
 
