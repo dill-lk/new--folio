@@ -14,7 +14,8 @@ const MouseReactiveText = dynamic(() => import('@/components/MouseReactiveText')
   loading: () => <span>Loading...</span>,
 });
 
-const CinematicASCIIIntro = dynamic(() => import('@/components/CinematicASCIIIntro'), {
+// NEW: Video-based ASCII intro (professional quality)
+const VideoASCIIIntro = dynamic(() => import('@/components/VideoASCIIIntro'), {
   ssr: false,
   loading: () => null,
 });
@@ -43,9 +44,9 @@ export default function Home() {
     sessionStorage.setItem('hasSeenIntro', 'true');
   };
 
-  // Show cinematic intro first
+  // Show video-based ASCII intro first
   if (isMounted && showIntro && !introCompleted) {
-    return <CinematicASCIIIntro onComplete={handleIntroComplete} />;
+    return <VideoASCIIIntro onComplete={handleIntroComplete} />;
   }
 
   return (
