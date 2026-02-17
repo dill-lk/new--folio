@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Technical Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: #000;
+            color: #0f0;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        /* Canvas Layers */
+        #perlin-fluid,
+        #particle-layer,
+        #glitch-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        #perlin-fluid { z-index: 1; }
+        #particle-layer { z-index: 2; }
+        #glitch-layer { z-index: 3; }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #0ff;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #0ff;
+        }
+
+        #cursor::before,
+        #cursor::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            background: #0ff;
+        }
+
+        #cursor::before {
+            left: -15px;
+        }
+
+        #cursor::after {
+            right: -15px;
+        }
+
+        /* Viewport Brackets */
+        .viewport-bracket {
+            position: fixed;
+            font-size: 40px;
+            color: #00ff00;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 100;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .bracket-tl { top: 10px; left: 10px; }
+        .bracket-tr { top: 10px; right: 10px; }
+        .bracket-bl { bottom: 10px; left: 10px; }
+        .bracket-br { bottom: 10px; right: 10px; }
+
+        /* Main Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        /* Scramble Text Effect */
+        .scramble-text {
+            font-size: clamp(20px, 5vw, 60px);
+            font-weight: bold;
+            letter-spacing: 5px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 20px #0f0;
+        }
+
+        .scramble-char {
+            display: inline-block;
+            animation: materialize 0.5s ease forwards;
+        }
+
+        @keyframes materialize {
+            0% {
+                opacity: 0;
+                transform: scale(2) rotate(45deg);
+                filter: blur(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                filter: blur(0);
+            }
+        }
+
+        /* Rain Effect Container */
+        .rain-text {
+            font-size: clamp(16px, 4vw, 40px);
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .rain-char {
+            display: inline-block;
+            opacity: 0;
+            animation: rain-fall 1s ease forwards;
+        }
+
+        @keyframes rain-fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scanline Effect */
+        .scanline {
+            position: fixed;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, 
+                transparent,
+                rgba(0, 255, 255, 0.8),
+                rgba(255, 0, 255, 0.8),
+                transparent
+            );
+            z-index: 1000;
+            pointer-events: none;
+            box-shadow: 0 0 20px #0ff;
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .project-card {
+            border: 2px solid #0f0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(0, 255, 0, 0.3),
+                transparent
+            );
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: #0ff;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #0ff;
+        }
+
+        /* Shatter Effect */
+        .shatter-fragment {
+            position: fixed;
+            font-size: 12px;
+            color: #0f0;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* Stats Display */
+        .stats-container {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #0f0;
+            min-width: 150px;
+            background: rgba(0, 255, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            margin-top: 10px;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /* Terminal Box */
+        .terminal {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #0f0;
+            padding: 20px;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        .terminal-line {
+            margin: 8px 0;
+            opacity: 0;
+            animation: terminal-appear 0.3s ease forwards;
+        }
+
+        @keyframes terminal-appear {
+            to { opacity: 1; }
+        }
+
+        .terminal-line::before {
+            content: '> ';
+            color: #0ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .scramble-text {
+                font-size: 24px;
+            }
+        }
+
+        /* Audio Reactive Pulse */
+        @keyframes audio-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        .audio-reactive {
+            animation: audio-pulse 0.5s ease-in-out infinite;
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            color: #ff00ff;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            33% { transform: translate(-2px, 2px); }
+            66% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            33% { transform: translate(2px, -2px); }
+            66% { transform: translate(-2px, 2px); }
+        }
+
+        /* Depth layers */
+        .depth-far { opacity: 0.2; font-size: 8px; }
+        .depth-mid { opacity: 0.5; font-size: 12px; }
+        .depth-near { opacity: 0.9; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <!-- Viewport Brackets -->
+    <div class="viewport-bracket bracket-tl">[</div>
+    <div class="viewport-bracket bracket-tr">]</div>
+    <div class="viewport-bracket bracket-bl">[</div>
+    <div class="viewport-bracket bracket-br">]</div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor">+</div>
+
+    <!-- Scanline -->
+    <div class="scanline" id="scanline"></div>
+
+    <!-- Canvas Layers -->
+    <canvas id="perlin-fluid"></canvas>
+    <canvas id="particle-layer"></canvas>
+    <canvas id="glitch-layer"></canvas>
+
+    <!-- Main Content -->
+    <div class="content" id="main-content">
+        <!-- Hero Section -->
+        <section class="section">
+            <div class="scramble-text" id="hero-title" data-text="CINEMATIC"></div>
+            <div class="rain-text" id="hero-subtitle"></div>
+            <div class="terminal" id="boot-terminal"></div>
+            <div class="stats-container">
+                <div class="stat-box audio-reactive">
+                    <div class="stat-number">60</div>
+                    <div class="stat-label">FPS</div>
+                </div>
+                <div class="stat-box audio-reactive" style="animation-delay: 0.2s">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">PARTICLES</div>
+                </div>
+                <div class="stat-box audio-reactive" style="animation-delay: 0.4s">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">% REACTIVE</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+            <h2 class="scramble-text glitch" data-text="// PROJECTS">// PROJECTS</h2>
+            <div class="project-grid">
+                <div class="project-card" data-project="1">
+                    <h3>ASCII Fluid Engine</h3>
+                    <p>Real-time Perlin noise mapped to character density</p>
+                    <p style="margin-top: 10px; color: #0ff;">[ .'-:;^=+/ ]</p>
+                </div>
+                <div class="project-card" data-project="2">
+                    <h3>Reactive Particle System</h3>
+                    <p>GPU-accelerated particles with mouse interaction</p>
+                    <p style="margin-top: 10px; color: #0ff;">[ "|)\\&lt;&gt;iv ]</p>
+                </div>
+                <div class="project-card" data-project="3">
+                    <h3>Cinematic Typography</h3>
+                    <p>Scramble, rain, and materialize text effects</p>
+                    <p style="margin-top: 10px; color: #0ff;">[ %xclrs{*} ]</p>
+                </div>
+                <div class="project-card" data-project="4">
+                    <h3>Glitch Interference</h3>
+                    <p>Mouse-driven data corruption visualization</p>
+                    <p style="margin-top: 10px; color: #0ff;">[ I?!]... ]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Section -->
+        <section class="section">
+            <h2 class="scramble-text glitch" data-text="// TECH STACK">// TECH STACK</h2>
+            <div class="terminal" id="tech-terminal"></div>
+        </section>
+    </div>
+
+    <script>
+        // ===== CHARACTER SETS =====
+        const ASCII_CHARS = ".'-:;^=+/\"|)\\<>iv%xclrs{*}I?!]".split('');
+        const DEPTH_FAR = ".'-: ".split('');      // Distant starfield
+        const DEPTH_MID = ";^=+/\"|)\\".split('');  // Mid-range structure
+        const DEPTH_NEAR = "<>iv%xclrs{*}I?!]".split(''); // Solid foreground
+        const GLITCH_CHARS = "!?*#".split('');
+
+        // ===== CANVAS SETUP =====
+        const canvases = {
+            fluid: document.getElementById('perlin-fluid'),
+            particles: document.getElementById('particle-layer'),
+            glitch: document.getElementById('glitch-layer')
+        };
+
+        const contexts = {};
+        Object.keys(canvases).forEach(key => {
+            contexts[key] = canvases[key].getContext('2d');
+        });
+
+        function resizeCanvases() {
+            Object.values(canvases).forEach(canvas => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+        resizeCanvases();
+        window.addEventListener('resize', resizeCanvases);
+
+        // ===== PERLIN NOISE =====
+        class PerlinNoise {
+            constructor() {
+                this.gradients = {};
+                this.memory = {};
+            }
+
+            rand_vect() {
+                const theta = Math.random() * 2 * Math.PI;
+                return { x: Math.cos(theta), y: Math.sin(theta) };
+            }
+
+            dot_prod_grid(x, y, vx, vy) {
+                let g_vect;
+                const d_vect = { x: x - vx, y: y - vy };
+                const grid_key = `${vx},${vy}`;
+
+                if (this.gradients[grid_key]) {
+                    g_vect = this.gradients[grid_key];
+                } else {
+                    g_vect = this.rand_vect();
+                    this.gradients[grid_key] = g_vect;
+                }
+
+                return d_vect.x * g_vect.x + d_vect.y * g_vect.y;
+            }
+
+            smootherstep(x) {
+                return 6 * x ** 5 - 15 * x ** 4 + 10 * x ** 3;
+            }
+
+            interp(x, a, b) {
+                return a + this.smootherstep(x) * (b - a);
+            }
+
+            get(x, y) {
+                const key = `${x},${y}`;
+                if (this.memory[key]) {
+                    return this.memory[key];
+                }
+
+                const xf = Math.floor(x);
+                const yf = Math.floor(y);
+
+                const tl = this.dot_prod_grid(x, y, xf, yf);
+                const tr = this.dot_prod_grid(x, y, xf + 1, yf);
+                const bl = this.dot_prod_grid(x, y, xf, yf + 1);
+                const br = this.dot_prod_grid(x, y, xf + 1, yf + 1);
+
+                const xt = this.interp(x - xf, tl, tr);
+                const xb = this.interp(x - xf, bl, br);
+                const v = this.interp(y - yf, xt, xb);
+
+                this.memory[key] = v;
+                return v;
+            }
+        }
+
+        // ===== ASCII FLUID RENDERER =====
+        class ASCIIFluid {
+            constructor() {
+                this.perlin = new PerlinNoise();
+                this.time = 0;
+                this.charSize = 10;
+                this.cols = Math.floor(window.innerWidth / this.charSize);
+                this.rows = Math.floor(window.innerHeight / this.charSize);
+            }
+
+            mapToChar(value) {
+                const normalized = (value + 1) / 2; // Perlin returns -1 to 1
+                const index = Math.floor(normalized * ASCII_CHARS.length);
+                return ASCII_CHARS[Math.min(index, ASCII_CHARS.length - 1)];
+            }
+
+            update() {
+                this.time += 0.01;
+            }
+
+            draw() {
+                const ctx = contexts.fluid;
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                ctx.fillRect(0, 0, canvases.fluid.width, canvases.fluid.height);
+                
+                ctx.font = `${this.charSize}px Courier New`;
+
+                for (let i = 0; i < this.cols; i++) {
+                    for (let j = 0; j < this.rows; j++) {
+                        const x = i * 0.1;
+                        const y = j * 0.1;
+                        
+                        // Create fluid motion with sine wave and time
+                        const noise = this.perlin.get(
+                            x + Math.sin(this.time) * 2,
+                            y + Math.cos(this.time) * 2
+                        );
+                        
+                        const char = this.mapToChar(noise);
+                        const brightness = (noise + 1) / 2;
+                        const hue = (this.time * 20 + brightness * 60) % 360;
+                        
+                        ctx.fillStyle = `hsla(${hue}, 100%, 50%, ${brightness * 0.3})`;
+                        ctx.fillText(char, i * this.charSize, j * this.charSize);
+                    }
+                }
+            }
+        }
+
+        // ===== PARTICLE SYSTEM =====
+        class Particle {
+            constructor(x, y, vx = 0, vy = 0) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx || (Math.random() - 0.5) * 5;
+                this.vy = vy || (Math.random() - 0.5) * 5;
+                this.char = ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+                this.life = 1;
+                this.decay = 0.005 + Math.random() * 0.01;
+                this.size = 10 + Math.random() * 15;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.3;
+                this.hue = Math.random() * 360;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx *= 0.98;
+                this.vy *= 0.98;
+                this.life -= this.decay;
+                this.rotation += this.rotationSpeed;
+                this.hue = (this.hue + 1) % 360;
+            }
+
+            draw(ctx) {
+                if (this.life > 0) {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
+                    ctx.font = `${this.size}px Courier New`;
+                    ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life * 0.8})`;
+                    ctx.fillText(this.char, 0, 0);
+                    ctx.restore();
+                }
+            }
+
+            isDead() {
+                return this.life <= 0;
+            }
+        }
+
+        // ===== GLITCH INTERFERENCE =====
+        class GlitchSystem {
+            constructor() {
+                this.glitches = [];
+                this.mouseX = 0;
+                this.mouseY = 0;
+            }
+
+            setMouse(x, y) {
+                this.mouseX = x;
+                this.mouseY = y;
+            }
+
+            addGlitch(x, y) {
+                for (let i = 0; i < 5; i++) {
+                    this.glitches.push({
+                        x: x + (Math.random() - 0.5) * 50,
+                        y: y + (Math.random() - 0.5) * 50,
+                        char: GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)],
+                        life: 1,
+                        vx: (Math.random() - 0.5) * 3,
+                        vy: (Math.random() - 0.5) * 3
+                    });
+                }
+            }
+
+            update() {
+                for (let i = this.glitches.length - 1; i >= 0; i--) {
+                    const g = this.glitches[i];
+                    g.x += g.vx;
+                    g.y += g.vy;
+                    g.life -= 0.02;
+                    
+                    if (g.life <= 0) {
+                        this.glitches.splice(i, 1);
+                    }
+                }
+            }
+
+            draw(ctx) {
+                ctx.clearRect(0, 0, canvases.glitch.width, canvases.glitch.height);
+                ctx.font = '20px Courier New';
+                
+                this.glitches.forEach(g => {
+                    ctx.fillStyle = `rgba(255, 0, 255, ${g.life})`;
+                    ctx.fillText(g.char, g.x, g.y);
+                });
+            }
+        }
+
+        // ===== SCREEN SHATTER EFFECT =====
+        function shatterScreen(x, y) {
+            const fragment_count = 100;
+            const fragments = [];
+            
+            for (let i = 0; i < fragment_count; i++) {
+                const fragment = document.createElement('div');
+                fragment.className = 'shatter-fragment';
+                fragment.textContent = ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+                fragment.style.left = x + 'px';
+                fragment.style.top = y + 'px';
+                document.body.appendChild(fragment);
+                
+                const angle = (Math.PI * 2 * i) / fragment_count;
+                const speed = 2 + Math.random() * 5;
+                const vx = Math.cos(angle) * speed;
+                const vy = Math.sin(angle) * speed;
+                
+                fragments.push({ element: fragment, x, y, vx, vy, life: 1 });
+            }
+            
+            const animateFragments = () => {
+                let active = false;
+                
+                fragments.forEach(f => {
+                    if (f.life > 0) {
+                        active = true;
+                        f.x += f.vx;
+                        f.y += f.vy;
+                        f.vy += 0.2; // Gravity
+                        f.life -= 0.02;
+                        
+                        f.element.style.left = f.x + 'px';
+                        f.element.style.top = f.y + 'px';
+                        f.element.style.opacity = f.life;
+                    } else {
+                        f.element.remove();
+                    }
+                });
+                
+                if (active) {
+                    requestAnimationFrame(animateFragments);
+                }
+            };
+            
+            animateFragments();
+        }
+
+        // ===== TEXT EFFECTS =====
+        function scrambleText(element, finalText, duration = 2000) {
+            const chars = finalText.split('');
+            let iteration = 0;
+            const maxIterations = duration / 50;
+            
+            element.innerHTML = '';
+            
+            const interval = setInterval(() => {
+                element.innerHTML = chars.map((char, index) => {
+                    if (index < iteration) {
+                        return `<span class="scramble-char" style="animation-delay: ${index * 0.05}s">${char}</span>`;
+                    }
+                    return `<span class="scramble-char">${ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)]}</span>`;
+                }).join('');
+                
+                iteration += chars.length / maxIterations;
+                
+                if (iteration >= chars.length) {
+                    clearInterval(interval);
+                    element.innerHTML = chars.map((char, index) => 
+                        `<span class="scramble-char" style="animation-delay: ${index * 0.05}s">${char}</span>`
+                    ).join('');
+                }
+            }, 50);
+        }
+
+        function rainText(element, text) {
+            const chars = text.split('');
+            element.innerHTML = chars.map((char, index) => 
+                `<span class="rain-char" style="animation-delay: ${index * 0.1}s">${char}</span>`
+            ).join('');
+        }
+
+        // ===== SCANLINE ANIMATION =====
+        function animateScanline() {
+            const scanline = document.getElementById('scanline');
+            let position = 0;
+            
+            setInterval(() => {
+                position = (position + 2) % window.innerHeight;
+                scanline.style.top = position + 'px';
+            }, 20);
+        }
+
+        // ===== CUSTOM CURSOR =====
+        const cursor = document.getElementById('cursor');
+        let cursorX = 0, cursorY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursorX += (targetX - cursorX) * 0.2;
+            cursorY += (targetY - cursorY) * 0.2;
+            
+            cursor.style.left = (cursorX - 20) + 'px';
+            cursor.style.top = (cursorY - 20) + 'px';
+            
+            // Update viewport brackets
+            const brackets = document.querySelectorAll('.viewport-bracket');
+            brackets[0].style.transform = `translate(${cursorX * 0.02}px, ${cursorY * 0.02}px)`;
+            brackets[1].style.transform = `translate(${-cursorX * 0.02}px, ${cursorY * 0.02}px)`;
+            brackets[2].style.transform = `translate(${cursorX * 0.02}px, ${-cursorY * 0.02}px)`;
+            brackets[3].style.transform = `translate(${-cursorX * 0.02}px, ${-cursorY * 0.02}px)`;
+            
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // ===== INITIALIZE SYSTEMS =====
+        const fluid = new ASCIIFluid();
+        const particles = [];
+        const glitchSystem = new GlitchSystem();
+
+        // Mouse interaction
+        document.addEventListener('mousemove', (e) => {
+            glitchSystem.setMouse(e.clientX, e.clientY);
+            
+            if (Math.random() < 0.1) {
+                glitchSystem.addGlitch(e.clientX, e.clientY);
+            }
+            
+            if (Math.random() < 0.2) {
+                particles.push(new Particle(e.clientX, e.clientY));
+            }
+        });
+
+        // Click shatter effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                shatterScreen(x, y);
+                
+                // Create explosion of particles
+                for (let i = 0; i < 30; i++) {
+                    const angle = (Math.PI * 2 * i) / 30;
+                    const speed = 5 + Math.random() * 5;
+                    particles.push(new Particle(
+                        x, y,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed
+                    ));
+                }
+            });
+        });
+
+        // ===== MAIN ANIMATION LOOP =====
+        function animate() {
+            // Update and draw fluid
+            fluid.update();
+            fluid.draw();
+
+            // Update and draw particles
+            const pCtx = contexts.particles;
+            pCtx.clearRect(0, 0, canvases.particles.width, canvases.particles.height);
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw(pCtx);
+                
+                if (particles[i].isDead()) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            // Update and draw glitch
+            glitchSystem.update();
+            glitchSystem.draw(contexts.glitch);
+
+            requestAnimationFrame(animate);
+        }
+
+        // ===== INITIALIZATION =====
+        window.addEventListener('load', () => {
+            // Animate hero title
+            scrambleText(document.getElementById('hero-title'), 'CINEMATIC');
+            
+            // Animate subtitle with rain
+            setTimeout(() => {
+                rainText(document.getElementById('hero-subtitle'), 'TECHNICAL PORTFOLIO');
+            }, 500);
+
+            // Boot terminal
+            const bootTerminal = document.getElementById('boot-terminal');
+            const bootMessages = [
+                'Initializing ASCII Fluid Engine...',
+                'Loading Perlin Noise Generator... [OK]',
+                'Starting Particle System... [OK]',
+                'Activating Glitch Interference... [OK]',
+                'Enabling Reactive Elements... [OK]',
+                'System Ready: .\\'-:;^=+/"|)\\\\&lt;&gt;iv%xclrs{*}I?!]...'
+            ];
+            
+            bootMessages.forEach((msg, i) => {
+                setTimeout(() => {
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    line.textContent = msg;
+                    line.style.animationDelay = i * 0.1 + 's';
+                    bootTerminal.appendChild(line);
+                }, i * 300);
+            });
+
+            // Tech terminal
+            setTimeout(() => {
+                const techTerminal = document.getElementById('tech-terminal');
+                const techMessages = [
+                    'Canvas API + Perlin Noise',
+                    'Character Density Mapping',
+                    'GPU-Accelerated Rendering',
+                    'Reactive Mouse Interaction',
+                    'Cinematic Text Effects',
+                    'Procedural Animation System'
+                ];
+                
+                techMessages.forEach((msg, i) => {
+                    const line = document.createElement('div');
+                    line.className = 'terminal-line';
+                    line.textContent = msg;
+                    line.style.animationDelay = i * 0.1 + 's';
+                    techTerminal.appendChild(line);
+                });
+            }, 2000);
+
+            // Start scanline
+            animateScanline();
+
+            // Start main animation
+            animate();
+
+            // Random particle rain
+            setInterval(() => {
+                if (particles.length < 50) {
+                    particles.push(new Particle(
+                        Math.random() * window.innerWidth,
+                        -20,
+                        0,
+                        2 + Math.random() * 3
+                    ));
+                }
+            }, 200);
+
+            console.log('%c.\\'-:;^=+/"|)\\\\<>iv%xclrs{*}I?!]...', 'color: #0f0; font-size: 20px; font-family: monospace;');
+            console.log('%cCINEMATIC PORTFOLIO LOADED', 'color: #0ff; font-size: 16px; font-family: monospace;');
+        });
+    </script>
+</body>
+</html>
