@@ -1,5 +1,0 @@
-[build]
-  # This repository contains pre-built static files, not source code
-  # Skip the build process and serve files directly
-  command = "echo 'No build needed - serving static files'"
-  publish = "out"
