@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
-// Dynamic imports for WebGL components (client-side only)
+// Dynamic imports for WebGL and ASCII components (client-side only)
 const PixelatedBackground = dynamic(() => import('@/components/PixelatedBackground'), {
   ssr: false,
   loading: () => null,
@@ -14,19 +14,44 @@ const MouseReactiveText = dynamic(() => import('@/components/MouseReactiveText')
   loading: () => <span>Loading...</span>,
 });
 
+const CinematicASCIIIntro = dynamic(() => import('@/components/CinematicASCIIIntro'), {
+  ssr: false,
+  loading: () => null,
+});
+
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+  const [introCompleted, setIntroCompleted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    setIsLoaded(true);
+    // Check if user has seen intro before
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    if (hasSeenIntro) {
+      setShowIntro(false);
+      setIntroCompleted(true);
+      setIsLoaded(true);
+    }
   }, []);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+    setIntroCompleted(true);
+    setIsLoaded(true);
+    sessionStorage.setItem('hasSeenIntro', 'true');
+  };
+
+  // Show cinematic intro first
+  if (isMounted && showIntro && !introCompleted) {
+    return <CinematicASCIIIntro onComplete={handleIntroComplete} />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* WebGL Pixelated Background - only on client */}
-      {isMounted && <PixelatedBackground />}
+      {isMounted && introCompleted && <PixelatedBackground />}
       
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center p-8 relative z-10">
