@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pixelated Portfolio - Black & White Theme
 
-## Getting Started
+A modern, fully animated portfolio website with a retro pixelated aesthetic. Built with Next.js 14, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## ✨ Features
 
+- 🎮 **Retro Pixelated Design** - Authentic 8-bit gaming aesthetic
+- ⚫⚪ **Strict Black & White** - Minimalist color palette
+- 🎨 **ASCII Art Elements** - Custom logo and decorations
+- 💫 **Fully Animated** - Smooth transitions and effects
+- 📺 **CRT Screen Effect** - Authentic retro monitor simulation
+- 📱 **Fully Responsive** - Works perfectly on all devices
+- ⚡ **Fast Performance** - Optimized Next.js build
+- 🎯 **SEO Ready** - Proper metadata and structure
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/dill-lk/new--folio.git
+cd new--folio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+new--folio/
+├── app/
+│   ├── globals.css      # Global styles & animations
+│   ├── layout.tsx       # Root layout with effects
+│   └── page.tsx         # Main portfolio page
+├── public/              # Static assets
+├── CUSTOMIZATION.md     # Detailed customization guide
+└── README.md           # This file
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See [CUSTOMIZATION.md](./CUSTOMIZATION.md) for detailed instructions on:
+- Editing personal information
+- Customizing colors and fonts
+- Adding new sections
+- Modifying animations
+- Creating custom ASCII art
 
-## Deploy on Vercel
+## 🔧 Available Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Development
+npm run dev          # Start dev server at localhost:3000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Production
+npm run build        # Create optimized production build
+npm run start        # Start production server
+
+# Linting
+npm run lint         # Run ESLint
+```
+
+## 📦 Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Fonts**: Press Start 2P, VT323
+- **Animations**: Custom CSS keyframes
+- **Effects**: CRT screen, scanlines, pixel borders
+
+## 🎮 Sections Included
+
+1. **Hero** - ASCII logo with animated entrance
+2. **About** - Personal introduction
+3. **Projects** - Showcase of work (4 projects)
+4. **Skills** - Tech stack with progress bars
+5. **Contact** - Social links and email
+
+## 🌐 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push to GitHub
+2. Import project in [Vercel](https://vercel.com)
+3. Deploy with one click
+
+### Deploy to Netlify
+
+1. Build the project: `npm run build`
+2. Deploy the `out` directory to Netlify
+
+## 📸 Screenshots
+
+### Hero Section
+![Hero](https://github.com/user-attachments/assets/61f2b7f6-2ea6-4a9f-a792-9b50b94e44f0)
+
+### About Section
+![About](https://github.com/user-attachments/assets/0f3676af-ecba-4fed-afa8-8306f8f1686d)
+
+## 🎯 Design Philosophy
+
+This portfolio embraces a retro gaming aesthetic while maintaining modern web standards:
+- **Minimalist**: Black & white only, no distractions
+- **Nostalgic**: ASCII art and pixelated fonts
+- **Animated**: Smooth, purposeful animations
+- **Accessible**: Semantic HTML and proper contrast
+- **Fast**: Optimized for performance
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## �� Contributing
+
+Feel free to fork this project and customize it for your own portfolio!
+
+## 📧 Contact
+
+Created by [Your Name]
+- Email: your.email@example.com
+- GitHub: [@yourusername](https://github.com/yourusername)
+- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
+
+---
+
+**Made with ♥ in PIXELATED 2026**
