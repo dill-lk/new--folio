@@ -218,3 +218,61 @@ Small characters dynamically form large text like "WELCOME" and "2026".
 - Session storage for one-time viewing
 
 This is **true 2026 technology** - a fully cinematic ASCII video experience!
+
+## 🎬 Professional Video-to-ASCII System
+
+The portfolio now uses a **professional video-to-ASCII conversion system** instead of procedural animations!
+
+### Why This is Better:
+- ✅ **Cinematic Quality**: Real video sources
+- ✅ **Professional Look**: Not childish or procedural
+- ✅ **Customizable**: Use ANY video
+- ✅ **Predictable**: Same playback every time
+- ✅ **High Quality**: 90-character density mapping
+
+### Quick Start
+
+**Use the Sample:**
+```bash
+python3 scripts/generate_sample_intro.py
+```
+Creates a 7-second intro (210 frames, 679KB)
+
+**Convert Your Own Video:**
+```bash
+python3 scripts/video_to_ascii.py your_video.mp4 public/ascii-frames/intro.json 120
+```
+
+**Requirements:**
+```bash
+pip install opencv-python numpy
+```
+
+### Character Mapping
+
+90-character gradient (dark → light):
+```
+ .`-_':,;^=+/"|)\\<>)iv%xclrs{*}I?!][1taeo7zjLunT#JCwfy325Fp6mqSghVd4EgXPGZbYkOA&8U$@BNWM
+```
+
+### Output Format
+
+```json
+{
+  "fps": 30,
+  "width": 100,
+  "height": 30,
+  "frames": [["line1", "line2", ...], ...]
+}
+```
+
+### Full Documentation
+
+See [VIDEO_TO_ASCII.md](./VIDEO_TO_ASCII.md) for complete guide including:
+- Video recommendations
+- Optimization tips
+- Advanced usage
+- Troubleshooting
+- Examples
+
+**This is a professional, production-ready system for cinematic ASCII intros!**
