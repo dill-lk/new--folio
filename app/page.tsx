@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import PixelatedBackground from '@/components/PixelatedBackground';
+import MouseReactiveText from '@/components/MouseReactiveText';
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -10,9 +12,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* WebGL Pixelated Background */}
+      <PixelatedBackground />
+      
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center p-8 relative">
+      <section className="min-h-screen flex items-center justify-center p-8 relative z-10">
         <div className="max-w-4xl w-full space-y-8">
           {/* ASCII Logo */}
           <div className={`ascii-art text-xs md:text-sm text-center mb-8 ${isLoaded ? 'animate-fadeIn' : 'opacity-0'}`}>
@@ -26,10 +31,14 @@ export default function Home() {
             `}
           </div>
 
-          {/* Main Title */}
-          <h1 className={`text-2xl md:text-4xl lg:text-5xl text-center mb-4 ${isLoaded ? 'animate-fadeIn delay-200' : 'opacity-0'}`}>
-            WELCOME TO MY PORTFOLIO
-          </h1>
+          {/* Main Title with Mouse Reactive Text */}
+          <div className={`text-center mb-4 ${isLoaded ? 'animate-fadeIn delay-200' : 'opacity-0'}`}>
+            <MouseReactiveText 
+              text="WELCOME TO MY PORTFOLIO" 
+              as="h1"
+              className="text-2xl md:text-4xl lg:text-5xl"
+            />
+          </div>
 
           {/* Subtitle with typing effect */}
           <p className={`text-sm md:text-base text-center mb-8 ${isLoaded ? 'animate-fadeIn delay-400' : 'opacity-0'}`}>
@@ -69,11 +78,15 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center justify-center p-8">
+      <section id="about" className="min-h-screen flex items-center justify-center p-8 relative z-10">
         <div className="max-w-4xl w-full">
-          <h2 className="text-3xl md:text-4xl mb-8 animate-slideInLeft">
-            {'>'} ABOUT_ME
-          </h2>
+          <div className="mb-8 animate-slideInLeft">
+            <MouseReactiveText 
+              text="> ABOUT_ME" 
+              as="h2"
+              className="text-3xl md:text-4xl"
+            />
+          </div>
           
           <div className="space-y-6 text-sm md:text-base">
             <p className="animate-fadeIn delay-200">
@@ -101,11 +114,15 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="min-h-screen flex items-center justify-center p-8">
+      <section id="projects" className="min-h-screen flex items-center justify-center p-8 relative z-10">
         <div className="max-w-6xl w-full">
-          <h2 className="text-3xl md:text-4xl mb-8 animate-slideInRight">
-            {'>'} PROJECTS
-          </h2>
+          <div className="mb-8 animate-slideInRight">
+            <MouseReactiveText 
+              text="> PROJECTS" 
+              as="h2"
+              className="text-3xl md:text-4xl"
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -149,11 +166,15 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="min-h-screen flex items-center justify-center p-8">
+      <section id="skills" className="min-h-screen flex items-center justify-center p-8 relative z-10">
         <div className="max-w-4xl w-full">
-          <h2 className="text-3xl md:text-4xl mb-8 animate-slideInLeft">
-            {'>'} SKILLS
-          </h2>
+          <div className="mb-8 animate-slideInLeft">
+            <MouseReactiveText 
+              text="> SKILLS" 
+              as="h2"
+              className="text-3xl md:text-4xl"
+            />
+          </div>
 
           <div className="space-y-8">
             {[
@@ -207,11 +228,15 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center justify-center p-8">
+      <section id="contact" className="min-h-screen flex items-center justify-center p-8 relative z-10">
         <div className="max-w-4xl w-full text-center">
-          <h2 className="text-3xl md:text-4xl mb-8 animate-slideInRight">
-            {'>'} CONTACT
-          </h2>
+          <div className="mb-8 animate-slideInRight">
+            <MouseReactiveText 
+              text="> CONTACT" 
+              as="h2"
+              className="text-3xl md:text-4xl"
+            />
+          </div>
 
           <div className="ascii-art text-xs md:text-sm mb-8 animate-fadeIn delay-200">
             {`
