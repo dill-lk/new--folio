@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Bridge // Living Organism Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: #0a0e1a;
+            color: #0f0;
+            overflow: hidden;
+            cursor: none;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        /* Main Ocean Canvas */
+        #ocean-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        /* Distortion Layer */
+        #distortion-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Pixel Creatures Layer */
+        #creatures-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Info Stream */
+        #info-stream {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            font-size: 10px;
+            color: #00ff88;
+            opacity: 0;
+            z-index: 100;
+            white-space: nowrap;
+            overflow: hidden;
+            text-shadow: 0 0 5px #00ff88;
+            animation: fade-in-out 3s ease-in-out;
+        }
+
+        @keyframes fade-in-out {
+            0%, 100% { opacity: 0; }
+            10%, 90% { opacity: 0.8; }
+        }
+
+        .info-scroll {
+            display: inline-block;
+            animation: scroll-info 8s linear;
+        }
+
+        @keyframes scroll-info {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Custom Cursor - Pixel Style */
+        #pixel-cursor {
+            position: fixed;
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+            z-index: 10000;
+            background: linear-gradient(45deg, 
+                #00ff00 0%, #00ff00 25%,
+                transparent 25%, transparent 50%,
+                #00ff00 50%, #00ff00 75%,
+                transparent 75%, transparent 100%
+            );
+            background-size: 8px 8px;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        /* Pixel Grid Overlay */
+        .pixel-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, 
+                    transparent, 
+                    transparent 3px, 
+                    rgba(0, 255, 0, 0.03) 3px, 
+                    rgba(0, 255, 0, 0.03) 4px
+                ),
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 3px, 
+                    rgba(0, 255, 0, 0.03) 3px, 
+                    rgba(0, 255, 0, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        /* Retro CRT Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 255, 0, 0.02) 50%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+            animation: crt-scan 8s linear infinite;
+        }
+
+        @keyframes crt-scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        /* Living Organism Pulse */
+        @keyframes organism-pulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1); }
+        }
+
+        #ocean-canvas {
+            animation: organism-pulse 4s ease-in-out infinite;
+        }
+
+        /* Neural Bridge Connections */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        /* Content Container */
+        #content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+        }
+
+        .title {
+            font-size: clamp(24px, 6vw, 72px);
+            color: #00ff88;
+            text-shadow: 
+                0 0 10px #00ff88,
+                0 0 20px #00ff88,
+                0 0 30px #00ff88;
+            margin-bottom: 20px;
+            animation: title-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes title-glow {
+            0%, 100% { text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+            50% { text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88, 0 0 60px #00ff88; }
+        }
+
+        .subtitle {
+            font-size: clamp(14px, 3vw, 24px);
+            color: #00ffff;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .char-display {
+            font-size: 16px;
+            color: #00ff00;
+            opacity: 0.5;
+            letter-spacing: 3px;
+        }
+
+        /* Pixel Creatures Info */
+        .creature-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #00ff88;
+            opacity: 0.6;
+            z-index: 100;
+            line-height: 1.4;
+        }
+
+        /* Stats Panel - Game Style */
+        .stats-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff00;
+            padding: 10px;
+            font-size: 10px;
+            color: #00ff88;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .stat-bar {
+            width: 100px;
+            height: 8px;
+            background: #001100;
+            border: 1px solid #00ff00;
+            margin: 5px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #00ff88);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 5px #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pixel Grid -->
+    <div class="pixel-grid"></div>
+    
+    <!-- CRT Effect -->
+    <div class="crt-overlay"></div>
+
+    <!-- Canvas Layers -->
+    <canvas id="ocean-canvas"></canvas>
+    <canvas id="distortion-canvas"></canvas>
+    <canvas id="creatures-canvas"></canvas>
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div id="pixel-cursor"></div>
+
+    <!-- Info Stream -->
+    <div id="info-stream"></div>
+
+    <!-- Creature Info -->
+    <div class="creature-info">
+        <div>ORGANISMS: <span id="organism-count">0</span></div>
+        <div>ACTIVITY: <span id="activity-level">IDLE</span></div>
+        <div>SIGNAL: <span id="signal-strength">█████░░░░░</span></div>
+    </div>
+
+    <!-- Stats Panel -->
+    <div class="stats-panel">
+        <div>NEURAL SYNC</div>
+        <div class="stat-bar">
+            <div class="stat-fill" id="neural-sync" style="width: 75%"></div>
+        </div>
+        <div>OCEAN FLOW</div>
+        <div class="stat-bar">
+            <div class="stat-fill" id="ocean-flow" style="width: 60%"></div>
+        </div>
+        <div>DISTORTION</div>
+        <div class="stat-bar">
+            <div class="stat-fill" id="distortion-level" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <div class="title">NEURAL BRIDGE</div>
+        <div class="subtitle">Living Organism Portfolio</div>
+        <div class="char-display">.'-:;^=+/"|)\\&lt;&gt;iv%xclrs{*}I?!]</div>
+    </div>
+
+    <script>
+        // ===== CONFIGURATION =====
+        const CHARS = {
+            ocean: ".'-: ".split(''),
+            calm: ".-_~".split(''),
+            distortion: "xclrs{}".split(''),
+            wave: "^=+/".split(''),
+            intense: "%*#@".split(''),
+            all: ".'-:;^=+/\"|)\\<>iv%xclrs{*}I?!]".split('')
+        };
+
+        // ===== CANVAS SETUP =====
+        const canvases = {
+            ocean: document.getElementById('ocean-canvas'),
+            distortion: document.getElementById('distortion-canvas'),
+            creatures: document.getElementById('creatures-canvas'),
+            neural: document.getElementById('neural-canvas')
+        };
+
+        const ctx = {};
+        Object.keys(canvases).forEach(key => {
+            ctx[key] = canvases[key].getContext('2d', { alpha: true });
+        });
+
+        function resizeCanvases() {
+            Object.values(canvases).forEach(canvas => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+        resizeCanvases();
+        window.addEventListener('resize', resizeCanvases);
+
+        // ===== OCEAN PARTICLE SYSTEM =====
+        class OceanParticle {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.char = CHARS.ocean[Math.floor(Math.random() * CHARS.ocean.length)];
+                this.baseChar = this.char;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.phase = Math.random() * Math.PI * 2;
+                this.size = 10;
+                this.distorted = false;
+                this.distortionTimer = 0;
+            }
+
+            update(time) {
+                // Ocean wave motion (Galle/Matara vibe)
+                const waveX = Math.sin(time * 0.001 + this.phase) * 2;
+                const waveY = Math.cos(time * 0.001 + this.phase * 0.7) * 1;
+                
+                this.x += this.vx + waveX * 0.1;
+                this.y += this.vy + waveY * 0.1;
+                
+                // Wrap around
+                if (this.x < -50) this.x = window.innerWidth + 50;
+                if (this.x > window.innerWidth + 50) this.x = -50;
+                if (this.y < -50) this.y = window.innerHeight + 50;
+                if (this.y > window.innerHeight + 50) this.y = -50;
+                
+                // Update distortion
+                if (this.distorted) {
+                    this.distortionTimer--;
+                    if (this.distortionTimer <= 0) {
+                        this.distorted = false;
+                        this.char = this.baseChar;
+                    }
+                }
+            }
+
+            distort(mouseX, mouseY) {
+                const dx = this.x - mouseX;
+                const dy = this.y - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < 100) {
+                    this.distorted = true;
+                    this.distortionTimer = 30;
+                    this.char = CHARS.distortion[Math.floor(Math.random() * CHARS.distortion.length)];
+                    return true;
+                }
+                return false;
+            }
+
+            draw(ctx) {
+                ctx.font = `${this.size}px Courier New`;
+                
+                if (this.distorted) {
+                    // Digital distortion colors
+                    const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00'];
+                    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                } else {
+                    // Ocean colors
+                    const hue = 180 + Math.sin(this.phase) * 30;
+                    const alpha = 0.3 + Math.sin(this.phase + Date.now() * 0.001) * 0.2;
+                    ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha})`;
+                }
+                
+                ctx.fillText(this.char, this.x, this.y);
+            }
+        }
+
+        // ===== PIXEL CREATURE (Animal Garden Style) =====
+        class PixelCreature {
+            constructor() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.size = 20;
+                this.color = ['#00ff00', '#00ffff', '#00ff88', '#88ff00'][Math.floor(Math.random() * 4)];
+                this.frame = 0;
+                this.animSpeed = 0.1;
+                this.type = Math.floor(Math.random() * 3); // Different creature types
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Bounce off edges
+                if (this.x < 0 || this.x > window.innerWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > window.innerHeight) this.vy *= -1;
+                
+                this.frame += this.animSpeed;
+            }
+
+            drawPixelArt(ctx, pixels, scale = 2) {
+                const offsetX = Math.floor(this.x);
+                const offsetY = Math.floor(this.y);
+                
+                for (let y = 0; y < pixels.length; y++) {
+                    for (let x = 0; x < pixels[y].length; x++) {
+                        if (pixels[y][x]) {
+                            ctx.fillStyle = this.color;
+                            ctx.fillRect(
+                                offsetX + x * scale,
+                                offsetY + y * scale,
+                                scale,
+                                scale
+                            );
+                        }
+                    }
+                }
+            }
+
+            draw(ctx) {
+                // Different creature sprites (retro game style)
+                const creatures = [
+                    // Type 0: Simple creature
+                    [
+                        [0,1,0,1,0],
+                        [0,1,1,1,0],
+                        [1,1,1,1,1],
+                        [0,1,0,1,0],
+                        [1,0,0,0,1]
+                    ],
+                    // Type 1: Bird-like
+                    [
+                        [0,0,1,0,0],
+                        [0,1,1,1,0],
+                        [1,1,1,1,1],
+                        [0,1,0,1,0],
+                        [0,0,0,0,0]
+                    ],
+                    // Type 2: Fish-like
+                    [
+                        [0,0,1,1,0],
+                        [0,1,1,1,1],
+                        [1,1,1,1,0],
+                        [0,1,1,1,1],
+                        [0,0,1,1,0]
+                    ]
+                ];
+                
+                const sprite = creatures[this.type];
+                
+                // Add animation bobbing
+                const bob = Math.sin(this.frame) * 2;
+                const tempY = this.y;
+                this.y += bob;
+                
+                this.drawPixelArt(ctx, sprite, 3);
+                
+                this.y = tempY;
+            }
+        }
+
+        // ===== NEURAL CONNECTION =====
+        class NeuralConnection {
+            constructor(x1, y1, x2, y2) {
+                this.x1 = x1;
+                this.y1 = y1;
+                this.x2 = x2;
+                this.y2 = y2;
+                this.energy = 0;
+                this.maxEnergy = 1;
+            }
+
+            pulse() {
+                this.energy = this.maxEnergy;
+            }
+
+            update() {
+                this.energy *= 0.95;
+            }
+
+            draw(ctx) {
+                if (this.energy > 0.1) {
+                    const steps = 20;
+                    ctx.font = '10px Courier New';
+                    
+                    for (let i = 0; i < steps; i++) {
+                        const t = i / steps;
+                        const x = this.x1 + (this.x2 - this.x1) * t;
+                        const y = this.y1 + (this.y2 - this.y1) * t;
+                        
+                        const chars = ['|', '/', '-', '\\'];
+                        const char = chars[i % chars.length];
+                        
+                        ctx.fillStyle = `rgba(0, 255, 255, ${this.energy * 0.8})`;
+                        ctx.fillText(char, x, y);
+                    }
+                }
+            }
+        }
+
+        // ===== INFO STREAM SYSTEM =====
+        class InfoStream {
+            constructor() {
+                this.messages = [
+                    "[INFO: Searching for a Pure Signal...]",
+                    "[INFO: Neural Bridge Connection Established...]",
+                    "[INFO: Ocean Particles Synchronized...]",
+                    "[INFO: Digital Distortion Detected...]",
+                    "[INFO: Living Organism Active...]",
+                    "[INFO: Pixel Creatures Spawning...]",
+                    "[INFO: සංඥා සෙවීම (Signal Search)...]",
+                    "[INFO: ජීවී ජීව විද්‍යුත් පද්ධතිය (Living System)...]",
+                    "[INFO: මුහුදු රිද්මය (Ocean Rhythm)...]"
+                ];
+                this.lastShow = Date.now();
+            }
+
+            show() {
+                const now = Date.now();
+                if (now - this.lastShow > 10000) { // Every 10 seconds
+                    this.lastShow = now;
+                    const stream = document.getElementById('info-stream');
+                    const msg = this.messages[Math.floor(Math.random() * this.messages.length)];
+                    
+                    stream.innerHTML = `<span class="info-scroll">${msg}</span>`;
+                    stream.style.animation = 'none';
+                    setTimeout(() => {
+                        stream.style.animation = 'fade-in-out 3s ease-in-out';
+                    }, 10);
+                }
+            }
+        }
+
+        // ===== INITIALIZE SYSTEMS =====
+        const oceanParticles = [];
+        const pixelCreatures = [];
+        const neuralConnections = [];
+        const infoStream = new InfoStream();
+
+        // Create ocean particles
+        for (let i = 0; i < 300; i++) {
+            oceanParticles.push(new OceanParticle());
+        }
+
+        // Create pixel creatures
+        for (let i = 0; i < 8; i++) {
+            pixelCreatures.push(new PixelCreature());
+        }
+
+        // Create neural connections
+        for (let i = 0; i < 5; i++) {
+            neuralConnections.push(new NeuralConnection(
+                Math.random() * window.innerWidth,
+                Math.random() * window.innerHeight,
+                Math.random() * window.innerWidth,
+                Math.random() * window.innerHeight
+            ));
+        }
+
+        // ===== MOUSE TRACKING =====
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let distortionCount = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Update custom cursor
+            const cursor = document.getElementById('pixel-cursor');
+            cursor.style.left = (mouseX - 8) + 'px';
+            cursor.style.top = (mouseY - 8) + 'px';
+            
+            // Distort nearby particles
+            distortionCount = 0;
+            oceanParticles.forEach(p => {
+                if (p.distort(mouseX, mouseY)) {
+                    distortionCount++;
+                }
+            });
+            
+            // Update distortion stat
+            const distortionPercent = Math.min(100, (distortionCount / 10) * 100);
+            document.getElementById('distortion-level').style.width = distortionPercent + '%';
+            
+            // Update activity
+            if (distortionCount > 5) {
+                document.getElementById('activity-level').textContent = 'HIGH';
+            } else if (distortionCount > 0) {
+                document.getElementById('activity-level').textContent = 'ACTIVE';
+            } else {
+                document.getElementById('activity-level').textContent = 'IDLE';
+            }
+            
+            // Pulse nearest neural connection
+            neuralConnections.forEach(nc => {
+                const dx = nc.x1 - mouseX;
+                const dy = nc.y1 - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    nc.pulse();
+                }
+            });
+        });
+
+        // ===== MAIN RENDER LOOP =====
+        let lastTime = Date.now();
+        let frameCount = 0;
+
+        function animate() {
+            const currentTime = Date.now();
+            const deltaTime = currentTime - lastTime;
+            frameCount++;
+            
+            // Clear canvases
+            ctx.ocean.fillStyle = 'rgba(10, 14, 26, 0.1)';
+            ctx.ocean.fillRect(0, 0, canvases.ocean.width, canvases.ocean.height);
+            ctx.distortion.clearRect(0, 0, canvases.distortion.width, canvases.distortion.height);
+            ctx.creatures.clearRect(0, 0, canvases.creatures.width, canvases.creatures.height);
+            ctx.neural.clearRect(0, 0, canvases.neural.width, canvases.neural.height);
+            
+            // Update and draw ocean particles
+            oceanParticles.forEach(p => {
+                p.update(currentTime);
+                p.draw(ctx.ocean);
+            });
+            
+            // Update and draw pixel creatures
+            pixelCreatures.forEach(c => {
+                c.update();
+                c.draw(ctx.creatures);
+            });
+            
+            // Update and draw neural connections
+            neuralConnections.forEach(nc => {
+                nc.update();
+                nc.draw(ctx.neural);
+            });
+            
+            // Update organism count
+            document.getElementById('organism-count').textContent = pixelCreatures.length;
+            
+            // Update signal strength
+            const signals = Math.floor((frameCount % 100) / 10);
+            const signalBar = '█'.repeat(signals) + '░'.repeat(10 - signals);
+            document.getElementById('signal-strength').textContent = signalBar;
+            
+            // Update ocean flow stat
+            const flowPercent = 50 + Math.sin(currentTime * 0.001) * 30;
+            document.getElementById('ocean-flow').style.width = flowPercent + '%';
+            
+            // Update neural sync
+            const syncPercent = 60 + Math.cos(currentTime * 0.0007) * 20;
+            document.getElementById('neural-sync').style.width = syncPercent + '%';
+            
+            // Show info stream
+            infoStream.show();
+            
+            // Random neural pulse
+            if (Math.random() < 0.02) {
+                const nc = neuralConnections[Math.floor(Math.random() * neuralConnections.length)];
+                nc.pulse();
+            }
+            
+            // Spawn new creature occasionally
+            if (Math.random() < 0.001 && pixelCreatures.length < 12) {
+                pixelCreatures.push(new PixelCreature());
+            }
+            
+            lastTime = currentTime;
+            requestAnimationFrame(animate);
+        }
+
+        // ===== START =====
+        window.addEventListener('load', () => {
+            console.log('%c.\\'-:;^=+/"|)\\\\<>iv%xclrs{*}I?!]...', 
+                'color: #00ff88; font-size: 24px; font-family: monospace; text-shadow: 0 0 10px #00ff88;');
+            console.log('%cNEURAL BRIDGE // LIVING ORGANISM', 
+                'color: #00ffff; font-size: 16px; font-family: monospace;');
+            console.log('%cමෙය ජීවමාන ජීව විද්‍යුත් පද්ධතියකි', 
+                'color: #00ff00; font-size: 14px; font-family: monospace;');
+            
+            animate();
+            
+            // Initial info stream
+            setTimeout(() => infoStream.show(), 2000);
+        });
+
+        // ===== CLICK TO ADD CREATURES =====
+        document.addEventListener('click', (e) => {
+            if (pixelCreatures.length < 20) {
+                const creature = new PixelCreature();
+                creature.x = e.clientX;
+                creature.y = e.clientY;
+                pixelCreatures.push(creature);
+                
+                // Create burst of ocean particles
+                for (let i = 0; i < 20; i++) {
+                    const p = new OceanParticle();
+                    p.x = e.clientX;
+                    p.y = e.clientY;
+                    p.vx = (Math.random() - 0.5) * 5;
+                    p.vy = (Math.random() - 0.5) * 5;
+                    p.distort(e.clientX, e.clientY);
+                    oceanParticles.push(p);
+                    
+                    // Remove old particles
+                    if (oceanParticles.length > 500) {
+                        oceanParticles.shift();
+                    }
+                }
+            }
+        });
+
+        // ===== BREATHING EFFECT =====
+        setInterval(() => {
+            const content = document.getElementById('content');
+            const scale = 1 + Math.sin(Date.now() * 0.001) * 0.02;
+            content.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        }, 50);
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinematic Technical Portfolio</title>
+    <title>CINEMATIC SIMULATION // TECHNICAL PORTFOLIO</title>
     <style>
         * {
             margin: 0;
@@ -19,10 +19,23 @@
             cursor: none;
         }
 
-        /* Canvas Layers */
-        #perlin-fluid,
-        #particle-layer,
-        #glitch-layer {
+        /* Main Canvas - GPU Accelerated */
+        #main-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        /* Overlay Canvases */
+        #grain-layer,
+        #ghost-layer,
+        #glitch-layer,
+        #fog-layer {
             position: fixed;
             top: 0;
             left: 0;
@@ -31,432 +44,242 @@
             pointer-events: none;
         }
 
-        #perlin-fluid { z-index: 1; }
-        #particle-layer { z-index: 2; }
-        #glitch-layer { z-index: 3; }
+        #grain-layer { z-index: 2; mix-blend-mode: screen; }
+        #ghost-layer { z-index: 3; }
+        #glitch-layer { z-index: 4; mix-blend-mode: difference; }
+        #fog-layer { z-index: 5; mix-blend-mode: screen; }
+
+        /* Technical Overlays */
+        .tech-overlay {
+            position: fixed;
+            font-size: 8px;
+            color: #0f0;
+            opacity: 0.6;
+            z-index: 100;
+            pointer-events: none;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 3px #0f0;
+            line-height: 1.2;
+        }
+
+        #sys-info-tl { top: 5px; left: 5px; }
+        #sys-info-tr { top: 5px; right: 5px; text-align: right; }
+        #sys-info-bl { bottom: 5px; left: 5px; }
+        #sys-info-br { bottom: 5px; right: 5px; text-align: right; }
+
+        /* Data Greebles */
+        #greeble-top,
+        #greeble-bottom {
+            position: fixed;
+            width: 100%;
+            height: 10px;
+            font-size: 8px;
+            color: #0f0;
+            opacity: 0.3;
+            z-index: 101;
+            white-space: nowrap;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #greeble-top { top: 0; }
+        #greeble-bottom { bottom: 0; }
+
+        .greeble-scroll {
+            display: inline-block;
+            animation: scroll-left 20s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
         /* Custom Cursor */
-        #cursor {
+        #cursor-ring {
             position: fixed;
-            width: 40px;
-            height: 40px;
-            border: 2px solid #0ff;
+            width: 60px;
+            height: 60px;
             pointer-events: none;
             z-index: 10000;
-            transition: transform 0.1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: #0ff;
-        }
-
-        #cursor::before,
-        #cursor::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 2px;
-            background: #0ff;
-        }
-
-        #cursor::before {
-            left: -15px;
-        }
-
-        #cursor::after {
-            right: -15px;
-        }
-
-        /* Viewport Brackets */
-        .viewport-bracket {
-            position: fixed;
             font-size: 40px;
-            color: #00ff00;
-            opacity: 0.6;
-            pointer-events: none;
-            z-index: 100;
-            text-shadow: 0 0 10px #0f0;
-        }
-
-        .bracket-tl { top: 10px; left: 10px; }
-        .bracket-tr { top: 10px; right: 10px; }
-        .bracket-bl { bottom: 10px; left: 10px; }
-        .bracket-br { bottom: 10px; right: 10px; }
-
-        /* Main Content */
-        .content {
-            position: relative;
-            z-index: 10;
-            width: 100vw;
-            height: 100vh;
-            overflow-y: auto;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 20px;
-            position: relative;
-        }
-
-        /* Scramble Text Effect */
-        .scramble-text {
-            font-size: clamp(20px, 5vw, 60px);
-            font-weight: bold;
-            letter-spacing: 5px;
-            position: relative;
-            display: inline-block;
-            text-shadow: 0 0 20px #0f0;
-        }
-
-        .scramble-char {
-            display: inline-block;
-            animation: materialize 0.5s ease forwards;
-        }
-
-        @keyframes materialize {
-            0% {
-                opacity: 0;
-                transform: scale(2) rotate(45deg);
-                filter: blur(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-                filter: blur(0);
-            }
-        }
-
-        /* Rain Effect Container */
-        .rain-text {
-            font-size: clamp(16px, 4vw, 40px);
-            position: relative;
-            display: inline-block;
-            margin: 20px 0;
-        }
-
-        .rain-char {
-            display: inline-block;
-            opacity: 0;
-            animation: rain-fall 1s ease forwards;
-        }
-
-        @keyframes rain-fall {
-            0% {
-                opacity: 0;
-                transform: translateY(-100px);
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scanline Effect */
-        .scanline {
-            position: fixed;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(to right, 
-                transparent,
-                rgba(0, 255, 255, 0.8),
-                rgba(255, 0, 255, 0.8),
-                transparent
-            );
-            z-index: 1000;
-            pointer-events: none;
-            box-shadow: 0 0 20px #0ff;
-        }
-
-        /* Project Cards */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-        }
-
-        .project-card {
-            border: 2px solid #0f0;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.8);
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(0, 255, 0, 0.3),
-                transparent
-            );
-            transition: left 0.5s;
-        }
-
-        .project-card:hover::before {
-            left: 100%;
-        }
-
-        .project-card:hover {
-            border-color: #0ff;
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
-        }
-
-        .project-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #0ff;
-        }
-
-        /* Shatter Effect */
-        .shatter-fragment {
-            position: fixed;
-            font-size: 12px;
-            color: #0f0;
-            pointer-events: none;
-            z-index: 10000;
-        }
-
-        /* Stats Display */
-        .stats-container {
-            display: flex;
-            gap: 40px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .stat-box {
+            color: #00ffff;
             text-align: center;
-            padding: 20px;
-            border: 2px solid #0f0;
-            min-width: 150px;
-            background: rgba(0, 255, 0, 0.05);
+            line-height: 60px;
+            transition: all 0.1s ease;
         }
 
-        .stat-number {
-            font-size: 48px;
-            color: #0ff;
-            text-shadow: 0 0 10px #0ff;
-            font-weight: bold;
+        /* Focus Ring */
+        #focus-ring {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 20px;
+            color: #00ff00;
+            transition: all 0.3s ease;
         }
 
-        .stat-label {
-            margin-top: 10px;
-            opacity: 0.7;
-            font-size: 14px;
-        }
-
-        /* Terminal Box */
-        .terminal {
-            width: 100%;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 2px solid #0f0;
-            padding: 20px;
-            margin: 30px 0;
-            font-size: 14px;
-        }
-
-        .terminal-line {
-            margin: 8px 0;
-            opacity: 0;
-            animation: terminal-appear 0.3s ease forwards;
-        }
-
-        @keyframes terminal-appear {
-            to { opacity: 1; }
-        }
-
-        .terminal-line::before {
-            content: '> ';
-            color: #0ff;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-            .scramble-text {
-                font-size: 24px;
-            }
-        }
-
-        /* Audio Reactive Pulse */
-        @keyframes audio-pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-        }
-
-        .audio-reactive {
-            animation: audio-pulse 0.5s ease-in-out infinite;
-        }
-
-        /* Glitch Effect */
-        .glitch {
-            position: relative;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
             top: 0;
             left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #decode-canvas {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #loading-text {
+            position: absolute;
+            font-size: 20px;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Chromatic Aberration Layers */
+        .chromatic-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 6;
+            mix-blend-mode: screen;
+        }
+
+        #chroma-r { opacity: 0.5; }
+        #chroma-g { opacity: 0.5; }
+        #chroma-b { opacity: 0.5; }
+
+        /* Content Layer */
+        #content-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Interactive Elements */
+        .interactive-zone {
+            pointer-events: all;
+            cursor: none;
+        }
+
+        /* Scanline Decoder */
+        #scanline {
+            position: fixed;
             width: 100%;
-            height: 100%;
+            height: 4px;
+            background: linear-gradient(to right,
+                transparent,
+                #00ffff,
+                #ff00ff,
+                #00ffff,
+                transparent
+            );
+            box-shadow: 0 0 20px #0ff;
+            z-index: 100001;
+            pointer-events: none;
         }
-
-        .glitch::before {
-            animation: glitch-1 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-            color: #ff00ff;
-            z-index: -1;
-        }
-
-        .glitch::after {
-            animation: glitch-2 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-            color: #00ffff;
-            z-index: -2;
-        }
-
-        @keyframes glitch-1 {
-            0%, 100% { transform: translate(0); }
-            33% { transform: translate(-2px, 2px); }
-            66% { transform: translate(2px, -2px); }
-        }
-
-        @keyframes glitch-2 {
-            0%, 100% { transform: translate(0); }
-            33% { transform: translate(2px, -2px); }
-            66% { transform: translate(-2px, 2px); }
-        }
-
-        /* Depth layers */
-        .depth-far { opacity: 0.2; font-size: 8px; }
-        .depth-mid { opacity: 0.5; font-size: 12px; }
-        .depth-near { opacity: 0.9; font-size: 16px; }
     </style>
 </head>
 <body>
-    <!-- Viewport Brackets -->
-    <div class="viewport-bracket bracket-tl">[</div>
-    <div class="viewport-bracket bracket-tr">]</div>
-    <div class="viewport-bracket bracket-bl">[</div>
-    <div class="viewport-bracket bracket-br">]</div>
-
-    <!-- Custom Cursor -->
-    <div id="cursor">+</div>
-
-    <!-- Scanline -->
-    <div class="scanline" id="scanline"></div>
-
-    <!-- Canvas Layers -->
-    <canvas id="perlin-fluid"></canvas>
-    <canvas id="particle-layer"></canvas>
-    <canvas id="glitch-layer"></canvas>
-
-    <!-- Main Content -->
-    <div class="content" id="main-content">
-        <!-- Hero Section -->
-        <section class="section">
-            <div class="scramble-text" id="hero-title" data-text="CINEMATIC"></div>
-            <div class="rain-text" id="hero-subtitle"></div>
-            <div class="terminal" id="boot-terminal"></div>
-            <div class="stats-container">
-                <div class="stat-box audio-reactive">
-                    <div class="stat-number">60</div>
-                    <div class="stat-label">FPS</div>
-                </div>
-                <div class="stat-box audio-reactive" style="animation-delay: 0.2s">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">PARTICLES</div>
-                </div>
-                <div class="stat-box audio-reactive" style="animation-delay: 0.4s">
-                    <div class="stat-number">100</div>
-                    <div class="stat-label">% REACTIVE</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section class="section">
-            <h2 class="scramble-text glitch" data-text="// PROJECTS">// PROJECTS</h2>
-            <div class="project-grid">
-                <div class="project-card" data-project="1">
-                    <h3>ASCII Fluid Engine</h3>
-                    <p>Real-time Perlin noise mapped to character density</p>
-                    <p style="margin-top: 10px; color: #0ff;">[ .'-:;^=+/ ]</p>
-                </div>
-                <div class="project-card" data-project="2">
-                    <h3>Reactive Particle System</h3>
-                    <p>GPU-accelerated particles with mouse interaction</p>
-                    <p style="margin-top: 10px; color: #0ff;">[ "|)\\&lt;&gt;iv ]</p>
-                </div>
-                <div class="project-card" data-project="3">
-                    <h3>Cinematic Typography</h3>
-                    <p>Scramble, rain, and materialize text effects</p>
-                    <p style="margin-top: 10px; color: #0ff;">[ %xclrs{*} ]</p>
-                </div>
-                <div class="project-card" data-project="4">
-                    <h3>Glitch Interference</h3>
-                    <p>Mouse-driven data corruption visualization</p>
-                    <p style="margin-top: 10px; color: #0ff;">[ I?!]... ]</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Section -->
-        <section class="section">
-            <h2 class="scramble-text glitch" data-text="// TECH STACK">// TECH STACK</h2>
-            <div class="terminal" id="tech-terminal"></div>
-        </section>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <canvas id="decode-canvas"></canvas>
+        <div id="scanline"></div>
+        <div id="loading-text">DECODING MEMORY BUFFER...</div>
     </div>
 
+    <!-- Canvas Layers -->
+    <canvas id="main-canvas"></canvas>
+    <canvas id="grain-layer"></canvas>
+    <canvas id="ghost-layer"></canvas>
+    <canvas id="glitch-layer"></canvas>
+    <canvas id="fog-layer"></canvas>
+
+    <!-- Chromatic Aberration Layers -->
+    <canvas id="chroma-r" class="chromatic-layer"></canvas>
+    <canvas id="chroma-g" class="chromatic-layer"></canvas>
+    <canvas id="chroma-b" class="chromatic-layer"></canvas>
+
+    <!-- Content Layer -->
+    <canvas id="content-layer"></canvas>
+
+    <!-- Technical Overlays -->
+    <div id="sys-info-tl" class="tech-overlay"></div>
+    <div id="sys-info-tr" class="tech-overlay"></div>
+    <div id="sys-info-bl" class="tech-overlay"></div>
+    <div id="sys-info-br" class="tech-overlay"></div>
+
+    <!-- Data Greebles -->
+    <div id="greeble-top"></div>
+    <div id="greeble-bottom"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-ring">+</div>
+    <div id="focus-ring"></div>
+
     <script>
+        // ===== CONFIGURATION =====
+        const CONFIG = {
+            charSize: 10,
+            fps: 60,
+            particleCount: 200,
+            glitchIntensity: 0.3,
+            fogDensity: 0.5
+        };
+
         // ===== CHARACTER SETS =====
-        const ASCII_CHARS = ".'-:;^=+/\"|)\\<>iv%xclrs{*}I?!]".split('');
-        const DEPTH_FAR = ".'-: ".split('');      // Distant starfield
-        const DEPTH_MID = ";^=+/\"|)\\".split('');  // Mid-range structure
-        const DEPTH_NEAR = "<>iv%xclrs{*}I?!]".split(''); // Solid foreground
-        const GLITCH_CHARS = "!?*#".split('');
+        const CHARS = {
+            all: ".'-:;^=+/\"|)\\<>iv%xclrs{*}I?!]".split(''),
+            depth_far: ".'-: ".split(''),
+            depth_mid: ";^=+/\"|)\\".split(''),
+            depth_near: "<>iv%xclrs{*}I?!]".split(''),
+            technical: "[]{}()<>/\\|".split(''),
+            glitch: "!?*#%&".split(''),
+            vertices: "+*".split(''),
+            edges: "/\\-`".split(''),
+            occlusion: ".:".split('')
+        };
 
         // ===== CANVAS SETUP =====
         const canvases = {
-            fluid: document.getElementById('perlin-fluid'),
-            particles: document.getElementById('particle-layer'),
-            glitch: document.getElementById('glitch-layer')
+            main: document.getElementById('main-canvas'),
+            grain: document.getElementById('grain-layer'),
+            ghost: document.getElementById('ghost-layer'),
+            glitch: document.getElementById('glitch-layer'),
+            fog: document.getElementById('fog-layer'),
+            chromaR: document.getElementById('chroma-r'),
+            chromaG: document.getElementById('chroma-g'),
+            chromaB: document.getElementById('chroma-b'),
+            content: document.getElementById('content-layer'),
+            decode: document.getElementById('decode-canvas')
         };
 
         const contexts = {};
         Object.keys(canvases).forEach(key => {
-            contexts[key] = canvases[key].getContext('2d');
+            contexts[key] = canvases[key].getContext('2d', { alpha: true });
         });
 
         function resizeCanvases() {
@@ -504,11 +327,6 @@
             }
 
             get(x, y) {
-                const key = `${x},${y}`;
-                if (this.memory[key]) {
-                    return this.memory[key];
-                }
-
                 const xf = Math.floor(x);
                 const yf = Math.floor(y);
 
@@ -519,86 +337,236 @@
 
                 const xt = this.interp(x - xf, tl, tr);
                 const xb = this.interp(x - xf, bl, br);
-                const v = this.interp(y - yf, xt, xb);
-
-                this.memory[key] = v;
-                return v;
+                return this.interp(y - yf, xt, xb);
             }
         }
 
-        // ===== ASCII FLUID RENDERER =====
-        class ASCIIFluid {
+        // ===== VECTOR FIELD =====
+        class VectorField {
             constructor() {
-                this.perlin = new PerlinNoise();
+                this.scale = 0.02;
                 this.time = 0;
-                this.charSize = 10;
-                this.cols = Math.floor(window.innerWidth / this.charSize);
-                this.rows = Math.floor(window.innerHeight / this.charSize);
             }
 
-            mapToChar(value) {
-                const normalized = (value + 1) / 2; // Perlin returns -1 to 1
-                const index = Math.floor(normalized * ASCII_CHARS.length);
-                return ASCII_CHARS[Math.min(index, ASCII_CHARS.length - 1)];
+            get(x, y) {
+                const angle = Math.sin(x * this.scale + this.time) * Math.cos(y * this.scale + this.time);
+                return {
+                    x: Math.cos(angle) * 0.5,
+                    y: Math.sin(angle) * 0.5
+                };
             }
 
             update() {
                 this.time += 0.01;
             }
+        }
 
-            draw() {
-                const ctx = contexts.fluid;
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-                ctx.fillRect(0, 0, canvases.fluid.width, canvases.fluid.height);
+        // ===== GRAIN SYSTEM =====
+        class GrainSystem {
+            constructor() {
+                this.particles = [];
+                this.vectorField = new VectorField();
+                this.init();
+            }
+
+            init() {
+                for (let i = 0; i < 500; i++) {
+                    this.particles.push({
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        char: Math.random() < 0.5 ? '.' : ':',
+                        opacity: 0.1 + Math.random() * 0.1
+                    });
+                }
+            }
+
+            update() {
+                this.vectorField.update();
                 
-                ctx.font = `${this.charSize}px Courier New`;
+                this.particles.forEach(p => {
+                    const vec = this.vectorField.get(p.x, p.y);
+                    p.x += vec.x;
+                    p.y += vec.y;
+                    
+                    // Brownian flicker
+                    if (Math.random() < 0.1) {
+                        p.char = ['.', ':', "'", '^'][Math.floor(Math.random() * 4)];
+                    }
+                    
+                    // Wrap around
+                    if (p.x < 0) p.x = window.innerWidth;
+                    if (p.x > window.innerWidth) p.x = 0;
+                    if (p.y < 0) p.y = window.innerHeight;
+                    if (p.y > window.innerHeight) p.y = 0;
+                });
+            }
 
-                for (let i = 0; i < this.cols; i++) {
-                    for (let j = 0; j < this.rows; j++) {
-                        const x = i * 0.1;
-                        const y = j * 0.1;
+            draw(ctx) {
+                ctx.clearRect(0, 0, canvases.grain.width, canvases.grain.height);
+                ctx.font = '8px Courier New';
+                
+                this.particles.forEach(p => {
+                    ctx.fillStyle = `rgba(0, 255, 0, ${p.opacity})`;
+                    ctx.fillText(p.char, p.x, p.y);
+                });
+            }
+        }
+
+        // ===== GHOSTING BUFFER =====
+        class GhostBuffer {
+            constructor() {
+                this.trails = [];
+                this.decayChain = ['%', 'x', 's', 'v', 'i', '.', ' '];
+            }
+
+            addTrail(x, y, char) {
+                this.trails.push({
+                    x, y, char,
+                    age: 0,
+                    maxAge: this.decayChain.length
+                });
+            }
+
+            update() {
+                for (let i = this.trails.length - 1; i >= 0; i--) {
+                    this.trails[i].age += 0.1;
+                    if (this.trails[i].age >= this.trails[i].maxAge) {
+                        this.trails.splice(i, 1);
+                    }
+                }
+            }
+
+            draw(ctx) {
+                ctx.clearRect(0, 0, canvases.ghost.width, canvases.ghost.height);
+                ctx.font = '12px Courier New';
+                
+                this.trails.forEach(t => {
+                    const index = Math.floor(t.age);
+                    if (index < this.decayChain.length) {
+                        const char = this.decayChain[index];
+                        const opacity = 1 - (t.age / t.maxAge);
+                        ctx.fillStyle = `rgba(0, 255, 0, ${opacity * 0.5})`;
+                        ctx.fillText(char, t.x, t.y);
+                    }
+                });
+            }
+        }
+
+        // ===== VOLUMETRIC FOG (SDF-based) =====
+        class VolumetricFog {
+            constructor() {
+                this.lightX = window.innerWidth / 2;
+                this.lightY = window.innerHeight / 2;
+                this.time = 0;
+                this.perlin = new PerlinNoise();
+            }
+
+            update() {
+                this.time += 0.01;
+                // Oscillate light source
+                this.lightX = window.innerWidth / 2 + Math.sin(this.time) * 200;
+                this.lightY = window.innerHeight / 2 + Math.cos(this.time * 0.7) * 150;
+            }
+
+            getCharByDistance(dist, noise) {
+                const combined = dist + noise * 50;
+                
+                if (combined < 50) return '!';
+                if (combined < 100) return 'I';
+                if (combined < 150) return '{';
+                if (combined < 200) return 'x';
+                if (combined < 250) return '%';
+                if (combined < 300) return ';';
+                if (combined < 350) return ':';
+                if (combined < 400) return '-';
+                return '.';
+            }
+
+            draw(ctx) {
+                ctx.clearRect(0, 0, canvases.fog.width, canvases.fog.height);
+                ctx.font = '10px Courier New';
+                
+                const step = 20;
+                for (let x = 0; x < window.innerWidth; x += step) {
+                    for (let y = 0; y < window.innerHeight; y += step) {
+                        const dx = x - this.lightX;
+                        const dy = y - this.lightY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
                         
-                        // Create fluid motion with sine wave and time
-                        const noise = this.perlin.get(
-                            x + Math.sin(this.time) * 2,
-                            y + Math.cos(this.time) * 2
-                        );
+                        const noise = this.perlin.get(x * 0.01, y * 0.01);
+                        const char = this.getCharByDistance(dist, noise);
                         
-                        const char = this.mapToChar(noise);
-                        const brightness = (noise + 1) / 2;
-                        const hue = (this.time * 20 + brightness * 60) % 360;
-                        
-                        ctx.fillStyle = `hsla(${hue}, 100%, 50%, ${brightness * 0.3})`;
-                        ctx.fillText(char, i * this.charSize, j * this.charSize);
+                        const brightness = Math.max(0, 1 - dist / 400);
+                        ctx.fillStyle = `rgba(0, 255, 255, ${brightness * 0.3})`;
+                        ctx.fillText(char, x, y);
                     }
                 }
             }
         }
 
+        // ===== TEMPORAL ANTI-ALIASING =====
+        class TemporalAA {
+            constructor() {
+                this.flickerState = new Map();
+            }
+
+            shouldFlicker(key, char1, char2) {
+                if (!this.flickerState.has(key)) {
+                    this.flickerState.set(key, {
+                        frame: 0,
+                        char1,
+                        char2
+                    });
+                }
+                
+                const state = this.flickerState.get(key);
+                state.frame++;
+                
+                if (state.frame > 3) {
+                    this.flickerState.delete(key);
+                    return char2;
+                }
+                
+                return state.frame % 2 === 0 ? char1 : char2;
+            }
+        }
+
         // ===== PARTICLE SYSTEM =====
         class Particle {
-            constructor(x, y, vx = 0, vy = 0) {
+            constructor(x, y, vx = 0, vy = 0, depth = 1) {
                 this.x = x;
                 this.y = y;
-                this.vx = vx || (Math.random() - 0.5) * 5;
-                this.vy = vy || (Math.random() - 0.5) * 5;
-                this.char = ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+                this.vx = vx || (Math.random() - 0.5) * 3;
+                this.vy = vy || (Math.random() - 0.5) * 3;
+                this.depth = depth; // 0 = far, 1 = mid, 2 = near
+                this.char = this.getCharByDepth();
                 this.life = 1;
                 this.decay = 0.005 + Math.random() * 0.01;
-                this.size = 10 + Math.random() * 15;
+                this.size = 8 + depth * 4;
                 this.rotation = Math.random() * Math.PI * 2;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.3;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.2;
                 this.hue = Math.random() * 360;
             }
 
-            update() {
+            getCharByDepth() {
+                if (this.depth === 0) return CHARS.depth_far[Math.floor(Math.random() * CHARS.depth_far.length)];
+                if (this.depth === 1) return CHARS.depth_mid[Math.floor(Math.random() * CHARS.depth_mid.length)];
+                return CHARS.depth_near[Math.floor(Math.random() * CHARS.depth_near.length)];
+            }
+
+            update(scrollSpeed = 0) {
                 this.x += this.vx;
-                this.y += this.vy;
-                this.vx *= 0.98;
-                this.vy *= 0.98;
+                this.y += this.vy + scrollSpeed * (this.depth + 1) * 0.5;
+                this.vx *= 0.99;
+                this.vy *= 0.99;
                 this.life -= this.decay;
                 this.rotation += this.rotationSpeed;
                 this.hue = (this.hue + 1) % 360;
+                
+                // Wrap around for parallax effect
+                if (this.y > window.innerHeight + 50) {
+                    this.y = -50;
+                }
             }
 
             draw(ctx) {
@@ -607,7 +575,9 @@
                     ctx.translate(this.x, this.y);
                     ctx.rotate(this.rotation);
                     ctx.font = `${this.size}px Courier New`;
-                    ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life * 0.8})`;
+                    
+                    const opacity = this.life * (0.3 + this.depth * 0.3);
+                    ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${opacity})`;
                     ctx.fillText(this.char, 0, 0);
                     ctx.restore();
                 }
@@ -618,314 +588,441 @@
             }
         }
 
-        // ===== GLITCH INTERFERENCE =====
-        class GlitchSystem {
-            constructor() {
-                this.glitches = [];
-                this.mouseX = 0;
-                this.mouseY = 0;
+        // ===== KINETIC TYPOGRAPHY =====
+        class KineticText {
+            constructor(text, x, y) {
+                this.text = text;
+                this.centerX = x;
+                this.centerY = y;
+                this.particles = [];
+                this.state = 'idle'; // idle, exploding, orbiting, reforming
+                this.explode();
             }
 
-            setMouse(x, y) {
-                this.mouseX = x;
-                this.mouseY = y;
-            }
-
-            addGlitch(x, y) {
-                for (let i = 0; i < 5; i++) {
-                    this.glitches.push({
-                        x: x + (Math.random() - 0.5) * 50,
-                        y: y + (Math.random() - 0.5) * 50,
-                        char: GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)],
-                        life: 1,
-                        vx: (Math.random() - 0.5) * 3,
-                        vy: (Math.random() - 0.5) * 3
+            explode() {
+                this.particles = [];
+                for (let i = 0; i < this.text.length; i++) {
+                    const angle = (Math.PI * 2 * i) / this.text.length;
+                    this.particles.push({
+                        char: this.text[i],
+                        x: this.centerX,
+                        y: this.centerY,
+                        targetX: this.centerX + Math.cos(angle) * 100,
+                        targetY: this.centerY + Math.sin(angle) * 100,
+                        orbitAngle: angle,
+                        orbitRadius: 100,
+                        phase: 0
                     });
                 }
             }
 
+            hover(mouseX, mouseY) {
+                this.state = 'orbiting';
+                this.centerX = mouseX;
+                this.centerY = mouseY;
+            }
+
+            unhover() {
+                this.state = 'reforming';
+            }
+
             update() {
-                for (let i = this.glitches.length - 1; i >= 0; i--) {
-                    const g = this.glitches[i];
-                    g.x += g.vx;
-                    g.y += g.vy;
-                    g.life -= 0.02;
-                    
-                    if (g.life <= 0) {
-                        this.glitches.splice(i, 1);
+                this.particles.forEach((p, i) => {
+                    if (this.state === 'orbiting') {
+                        // Spiral orbit: r = a + b*theta
+                        p.orbitAngle += 0.05;
+                        p.orbitRadius = 50 + 50 * Math.sin(p.orbitAngle);
+                        p.x = this.centerX + Math.cos(p.orbitAngle) * p.orbitRadius;
+                        p.y = this.centerY + Math.sin(p.orbitAngle) * p.orbitRadius;
+                    } else {
+                        // Move to target position
+                        p.x += (p.targetX - p.x) * 0.1;
+                        p.y += (p.targetY - p.y) * 0.1;
                     }
+                    p.phase += 0.1;
+                });
+            }
+
+            draw(ctx) {
+                ctx.font = '20px Courier New';
+                this.particles.forEach(p => {
+                    const brightness = 0.5 + Math.sin(p.phase) * 0.5;
+                    ctx.fillStyle = `rgba(0, 255, 255, ${brightness})`;
+                    ctx.fillText(p.char, p.x, p.y);
+                });
+            }
+        }
+
+        // ===== CHROMATIC ABERRATION =====
+        class ChromaticAberration {
+            constructor() {
+                this.offsetX = 2;
+                this.offsetY = 2;
+            }
+
+            draw(text, x, y) {
+                // Red channel
+                contexts.chromaR.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                contexts.chromaR.font = '20px Courier New';
+                contexts.chromaR.fillText(text, x - this.offsetX, y - this.offsetY);
+                
+                // Green channel
+                contexts.chromaG.fillStyle = 'rgba(0, 255, 0, 0.5)';
+                contexts.chromaG.font = '20px Courier New';
+                contexts.chromaG.fillText(text, x, y);
+                
+                // Blue channel
+                contexts.chromaB.fillStyle = 'rgba(0, 0, 255, 0.5)';
+                contexts.chromaB.font = '20px Courier New';
+                contexts.chromaB.fillText(text, x + this.offsetX, y + this.offsetY);
+            }
+
+            clear() {
+                contexts.chromaR.clearRect(0, 0, canvases.chromaR.width, canvases.chromaR.height);
+                contexts.chromaG.clearRect(0, 0, canvases.chromaG.width, canvases.chromaG.height);
+                contexts.chromaB.clearRect(0, 0, canvases.chromaB.width, canvases.chromaB.height);
+            }
+        }
+
+        // ===== NEURAL CONNECTION MAP =====
+        class NeuralMap {
+            constructor() {
+                this.nodes = [
+                    { x: 200, y: 200, label: 'JS', energy: 0 },
+                    { x: 400, y: 200, label: 'ASCII', energy: 0 },
+                    { x: 300, y: 350, label: 'Canvas', energy: 0 },
+                    { x: 500, y: 350, label: 'WebGL', energy: 0 }
+                ];
+                this.connections = [
+                    [0, 1], [1, 2], [2, 3], [0, 2], [1, 3]
+                ];
+            }
+
+            activateNode(index) {
+                this.nodes[index].energy = 1;
+            }
+
+            update() {
+                this.nodes.forEach(node => {
+                    node.energy *= 0.95; // Decay
+                });
+            }
+
+            draw(ctx) {
+                // Draw connections
+                this.connections.forEach(([a, b]) => {
+                    const nodeA = this.nodes[a];
+                    const nodeB = this.nodes[b];
+                    const energy = Math.max(nodeA.energy, nodeB.energy);
+                    
+                    if (energy > 0.1) {
+                        const chars = ['\\', '|', '/', '-'];
+                        const steps = 20;
+                        
+                        for (let i = 0; i < steps; i++) {
+                            const t = i / steps;
+                            const x = nodeA.x + (nodeB.x - nodeA.x) * t;
+                            const y = nodeA.y + (nodeB.y - nodeA.y) * t;
+                            const char = chars[i % chars.length];
+                            
+                            ctx.fillStyle = `rgba(0, 255, 0, ${energy})`;
+                            ctx.fillText(char, x, y);
+                        }
+                    }
+                });
+                
+                // Draw nodes
+                ctx.font = '20px Courier New';
+                this.nodes.forEach(node => {
+                    const pulse = node.energy > 0.5 ? '!' : node.energy > 0.3 ? '%' : '[';
+                    ctx.fillStyle = `rgba(0, 255, 255, ${0.5 + node.energy * 0.5})`;
+                    ctx.fillText(`${pulse}${node.label}${pulse}`, node.x, node.y);
+                });
+            }
+        }
+
+        // ===== BINARY REBIRTH LOADER =====
+        class BinaryRebirth {
+            constructor(onComplete) {
+                this.onComplete = onComplete;
+                this.rows = Math.floor(window.innerHeight / 12);
+                this.cols = Math.floor(window.innerWidth / 8);
+                this.grid = [];
+                this.scanlineY = 0;
+                this.complete = false;
+                this.init();
+            }
+
+            init() {
+                for (let y = 0; y < this.rows; y++) {
+                    const row = [];
+                    for (let x = 0; x < this.cols; x++) {
+                        row.push({
+                            char: ['%', '&', '#', '*'][Math.floor(Math.random() * 4)],
+                            decoded: false
+                        });
+                    }
+                    this.grid.push(row);
+                }
+            }
+
+            update() {
+                if (this.complete) return;
+                
+                this.scanlineY += 3;
+                
+                const currentRow = Math.floor(this.scanlineY / 12);
+                if (currentRow < this.rows) {
+                    // Decode current row
+                    this.grid[currentRow].forEach(cell => {
+                        cell.decoded = true;
+                        cell.char = CHARS.all[Math.floor(Math.random() * CHARS.all.length)];
+                    });
+                }
+                
+                if (this.scanlineY > window.innerHeight) {
+                    this.complete = true;
+                    setTimeout(() => this.onComplete(), 500);
                 }
             }
 
             draw(ctx) {
-                ctx.clearRect(0, 0, canvases.glitch.width, canvases.glitch.height);
-                ctx.font = '20px Courier New';
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvases.decode.width, canvases.decode.height);
+                ctx.font = '10px Courier New';
                 
-                this.glitches.forEach(g => {
-                    ctx.fillStyle = `rgba(255, 0, 255, ${g.life})`;
-                    ctx.fillText(g.char, g.x, g.y);
+                this.grid.forEach((row, y) => {
+                    row.forEach((cell, x) => {
+                        if (cell.decoded) {
+                            ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+                        } else {
+                            ctx.fillStyle = 'rgba(255, 0, 255, 0.5)';
+                        }
+                        ctx.fillText(cell.char, x * 8, y * 12);
+                    });
                 });
             }
         }
 
-        // ===== SCREEN SHATTER EFFECT =====
-        function shatterScreen(x, y) {
-            const fragment_count = 100;
-            const fragments = [];
-            
-            for (let i = 0; i < fragment_count; i++) {
-                const fragment = document.createElement('div');
-                fragment.className = 'shatter-fragment';
-                fragment.textContent = ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
-                fragment.style.left = x + 'px';
-                fragment.style.top = y + 'px';
-                document.body.appendChild(fragment);
-                
-                const angle = (Math.PI * 2 * i) / fragment_count;
-                const speed = 2 + Math.random() * 5;
-                const vx = Math.cos(angle) * speed;
-                const vy = Math.sin(angle) * speed;
-                
-                fragments.push({ element: fragment, x, y, vx, vy, life: 1 });
-            }
-            
-            const animateFragments = () => {
-                let active = false;
-                
-                fragments.forEach(f => {
-                    if (f.life > 0) {
-                        active = true;
-                        f.x += f.vx;
-                        f.y += f.vy;
-                        f.vy += 0.2; // Gravity
-                        f.life -= 0.02;
-                        
-                        f.element.style.left = f.x + 'px';
-                        f.element.style.top = f.y + 'px';
-                        f.element.style.opacity = f.life;
-                    } else {
-                        f.element.remove();
-                    }
-                });
-                
-                if (active) {
-                    requestAnimationFrame(animateFragments);
-                }
-            };
-            
-            animateFragments();
-        }
+        // ===== SYSTEM INITIALIZATION =====
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let scrollSpeed = 0;
 
-        // ===== TEXT EFFECTS =====
-        function scrambleText(element, finalText, duration = 2000) {
-            const chars = finalText.split('');
-            let iteration = 0;
-            const maxIterations = duration / 50;
-            
-            element.innerHTML = '';
-            
-            const interval = setInterval(() => {
-                element.innerHTML = chars.map((char, index) => {
-                    if (index < iteration) {
-                        return `<span class="scramble-char" style="animation-delay: ${index * 0.05}s">${char}</span>`;
-                    }
-                    return `<span class="scramble-char">${ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)]}</span>`;
-                }).join('');
-                
-                iteration += chars.length / maxIterations;
-                
-                if (iteration >= chars.length) {
-                    clearInterval(interval);
-                    element.innerHTML = chars.map((char, index) => 
-                        `<span class="scramble-char" style="animation-delay: ${index * 0.05}s">${char}</span>`
-                    ).join('');
-                }
-            }, 50);
-        }
+        const grainSystem = new GrainSystem();
+        const ghostBuffer = new GhostBuffer();
+        const volumetricFog = new VolumetricFog();
+        const temporalAA = new TemporalAA();
+        const chromaAberration = new ChromaticAberration();
+        const neuralMap = new NeuralMap();
 
-        function rainText(element, text) {
-            const chars = text.split('');
-            element.innerHTML = chars.map((char, index) => 
-                `<span class="rain-char" style="animation-delay: ${index * 0.1}s">${char}</span>`
-            ).join('');
-        }
-
-        // ===== SCANLINE ANIMATION =====
-        function animateScanline() {
-            const scanline = document.getElementById('scanline');
-            let position = 0;
-            
-            setInterval(() => {
-                position = (position + 2) % window.innerHeight;
-                scanline.style.top = position + 'px';
-            }, 20);
-        }
-
-        // ===== CUSTOM CURSOR =====
-        const cursor = document.getElementById('cursor');
-        let cursorX = 0, cursorY = 0;
-        let targetX = 0, targetY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            targetX = e.clientX;
-            targetY = e.clientY;
-        });
-
-        function updateCursor() {
-            cursorX += (targetX - cursorX) * 0.2;
-            cursorY += (targetY - cursorY) * 0.2;
-            
-            cursor.style.left = (cursorX - 20) + 'px';
-            cursor.style.top = (cursorY - 20) + 'px';
-            
-            // Update viewport brackets
-            const brackets = document.querySelectorAll('.viewport-bracket');
-            brackets[0].style.transform = `translate(${cursorX * 0.02}px, ${cursorY * 0.02}px)`;
-            brackets[1].style.transform = `translate(${-cursorX * 0.02}px, ${cursorY * 0.02}px)`;
-            brackets[2].style.transform = `translate(${cursorX * 0.02}px, ${-cursorY * 0.02}px)`;
-            brackets[3].style.transform = `translate(${-cursorX * 0.02}px, ${-cursorY * 0.02}px)`;
-            
-            requestAnimationFrame(updateCursor);
-        }
-        updateCursor();
-
-        // ===== INITIALIZE SYSTEMS =====
-        const fluid = new ASCIIFluid();
         const particles = [];
-        const glitchSystem = new GlitchSystem();
+        const kineticTexts = [];
 
-        // Mouse interaction
+        // Create parallax particles
+        for (let i = 0; i < 100; i++) {
+            particles.push(new Particle(
+                Math.random() * window.innerWidth,
+                Math.random() * window.innerHeight,
+                0, 0,
+                Math.floor(Math.random() * 3)
+            ));
+        }
+
+        // ===== MOUSE TRACKING =====
         document.addEventListener('mousemove', (e) => {
-            glitchSystem.setMouse(e.clientX, e.clientY);
+            mouseX = e.clientX;
+            mouseY = e.clientY;
             
-            if (Math.random() < 0.1) {
-                glitchSystem.addGlitch(e.clientX, e.clientY);
+            // Add ghost trail
+            if (Math.random() < 0.3) {
+                ghostBuffer.addTrail(mouseX, mouseY, '%');
             }
             
-            if (Math.random() < 0.2) {
-                particles.push(new Particle(e.clientX, e.clientY));
-            }
-        });
-
-        // Click shatter effect
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = rect.left + rect.width / 2;
-                const y = rect.top + rect.height / 2;
-                shatterScreen(x, y);
-                
-                // Create explosion of particles
-                for (let i = 0; i < 30; i++) {
-                    const angle = (Math.PI * 2 * i) / 30;
-                    const speed = 5 + Math.random() * 5;
-                    particles.push(new Particle(
-                        x, y,
-                        Math.cos(angle) * speed,
-                        Math.sin(angle) * speed
-                    ));
-                }
+            // Update cursor
+            const cursor = document.getElementById('cursor-ring');
+            cursor.style.left = (mouseX - 30) + 'px';
+            cursor.style.top = (mouseY - 30) + 'px';
+            
+            // Update focus ring
+            const focusRing = document.getElementById('focus-ring');
+            const ringChars = ['(', ')', '<', '>', '/', '\\'];
+            const ringRadius = 40;
+            let ringHTML = '';
+            ringChars.forEach((char, i) => {
+                const angle = (Math.PI * 2 * i) / ringChars.length;
+                const x = mouseX + Math.cos(angle) * ringRadius;
+                const y = mouseY + Math.sin(angle) * ringRadius;
+                ringHTML += `<span style="position:absolute;left:${x}px;top:${y}px">${char}</span>`;
             });
+            focusRing.innerHTML = ringHTML;
         });
 
-        // ===== MAIN ANIMATION LOOP =====
-        function animate() {
-            // Update and draw fluid
-            fluid.update();
-            fluid.draw();
-
-            // Update and draw particles
-            const pCtx = contexts.particles;
-            pCtx.clearRect(0, 0, canvases.particles.width, canvases.particles.height);
+        // ===== TECHNICAL OVERLAY UPDATES =====
+        function updateTechOverlays() {
+            const now = new Date();
+            const fps = Math.floor(1000 / 16.67);
             
+            document.getElementById('sys-info-tl').innerHTML = `
+SYS_LOAD: [||||||||||..] 82%
+BUFF_ADDR: 0x7FF${Math.floor(Math.random() * 999).toString(16)}
+TIME: ${now.toLocaleTimeString()}
+            `.trim();
+            
+            document.getElementById('sys-info-tr').innerHTML = `
+FPS: ${fps}
+PARTICLES: ${particles.length}
+NEURAL_ACTIVE: ${neuralMap.nodes.filter(n => n.energy > 0.1).length}
+            `.trim();
+            
+            document.getElementById('sys-info-bl').innerHTML = `
+CURSOR: [${mouseX.toFixed(0)}, ${mouseY.toFixed(0)}]
+SCROLL: ${scrollSpeed.toFixed(2)}
+            `.trim();
+            
+            document.getElementById('sys-info-br').innerHTML = `
+RES: ${window.innerWidth}x${window.innerHeight}
+MODE: CINEMATIC_SIMULATION
+ENGINE: GPU_ACCELERATED
+            `.trim();
+        }
+
+        // ===== DATA GREEBLES =====
+        function initGreebles() {
+            const greebleChars = ".-:;^=+/\"|)\\<>".split('');
+            let greebleString = '';
+            for (let i = 0; i < 500; i++) {
+                greebleString += greebleChars[Math.floor(Math.random() * greebleChars.length)];
+            }
+            
+            document.getElementById('greeble-top').innerHTML = 
+                `<span class="greeble-scroll">${greebleString}${greebleString}</span>`;
+            document.getElementById('greeble-bottom').innerHTML = 
+                `<span class="greeble-scroll">${greebleString}${greebleString}</span>`;
+            
+            // Bit-flip animation
+            setInterval(() => {
+                const elements = document.querySelectorAll('.greeble-scroll');
+                elements.forEach(el => {
+                    const text = el.textContent;
+                    const pos = Math.floor(Math.random() * text.length);
+                    const newChar = greebleChars[Math.floor(Math.random() * greebleChars.length)];
+                    el.textContent = text.substring(0, pos) + newChar + text.substring(pos + 1);
+                });
+            }, 100);
+        }
+
+        // ===== MAIN RENDER LOOP =====
+        function render() {
+            // Update systems
+            grainSystem.update();
+            ghostBuffer.update();
+            volumetricFog.update();
+            neuralMap.update();
+            
+            // Update particles
             for (let i = particles.length - 1; i >= 0; i--) {
-                particles[i].update();
-                particles[i].draw(pCtx);
-                
+                particles[i].update(scrollSpeed);
                 if (particles[i].isDead()) {
                     particles.splice(i, 1);
-                }
-            }
-
-            // Update and draw glitch
-            glitchSystem.update();
-            glitchSystem.draw(contexts.glitch);
-
-            requestAnimationFrame(animate);
-        }
-
-        // ===== INITIALIZATION =====
-        window.addEventListener('load', () => {
-            // Animate hero title
-            scrambleText(document.getElementById('hero-title'), 'CINEMATIC');
-            
-            // Animate subtitle with rain
-            setTimeout(() => {
-                rainText(document.getElementById('hero-subtitle'), 'TECHNICAL PORTFOLIO');
-            }, 500);
-
-            // Boot terminal
-            const bootTerminal = document.getElementById('boot-terminal');
-            const bootMessages = [
-                'Initializing ASCII Fluid Engine...',
-                'Loading Perlin Noise Generator... [OK]',
-                'Starting Particle System... [OK]',
-                'Activating Glitch Interference... [OK]',
-                'Enabling Reactive Elements... [OK]',
-                'System Ready: .\\'-:;^=+/"|)\\\\&lt;&gt;iv%xclrs{*}I?!]...'
-            ];
-            
-            bootMessages.forEach((msg, i) => {
-                setTimeout(() => {
-                    const line = document.createElement('div');
-                    line.className = 'terminal-line';
-                    line.textContent = msg;
-                    line.style.animationDelay = i * 0.1 + 's';
-                    bootTerminal.appendChild(line);
-                }, i * 300);
-            });
-
-            // Tech terminal
-            setTimeout(() => {
-                const techTerminal = document.getElementById('tech-terminal');
-                const techMessages = [
-                    'Canvas API + Perlin Noise',
-                    'Character Density Mapping',
-                    'GPU-Accelerated Rendering',
-                    'Reactive Mouse Interaction',
-                    'Cinematic Text Effects',
-                    'Procedural Animation System'
-                ];
-                
-                techMessages.forEach((msg, i) => {
-                    const line = document.createElement('div');
-                    line.className = 'terminal-line';
-                    line.textContent = msg;
-                    line.style.animationDelay = i * 0.1 + 's';
-                    techTerminal.appendChild(line);
-                });
-            }, 2000);
-
-            // Start scanline
-            animateScanline();
-
-            // Start main animation
-            animate();
-
-            // Random particle rain
-            setInterval(() => {
-                if (particles.length < 50) {
+                    // Respawn in parallax layer
                     particles.push(new Particle(
                         Math.random() * window.innerWidth,
-                        -20,
-                        0,
-                        2 + Math.random() * 3
+                        -50,
+                        0, 0,
+                        Math.floor(Math.random() * 3)
                     ));
                 }
-            }, 200);
+            }
+            
+            // Update kinetic texts
+            kineticTexts.forEach(kt => kt.update());
+            
+            // Draw layers
+            grainSystem.draw(contexts.grain);
+            ghostBuffer.draw(contexts.ghost);
+            volumetricFog.draw(contexts.fog);
+            
+            // Draw main content
+            const ctx = contexts.main;
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvases.main.width, canvases.main.height);
+            
+            particles.forEach(p => p.draw(ctx));
+            
+            // Draw neural map
+            neuralMap.draw(contexts.content);
+            
+            // Draw kinetic texts
+            chromaAberration.clear();
+            kineticTexts.forEach(kt => kt.draw(contexts.content));
+            
+            // Draw title with chromatic aberration
+            chromaAberration.draw('CINEMATIC PORTFOLIO', window.innerWidth / 2 - 150, 100);
+            
+            // Update tech overlays
+            if (Math.random() < 0.1) {
+                updateTechOverlays();
+            }
+            
+            requestAnimationFrame(render);
+        }
 
-            console.log('%c.\\'-:;^=+/"|)\\\\<>iv%xclrs{*}I?!]...', 'color: #0f0; font-size: 20px; font-family: monospace;');
-            console.log('%cCINEMATIC PORTFOLIO LOADED', 'color: #0ff; font-size: 16px; font-family: monospace;');
+        // ===== LOADING SEQUENCE =====
+        function startLoadingSequence() {
+            const loader = new BinaryRebirth(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+                startMainExperience();
+            });
+            
+            const scanline = document.getElementById('scanline');
+            
+            function animateLoader() {
+                loader.update();
+                loader.draw(contexts.decode);
+                
+                scanline.style.top = loader.scanlineY + 'px';
+                
+                if (!loader.complete) {
+                    requestAnimationFrame(animateLoader);
+                }
+            }
+            
+            animateLoader();
+        }
+
+        // ===== MAIN EXPERIENCE =====
+        function startMainExperience() {
+            initGreebles();
+            updateTechOverlays();
+            
+            // Create kinetic texts
+            kineticTexts.push(new KineticText('TECHNICAL', window.innerWidth / 2, window.innerHeight / 2));
+            
+            // Activate neural nodes periodically
+            setInterval(() => {
+                neuralMap.activateNode(Math.floor(Math.random() * neuralMap.nodes.length));
+            }, 2000);
+            
+            // Start main render loop
+            render();
+            
+            console.log('%c.\\'-:;^=+/"|)\\\\<>iv%xclrs{*}I?!]...', 
+                'color: #0f0; font-size: 24px; font-family: monospace; text-shadow: 0 0 10px #0f0;');
+            console.log('%cCINEMATIC SIMULATION INITIALIZED', 
+                'color: #0ff; font-size: 16px; font-family: monospace;');
+        }
+
+        // ===== START =====
+        window.addEventListener('load', () => {
+            startLoadingSequence();
+        });
+
+        // Scroll detection
+        let lastScrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollSpeed = window.scrollY - lastScrollY;
+            lastScrollY = window.scrollY;
         });
     </script>
 </body>
