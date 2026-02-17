@@ -93,3 +93,64 @@ Generate ASCII art at:
 - Use `pixel-border` class for retro borders
 - Add `animate-fadeIn delay-XXX` for staggered animations
 - Test on mobile devices (responsive design included)
+
+## 🎮 Interactive WebGL Features
+
+### WebGL Background
+The portfolio now includes a WebGL background with custom shaders that react to mouse movement.
+
+**Component**: `components/PixelatedBackground.tsx`
+
+**Customization Options:**
+```typescript
+// Adjust pixelation level (line 17)
+pixelSize: { value: 8.0 }  // Lower = more pixels, Higher = more pixelated
+
+// Adjust animation speed (line 69)
+float pat = pattern(pixelUV, time * 0.5);  // Change 0.5 to speed up/slow down
+
+// Adjust mouse influence distance (line 63)
+float mouseInfluence = smoothstep(0.3, 0.0, dist);  // Change 0.3 to adjust range
+```
+
+### Mouse-Reactive Text
+Text elements respond to cursor proximity with multiple effects.
+
+**Component**: `components/MouseReactiveText.tsx`
+
+**Customization Options:**
+```typescript
+// Adjust interaction distance (line 89)
+const maxDistance = 150;  // Pixels from mouse
+
+// Adjust push strength (line 97)
+const pushX = -Math.cos(angle) * force * 20;  // Change 20 for more/less push
+
+// Adjust rotation amount (line 101)
+const rotation = force * 15 * (index % 2 === 0 ? 1 : -1);  // Change 15
+
+// Adjust pixelation intensity (line 107)
+const pixelLevel = 1 + force * 3;  // Change 3 for more/less pixelation
+```
+
+### Usage
+```tsx
+import MouseReactiveText from '@/components/MouseReactiveText';
+
+<MouseReactiveText 
+  text="YOUR TEXT HERE" 
+  as="h1"  // or h2, h3, p, span
+  className="your-classes"
+/>
+```
+
+### Performance Tips
+- The WebGL background uses GPU acceleration
+- Mouse tracking is throttled for performance
+- Text effects use CSS transforms (GPU-accelerated)
+- Both components are optimized for 60fps
+
+### Disabling Effects
+To disable WebGL background, remove the `<PixelatedBackground />` component from `app/page.tsx`.
+
+To use static text instead of reactive, replace `<MouseReactiveText />` with regular HTML elements.
