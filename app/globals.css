@@ -4,6 +4,14 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  /* Colorful pixelated theme */
+  --neon-cyan: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-yellow: #ffff00;
+  --neon-green: #00ff00;
+  --purple: #9d4edd;
+  --orange: #ff6b35;
+  --electric-blue: #06ffa5;
 }
 
 @theme inline {
@@ -11,6 +19,10 @@
   --color-foreground: var(--foreground);
   --font-pixel: 'Press Start 2P', cursive;
   --font-mono: 'VT323', monospace;
+  --color-neon-cyan: #00ffff;
+  --color-neon-pink: #ff00ff;
+  --color-neon-yellow: #ffff00;
+  --color-neon-green: #00ff00;
 }
 
 body {
@@ -223,4 +235,46 @@ body {
 
 .delay-800 {
   animation-delay: 800ms;
+}
+
+/* Neon glow animation */
+@keyframes neon-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+  50% {
+    text-shadow: 
+      0 0 20px currentColor,
+      0 0 30px currentColor,
+      0 0 40px currentColor,
+      0 0 50px currentColor;
+  }
+}
+
+.neon-text {
+  animation: neon-glow 2s ease-in-out infinite;
+}
+
+/* RGB shift animation */
+@keyframes rgb-shift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.rgb-shift {
+  animation: rgb-shift 3s linear infinite;
+}
+
+/* Color pulse */
+@keyframes color-pulse {
+  0%, 100% { color: var(--neon-cyan); }
+  33% { color: var(--neon-pink); }
+  66% { color: var(--neon-yellow); }
+}
+
+.color-pulse {
+  animation: color-pulse 3s ease-in-out infinite;
 }

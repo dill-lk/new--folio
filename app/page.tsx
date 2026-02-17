@@ -14,8 +14,8 @@ const MouseReactiveText = dynamic(() => import('@/components/MouseReactiveText')
   loading: () => <span>Loading...</span>,
 });
 
-// NEW: Video-based ASCII intro (professional quality)
-const VideoASCIIIntro = dynamic(() => import('@/components/VideoASCIIIntro'), {
+// NEW: Colorful Video-based ASCII intro
+const ColorfulVideoASCIIIntro = dynamic(() => import('@/components/ColorfulVideoASCIIIntro'), {
   ssr: false,
   loading: () => null,
 });
@@ -50,9 +50,9 @@ export default function Home() {
     sessionStorage.setItem('hasSeenIntro', 'true');
   };
 
-  // Show video-based ASCII intro first
+  // Show colorful video-based ASCII intro first
   if (isMounted && showIntro && !introCompleted) {
-    return <VideoASCIIIntro onComplete={handleIntroComplete} />;
+    return <ColorfulVideoASCIIIntro onComplete={handleIntroComplete} />;
   }
 
   return (
@@ -78,37 +78,37 @@ export default function Home() {
             `}
           </div>
 
-          {/* Main Title with Mouse Reactive Text */}
+          {/* Main Title with Mouse Reactive Text - COLORFUL! */}
           <div className={`text-center mb-4 ${isLoaded ? 'animate-fadeIn delay-200' : 'opacity-0'}`}>
             <MouseReactiveText 
               text="WELCOME TO MY PORTFOLIO" 
               as="h1"
-              className="text-2xl md:text-4xl lg:text-5xl"
+              className="text-2xl md:text-4xl lg:text-5xl neon-text text-[#00ffff]"
             />
           </div>
 
-          {/* Subtitle with typing effect */}
-          <p className={`text-sm md:text-base text-center mb-8 ${isLoaded ? 'animate-fadeIn delay-400' : 'opacity-0'}`}>
+          {/* Subtitle with typing effect - COLORFUL! */}
+          <p className={`text-sm md:text-base text-center mb-8 color-pulse ${isLoaded ? 'animate-fadeIn delay-400' : 'opacity-0'}`}>
             {'>'} Full Stack Developer | Digital Creator | Tech Enthusiast
           </p>
 
-          {/* Blinking cursor */}
-          <div className={`text-center text-2xl ${isLoaded ? 'animate-fadeIn delay-600' : 'opacity-0'}`}>
+          {/* Blinking cursor - COLORFUL! */}
+          <div className={`text-center text-2xl text-[#ff00ff] ${isLoaded ? 'animate-fadeIn delay-600' : 'opacity-0'}`}>
             <span className="animate-blink">_</span>
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons - COLORFUL! */}
           <div className={`flex flex-wrap justify-center gap-4 mt-8 ${isLoaded ? 'animate-fadeIn delay-800' : 'opacity-0'}`}>
-            <a href="#about" className="pixel-border px-6 py-3 hover:bg-white hover:text-black transition-all duration-300 text-xs md:text-sm">
+            <a href="#about" className="pixel-border px-6 py-3 hover:scale-110 transition-all duration-300 text-xs md:text-sm text-[#00ffff] border-[#00ffff]">
               [ ABOUT ]
             </a>
-            <a href="#projects" className="pixel-border px-6 py-3 hover:bg-white hover:text-black transition-all duration-300 text-xs md:text-sm">
+            <a href="#projects" className="pixel-border px-6 py-3 hover:scale-110 transition-all duration-300 text-xs md:text-sm text-[#ff00ff] border-[#ff00ff]">
               [ PROJECTS ]
             </a>
-            <a href="#skills" className="pixel-border px-6 py-3 hover:bg-white hover:text-black transition-all duration-300 text-xs md:text-sm">
+            <a href="#skills" className="pixel-border px-6 py-3 hover:scale-110 transition-all duration-300 text-xs md:text-sm text-[#ffff00] border-[#ffff00]">
               [ SKILLS ]
             </a>
-            <a href="#contact" className="pixel-border px-6 py-3 hover:bg-white hover:text-black transition-all duration-300 text-xs md:text-sm">
+            <a href="#contact" className="pixel-border px-6 py-3 hover:scale-110 transition-all duration-300 text-xs md:text-sm text-[#00ff00] border-[#00ff00]">
               [ CONTACT ]
             </a>
           </div>
