@@ -3,8 +3,3 @@
   # Skip the build process and serve files directly
   command = "echo 'No build needed - serving static files'"
   publish = "out"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
