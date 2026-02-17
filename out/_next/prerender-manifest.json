@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "/": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": null
+    }
+  },
+  "version": 3
+}

@@ -1,0 +1,9 @@
+{
+  "pages": {
+    "/": ["static/chunks/pages/index.js"],
+    "/_app": ["static/chunks/pages/_app.js"]
+  },
+  "pageData": {
+    "/": ["static/data/index.json"]
+  }
+}
